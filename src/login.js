@@ -1,4 +1,8 @@
 (function () {
+/* var app = firebase.initializeApp(config);
+ var auth = app.auth();
+ var ui = new firebaseui.auth.AuthUI(auth);
+ */
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   var uiConfig = {
     callbacks: {
