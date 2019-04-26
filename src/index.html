@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,35 +9,38 @@
   <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <img srcset="logo.png">
-    <header>
+  <img srcset="logo.png">
+  <header>
     <h1>PureLife</h1>
-    </header>
-    <h1>Registrase</h1>
-    <section  class="login" id="pag-one">
+  </header>
+  <h1>Registrase</h1>
+  <section class="login" id="pag-one">
     <h3>Bienvenida a PureLife, la red donde reciclar es divertido.</h3>
-    <input id= "email-login" type="email" placeholder="ingresa tu email">
-    <input id = "contraseña-login" type="password" placeholder="Ingrese contraseña">
-    <button id= "ingresar"> Ingresar  </button>
+    <input id="email-login" type="email" placeholder="ingresa tu email">
+    <input id="contraseña-login" type="password" placeholder="Ingrese contraseña">
+    <button id="ingresar"> Ingresar </button>
     <p>¿No tienes una cuenta? <button id="registro">Regístrate.</button></p>
   </section>
-  <section>
-      <p>Correo Electronico:</p><input type="email" id="email" placeholder="Ingrese email">
-      <p>Crea tu contraseña:</p><input type="password" id="password" placeholder="Ingrese contraseña">
-      <br>
-      <br>
-      <button id="button-sesion">REGISTRARME</button>
-    </section>
-    <h4>O inicia sesión con...</h4>
-    <h2>Facebook</h2>
-    <button id= "Facebook"> FB  </button>
-    <div id= "container">
-    </div>      
-    
+
+  <h4>O inicia sesión con...</h4>
+  <h2>Facebook</h2>
+  <button id="Facebook"> FB </button>
+  <div id="container">
+  </div>
+  <section class="login">
+    <p>Correo Electronico:</p><input type="email" id="email" placeholder="Ingrese email">
+    <p>Crea tu contraseña:</p><input type="password" id="password" placeholder="Ingrese contraseña">
+    <br>
+    <br>
+    <button id="button-sesion">REGISTRARME</button>
+  </section>
+
   <!-- <script type="module" src="main.js"></script> -->
   <script src="Firebase.js"></script>
   <script src="login.js"></script>
- 
+
 </body>
+
 </html>
