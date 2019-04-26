@@ -6,21 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <img srcset="logo.png">
+    <header>
+    <h1>PureLife</h1>
+    </header>
     <h1>Registrase</h1>
-    <input id= "email" type="email" placeholder="ingresa tu email">
-    <input id = "contraseña" type="password" placeholder="ingresa tu email">
-    <button id= "registrar"> Ingresar  </button>
-    <h1>Ingresar</h1>
+    <section  class="login" id="pag-one">
+    <h3>Bienvenida a PureLife, la red donde reciclar es divertido.</h3>
     <input id= "email-login" type="email" placeholder="ingresa tu email">
-    <input id = "contraseña-login" type="password" placeholder="ingresa tu email">
+    <input id = "contraseña-login" type="password" placeholder="Ingrese contraseña">
     <button id= "ingresar"> Ingresar  </button>
-
+    <p>¿No tienes una cuenta? <button id="registro">Regístrate.</button></p>
+  </section>
+  <section>
+      <p>Correo Electronico:</p><input type="email" id="email" placeholder="Ingrese email">
+      <p>Crea tu contraseña:</p><input type="password" id="password" placeholder="Ingrese contraseña">
+      <br>
+      <br>
+      <button id="button-sesion">REGISTRARME</button>
+    </section>
+    <h4>O inicia sesión con...</h4>
     <h2>Facebook</h2>
     <button id= "Facebook"> FB  </button>
     <div id= "container">
-    </div>
+    </div>      
+    
   <!-- <script type="module" src="main.js"></script> -->
   <script src="Firebase.js"></script>
   <script src="login.js"></script>

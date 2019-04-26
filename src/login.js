@@ -1,4 +1,4 @@
-let appFirebase = {};
+
 (function () {
   let config = {
     apiKey: "AIzaSyBrEkqM2kN4YhK8ALD4rGDziPene6zeWhQ",
@@ -7,18 +7,54 @@ let appFirebase = {};
     projectId: "red-social-ecologica",
     storageBucket: "red-social-ecologica.appspot.com",
     messagingSenderId: "246884214989"
-  };
-  firebase.initializeApp(config); // conectarme con la cong
-  appFirebase = firebase
-  // var app = firebase.initializeApp(config);
-  //var auth = appFirebase.auth();
-  //var ui = new firebaseui.auth.AuthUI(auth);  
+  }
+ firebase.initializeApp(config);   
 })();
 
-const btnRegistrar = document.getElementById('registrar');
+const registro = document.getElementById('registro');
+/* registro.addEventListener('click', () => {
+  pagOne.innerHTML = ' ';
+  pagOne.innerHTML += `
+  <section>
+  <p>Correo Electronico:</p><input type="email" id="email" placeholder="Ingrese email">
+  <p>Crea tu contraseña:</p><input type="password" id="password" placeholder="Ingrese contraseña">
+  <br>
+  <br>
+  <button id="button-sesion">REGISTRARME</button>
+  </section>
+  `;
+}); */
+
+
+const buttonSesion = document.getElementById("button-sesion");
+const pagOne = document.getElementById("pag-one");
+
+buttonSesion.addEventListener("click", () => {
+   const inputEmail = document.getElementById("email").value;
+   const inputPassword = document.getElementById("password").value;
+   firebase.auth().createUserWithEmailAndPassword(inputEmail, inputPassword)
+   .catch(function(error) {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
+    // ...
+  });
+});
+
+  
+
+/* var app = firebase.initializeApp(config);
+ var auth = app.auth();
+ var ui = new firebaseui.auth.AuthUI(auth);
+ */
+  
+
+/* const btnRegistrar = document.getElementById('button-sesion');
 btnRegistrar.addEventListener('click', () => {
   const email = document.getElementById('email').value;
-  const contraseña = document.getElementById('contraseña').value;
+  const contraseña = document.getElementById('contraseña').value; */
   /* firebase.auth().createUserWithEmailAndPassword(email, contraseña)
 
   .catch(function (error) {
@@ -30,7 +66,7 @@ btnRegistrar.addEventListener('click', () => {
     console.log(errorMessage);
     // ...
   }); */
-  let constraseñaData = firebase.database().ref();
+  /* let constraseñaData = firebase.database().ref();
   console.log(constraseñaData);
   constraseñaData.on("value", function(snapshot) {
    console.log(snapshot.child('convalidaciones').val().push({
@@ -45,8 +81,8 @@ btnRegistrar.addEventListener('click', () => {
   
   
 })
-
-
+ */
+ 
 const btnIngresar = document.getElementById('ingresar');
 btnIngresar.addEventListener('click', () => {
   const email = document.getElementById('email-login').value;
@@ -58,6 +94,7 @@ btnIngresar.addEventListener('click', () => {
     // ...
   });
 })
+
 
 const ingresoDatos = () => {
   firebase.auth().onAuthStateChanged(function (user) {
@@ -81,7 +118,6 @@ const ingresoDatos = () => {
   });
 
 }
-
 ingresoDatos();
 
 const aparece = () => {
@@ -111,49 +147,4 @@ btnFb.addEventListener('click', () => {
         console.log(err)
     })
 
-})
-/* const verificar = () => {
-  var user = firebase.auth().currentUser;
-  user.sendEmailVerification().then(function () {
-    console.log('enviando correo');   
-    // Email sent.
-  }).catch(function (error) {
-    // An error happened.
-    console.log(error);
-  });
-} */
- // var ui = new firebaseui.auth.AuthUI(firebase.auth());
-/* var uiConfig = {
-  callbacks: {
-    signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-      // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
-      return true;
-    },
-    uiShown: function () {
-      // The widget is rendered.
-      // Hide the loader.
-      document.getElementById('loader').style.display = 'none';
-    }
-  },
-  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-  signInFlow: 'popup',
-  signInSuccessUrl: 'index.html',
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID
-  ],
-  // Terms of service url.
-  tosUrl: 'index.html',
-  // Privacy policy url.
-  privacyPolicyUrl: '<your-privacy-policy-url>'
-};
-ui.start('#firebaseui-auth-container', uiConfig);
-})()
-*/
+}); 
