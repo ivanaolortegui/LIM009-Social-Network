@@ -4,7 +4,7 @@
   // aqui tu codigo
 }
  */
-let appFirebase = {};
+/* let appFirebase = {};
 
 const infoFirebase = () => {
   let config = {
@@ -18,7 +18,7 @@ const infoFirebase = () => {
   firebase.initializeApp(config);
   appFirebase = firebase
 }
-infoFirebase();
+infoFirebase(); */
 /* (function () {
   // Initialize Firebase
   var config = {
