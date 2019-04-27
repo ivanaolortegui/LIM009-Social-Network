@@ -1,5 +1,5 @@
 
-(function () {
+(function() {
   let config = {
     apiKey: "AIzaSyBrEkqM2kN4YhK8ALD4rGDziPene6zeWhQ",
     authDomain: "red-social-ecologica.firebaseapp.com",
@@ -10,7 +10,8 @@
   }
  firebase.initializeApp(config);   
 })();
-
+let dataBase = firebase.database();
+let userConect= null;
 const registro = document.getElementById('registro');
 /* registro.addEventListener('click', () => {
   pagOne.innerHTML = ' ';
@@ -49,40 +50,7 @@ buttonSesion.addEventListener("click", () => {
  var auth = app.auth();
  var ui = new firebaseui.auth.AuthUI(auth);
  */
-  
-
-/* const btnRegistrar = document.getElementById('button-sesion');
-btnRegistrar.addEventListener('click', () => {
-  const email = document.getElementById('email').value;
-  const contraseña = document.getElementById('contraseña').value; */
-  /* firebase.auth().createUserWithEmailAndPassword(email, contraseña)
-
-  .catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    console.log(errorCode);
-
-    var errorMessage = error.message;
-    console.log(errorMessage);
-    // ...
-  }); */
-  /* let constraseñaData = firebase.database().ref();
-  console.log(constraseñaData);
-  constraseñaData.on("value", function(snapshot) {
-   console.log(snapshot.child('convalidaciones').val().push({
-    contrasena : contraseña
-  }));
-  
-    console.log(snapshot.child('convalidaciones').val());
-    
- }, function (error) {
-    console.log("Error: " + error.code);
- });
-  
-  
-})
- */
- 
+   
 const btnIngresar = document.getElementById('ingresar');
 btnIngresar.addEventListener('click', () => {
   const email = document.getElementById('email-login').value;
@@ -108,6 +76,8 @@ const ingresoDatos = () => {
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
       var providerData = user.providerData;
+      userConect = dataBase.ref("/user");
+      agregarDataBase(uid, email)
       // ...
     } else {
       // User is signed out.
@@ -119,6 +89,13 @@ const ingresoDatos = () => {
 
 }
 ingresoDatos();
+
+const agregarDataBase = (uid, email) => {
+  let conectador = userConect.push({
+    uid : uid,
+    email : email
+  });
+}
 
 const aparece = () => {
   const container = document.getElementById('container');
