@@ -120,6 +120,7 @@ btnFb.addEventListener('click', () => {
     firebase.auth().signInWithPopup(provider)
     .then(datosUsuario =>{
         console.log(datosUsuario.user.displayName);
+        console.log(datosUsuario.user.photoURL);
         }).catch(err =>{
         console.log(err);
     })
