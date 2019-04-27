@@ -1,3 +1,7 @@
+/* import { myFunction } from './lib/index.js';
+
+myFunction();
+ */
 
 (function() {
   let config = {
