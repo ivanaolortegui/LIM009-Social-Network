@@ -82,19 +82,5 @@ btnCerrar.addEventListener('click', () => {
 
 const btnFb =  document.getElementById('Facebook');
 btnFb.addEventListener('click', () => {
-<<<<<<< HEAD
-  var provider = new firebase.auth.FacebookAuthProvider();
-    provider.addScope('public_profile');
-    firebase.auth().signInWithPopup(provider)
-    .then(datosUsuario =>{
-        console.log(datosUsuario.user.displayName);
-        console.log(datosUsuario.user.photoURL);
-        }).catch(err =>{
-        console.log(err);
-    })
-
-}); 
-=======
   iniciarSessionFaceBook();
 });  
->>>>>>> 8d5f7b0da5b88d5021f57f7a198d7b4f5945e383
