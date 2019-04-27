@@ -118,10 +118,10 @@ btnFb.addEventListener('click', () => {
   var provider = new firebase.auth.FacebookAuthProvider();
     provider.addScope('public_profile');
     firebase.auth().signInWithPopup(provider)
-    .then(function(datosUsuario){
-        console.log(datosUsuario)
-    }).catch(function(err){
-        console.log(err)
+    .then(datosUsuario =>{
+        console.log(datosUsuario.user.displayName);
+        }).catch(err =>{
+        console.log(err);
     })
 
 }); 
