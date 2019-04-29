@@ -1,4 +1,4 @@
-
+import { signInOnSubmit} from './view-controller.js'
 
 export default () => {
     const body = document.createElement('div');
@@ -21,7 +21,7 @@ export default () => {
 </section>`;
 body.innerHTML = template;
 const btnRegistro = body.querySelector('#registro');
-btnRegistro.addEventListener('click',
+btnRegistro.addEventListener('click',signInOnSubmit)
 return body 
 }
 

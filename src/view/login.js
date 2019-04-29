@@ -1,7 +1,8 @@
 
 
-import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from '../controller/controllerFirebase.js/index.js.js';
-import {allPageOne} from './getValue.js'
+//import {  ingresoDatos, cerrarSession, iniciarSessionFaceBook } from '../controller/controllerFirebase.js';
+//import {allPageOne} from './getValue.js'
+import SignUpView from './view-SignUp.js'
 
  const keyFirebase = () => {
   let config = {
@@ -17,21 +18,20 @@ import {allPageOne} from './getValue.js'
 keyFirebase();
 
 
-allPageOne();
+const allPage = document.getElementById('all-page')
+allPage.appendChild(SignUpView());
 
-
-
-
+/* 
 const btnIngresar = document.getElementById('ingresar');
 btnIngresar.addEventListener('click', () => {
   const email = document.getElementById('email-login').value;
   const contraseña = document.getElementById('contraseña-login').value;
   ingresarUsuarioExistente(email, contraseña);
 });
+ */
+//ingresoDatos();
 
-ingresoDatos();
-
-export const aparece = () => {
+/* export const aparece = () => {
   const container = document.getElementById('container');
   container.innerHTML = `<p>Bienvenido!</p>
 <button id= "cerrar"> cerrar sesión  </button>`;
@@ -41,10 +41,11 @@ aparece()
  const btnCerrar = document.getElementById('cerrar');
 btnCerrar.addEventListener('click', () => {
   cerrarSession();
-})
+}) */
 
  
-const btnFb =  document.getElementById('Facebook');
+/* const btnFb =  document.getElementById('Facebook');
 btnFb.addEventListener('click', () => {
   iniciarSessionFaceBook();
 });  
+ */
