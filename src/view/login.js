@@ -1,5 +1,4 @@
 //import {  } from './getValue';
-
 import { registroUsuarioNuevo, ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
 
 const keyFirebase = () => {
@@ -27,29 +26,9 @@ buttonSesion.addEventListener("click", () => {
 const pagOne = document.getElementById("pag-one");
 
 
-/* let dataBase = firebase.database();
-let userConect = null; */
+
 const registro = document.getElementById('registro');
-/* registro.addEventListener('click', () => {
-  pagOne.innerHTML = ' ';
-  pagOne.innerHTML += `
-  <section>
-  <p>Correo Electronico:</p><input type="email" id="email" placeholder="Ingrese email">
-  <p>Crea tu contraseña:</p><input type="password" id="password" placeholder="Ingrese contraseña">
-  <br>
-  <br>
-  <button id="button-sesion">REGISTRARME</button>
-  </section>
-  `;
-}); */
 
-
-
-
-/* var app = firebase.initializeApp(config);
- var auth = app.auth();
- var ui = new firebaseui.auth.AuthUI(auth);
- */
 
 const btnIngresar = document.getElementById('ingresar');
 btnIngresar.addEventListener('click', () => {
@@ -60,14 +39,6 @@ btnIngresar.addEventListener('click', () => {
 
 ingresoDatos();
 
-/*
-const agregarDataBase = (uid, email) => {
-  let conectador = userConect.push({
-    uid : uid,
-    email : email
-  });
-}
-*/
 const aparece = () => {
   const container = document.getElementById('container');
   container.innerHTML = `<p>Bienvenido!</p>
