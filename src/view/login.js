@@ -1,7 +1,12 @@
-//import {  } from './getValue';
-import { registroUsuarioNuevo, ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
 
-const keyFirebase = () => {
+import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
+
+import { pintRegistro } from './getValue.js'
+
+//import { registroUsuarioNuevo, ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
+
+
+ const keyFirebase = () => {
   let config = {
     apiKey: "AIzaSyBrEkqM2kN4YhK8ALD4rGDziPene6zeWhQ",
     authDomain: "red-social-ecologica.firebaseapp.com",
@@ -14,16 +19,10 @@ const keyFirebase = () => {
 }
 keyFirebase();
 
-const buttonSesion = document.getElementById("button-sesion");
-
-buttonSesion.addEventListener("click", () => {
-  const inputEmail = document.getElementById("email").value;
-  const inputPassword = document.getElementById("password").value;
-  registroUsuarioNuevo(inputEmail, inputPassword)
-});
+pintRegistro();
 
 
-const pagOne = document.getElementById("pag-one");
+// import { pintRegistro} from './getValue.js'
 
 
 
@@ -37,7 +36,7 @@ btnIngresar.addEventListener('click', () => {
   ingresarUsuarioExistente(email, contraseña);
 });
 
-ingresoDatos();
+//ingresoDatos();
 
 const aparece = () => {
   const container = document.getElementById('container');
