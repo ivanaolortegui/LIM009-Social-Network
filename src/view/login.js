@@ -1,7 +1,14 @@
 
+
+import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
+import {allPageOne} from './getValue.js'
+// import { pintRegistro } from './getValue.js'
+allPageOne();
+
 import { ingresarUsuarioExistente, ingresoDatos, iniciarSessionFaceBook } from './data.js';
 
 import { pintRegistro } from './getValue.js'
+
 
  const keyFirebase = () => {
   let config = {
@@ -16,7 +23,7 @@ import { pintRegistro } from './getValue.js'
 }
 keyFirebase();
 
-pintRegistro();
+// pintRegistro();
 
 const btnIngresar = document.getElementById('ingresar');
 btnIngresar.addEventListener('click', () => {
