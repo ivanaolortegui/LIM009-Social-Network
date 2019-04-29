@@ -60,5 +60,15 @@ h3{
 .icon-facebook{
     height: 50px;
     width: 50px;
-    border-radius: 50px;
+    border-radius: 15px;
+}
+
+.icon-gmail{
+    height: 50px;
+    width: 50px;
+    border-radius: 15px;
+}
+
+.button1{
+    border: none;
 }

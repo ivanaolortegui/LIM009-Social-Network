@@ -24,7 +24,6 @@ keyFirebase();
 
 
 
-const registro = document.getElementById('registro');
 
 
 const btnIngresar = document.getElementById('ingresar');
