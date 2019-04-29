@@ -24,6 +24,7 @@ h3{
 .block-two{
     /* background: #1b1c1c; */
     background-size: 20% 20%;
+    padding: 10px;
     text-align: center;
 }
 
