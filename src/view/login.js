@@ -1,8 +1,9 @@
-//import {  } from './getValue';
+import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
 
-import { registroUsuarioNuevo, ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
+import { pintRegistro } from './getValue.js'
 
-const keyFirebase = () => {
+
+ const keyFirebase = () => {
   let config = {
     apiKey: "AIzaSyBrEkqM2kN4YhK8ALD4rGDziPene6zeWhQ",
     authDomain: "red-social-ecologica.firebaseapp.com",
@@ -15,33 +16,11 @@ const keyFirebase = () => {
 }
 keyFirebase();
 
-const buttonSesion = document.getElementById("button-sesion");
-
-buttonSesion.addEventListener("click", () => {
-  const inputEmail = document.getElementById("email").value;
-  const inputPassword = document.getElementById("password").value;
-  registroUsuarioNuevo(inputEmail, inputPassword)
-});
+pintRegistro();
 
 
-const pagOne = document.getElementById("pag-one");
+// import { pintRegistro} from './getValue.js'
 
-
-/* let dataBase = firebase.database();
-let userConect = null; */
-const registro = document.getElementById('registro');
-/* registro.addEventListener('click', () => {
-  pagOne.innerHTML = ' ';
-  pagOne.innerHTML += `
-  <section>
-  <p>Correo Electronico:</p><input type="email" id="email" placeholder="Ingrese email">
-  <p>Crea tu contraseña:</p><input type="password" id="password" placeholder="Ingrese contraseña">
-  <br>
-  <br>
-  <button id="button-sesion">REGISTRARME</button>
-  </section>
-  `;
-}); */
 
 
 

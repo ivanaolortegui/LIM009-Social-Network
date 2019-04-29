@@ -14,32 +14,35 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <img src="logo.png">
+    <img class="logo" src="logo.png">
     <header>
-    <h1>PureLife</h1>
+    <p><img class="titulo" src="titulo.png.png"></p>
     </header>
-    <h1>Registrase</h1>
-    <section  class="login" id="pag-one">
-    <h3>Bienvenida a PureLife, la red donde reciclar es divertido.</h3>
-    <input id= "email-login" type="email" placeholder="ingresa tu email">
-    <input id = "contraseña-login" type="password" placeholder="Ingrese contraseña">
-    <button id= "ingresar"> Ingresar  </button>
+  
+    <!-- <h1>Registrase</h1> -->
+    <section  class="block-two" id="pag-one">
+    <h4>Bienvenida a PureLife, la red donde reciclar es divertido.</h4>
+    <input class="style-input" id= "email-login" type="email" placeholder="ingresa tu email">
+    <br>
+    <input class="style-input" id = "contraseña-login" type="password" placeholder="Ingrese contraseña">
+    <br>
+    <button id= "ingresar"> Log In  </button>
     <p>¿No tienes una cuenta? <button id="registro">Regístrate.</button></p>
-  </section>
-  <section>
+  
+  <!-- <section>
       <p>Correo Electronico:</p><input type="email" id="email" placeholder="Ingrese email">
       <p>Crea tu contraseña:</p><input type="password" id="password" placeholder="Ingrese contraseña">
       <br>
       <br>
-      <button id="button-sesion">REGISTRARME</button>
-    </section>
+    </section> -->
+    <!-- <button id="button-sesion">REGISTRARME</button> -->
+
     <h4>O inicia sesión con...</h4>
-    <h2>Facebook</h2>
-    <button id= "Facebook"> FB  </button>
+    <button id= "Facebook"> Facebook  </button>
     <div id= "container">
     </div>      
-    
-  <!-- <script type="module" src="main.js"></script> -->
+  </section>
+    <!-- <script type="module" src="main.js"></script> -->
   <script type="module" src="view/login.js"></script>
  
 </body>
