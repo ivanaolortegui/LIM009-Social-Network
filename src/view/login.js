@@ -1,6 +1,9 @@
+
 import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
 
 import { pintRegistro } from './getValue.js'
+
+//import { registroUsuarioNuevo, ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
 
 
  const keyFirebase = () => {
@@ -23,12 +26,8 @@ pintRegistro();
 
 
 
+const registro = document.getElementById('registro');
 
-
-/* var app = firebase.initializeApp(config);
- var auth = app.auth();
- var ui = new firebaseui.auth.AuthUI(auth);
- */
 
 const btnIngresar = document.getElementById('ingresar');
 btnIngresar.addEventListener('click', () => {
@@ -37,16 +36,8 @@ btnIngresar.addEventListener('click', () => {
   ingresarUsuarioExistente(email, contraseña);
 });
 
-ingresoDatos();
+//ingresoDatos();
 
-/*
-const agregarDataBase = (uid, email) => {
-  let conectador = userConect.push({
-    uid : uid,
-    email : email
-  });
-}
-*/
 const aparece = () => {
   const container = document.getElementById('container');
   container.innerHTML = `<p>Bienvenido!</p>
