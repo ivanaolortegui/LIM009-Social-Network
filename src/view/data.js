@@ -14,9 +14,12 @@ export const registroUsuarioNuevo = (email, contraseña) => {
     });
 }
 
-
 export const ingresarUsuarioExistente = (email, contraseña) => {
-  firebase.auth().signInWithEmailAndPassword(email, contraseña).catch(function (error) {
+  firebase.auth().signInWithEmailAndPassword(email, contraseña).then(function (user){
+    var email = user.email;
+    console.log(email);
+  })
+  .catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -34,6 +37,7 @@ export const ingresoDatos = () => {
       console.log('sesion iniciado');
       var displayName = user.displayName;
       var email = user.email;
+      console.log(email);
       var emailVerified = user.emailVerified;
       var photoURL = user.photoURL;
       var isAnonymous = user.isAnonymous;

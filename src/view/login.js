@@ -24,8 +24,6 @@ pintRegistro();
 
 // import { pintRegistro} from './getValue.js'
 
-
-
 const registro = document.getElementById('registro');
 
 
@@ -36,7 +34,7 @@ btnIngresar.addEventListener('click', () => {
   ingresarUsuarioExistente(email, contraseña);
 });
 
-//ingresoDatos();
+ingresoDatos();
 
 const aparece = () => {
   const container = document.getElementById('container');
