@@ -5,9 +5,6 @@ import {allPageOne} from './getValue.js'
 // import { pintRegistro } from './getValue.js'
 allPageOne();
 
-import { ingresarUsuarioExistente, ingresoDatos, iniciarSessionFaceBook } from './data.js';
-
-import { pintRegistro } from './getValue.js'
 
 
  const keyFirebase = () => {
