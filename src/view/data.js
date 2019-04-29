@@ -1,6 +1,8 @@
 
 export const registroUsuarioNuevo = (email, contraseña) => {
   firebase.auth().createUserWithEmailAndPassword(email, contraseña).catch(function (bien) {
+    printWelcomeUser(email)
+    
     console.log(email, contraseña);
   })
     // Handle Errors here.
@@ -17,7 +19,7 @@ export const registroUsuarioNuevo = (email, contraseña) => {
 export const ingresarUsuarioExistente = (email, contraseña) => {
   firebase.auth().signInWithEmailAndPassword(email, contraseña).then(function (user){
     var email = user.email;
-    console.log(email);
+    printWelcomeUser(email)
   })
   .catch(function (error) {
     // Handle Errors here.
@@ -69,6 +71,7 @@ export const iniciarSessionFaceBook = () => {
     firebase.auth().signInWithPopup(provider)
     .then(datosUsuario =>{
         console.log(datosUsuario.user.displayName);
+        printWelcomeUser(datosUsuario.user.displayName)
         console.log(datosUsuario.user.photoURL);
         }).catch(err =>{
         console.log(err);

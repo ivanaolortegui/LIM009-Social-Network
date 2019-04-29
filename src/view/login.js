@@ -1,10 +1,7 @@
 
-import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
+import { ingresarUsuarioExistente, ingresoDatos, iniciarSessionFaceBook } from './data.js';
 
 import { pintRegistro } from './getValue.js'
-
-//import { registroUsuarioNuevo, ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
-
 
  const keyFirebase = () => {
   let config = {
@@ -21,12 +18,6 @@ keyFirebase();
 
 pintRegistro();
 
-
-// import { pintRegistro} from './getValue.js'
-
-const registro = document.getElementById('registro');
-
-
 const btnIngresar = document.getElementById('ingresar');
 btnIngresar.addEventListener('click', () => {
   const email = document.getElementById('email-login').value;
@@ -36,18 +27,19 @@ btnIngresar.addEventListener('click', () => {
 
 ingresoDatos();
 
-const aparece = () => {
+export const aparece = () => {
   const container = document.getElementById('container');
   container.innerHTML = `<p>Bienvenido!</p>
 <button id= "cerrar"> cerrar sesión  </button>`;
-};
-aparece();
 
-const btnCerrar = document.getElementById('cerrar');
+};
+aparece()
+ const btnCerrar = document.getElementById('cerrar');
 btnCerrar.addEventListener('click', () => {
   cerrarSession();
 })
 
+ 
 const btnFb =  document.getElementById('Facebook');
 btnFb.addEventListener('click', () => {
   iniciarSessionFaceBook();
