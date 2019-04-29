@@ -1,11 +1,7 @@
 
 
-import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
+import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from '../controller/controllerFirebase.js/index.js.js';
 import {allPageOne} from './getValue.js'
-// import { pintRegistro } from './getValue.js'
-allPageOne();
-
-
 
  const keyFirebase = () => {
   let config = {
@@ -20,7 +16,11 @@ allPageOne();
 }
 keyFirebase();
 
-// pintRegistro();
+
+allPageOne();
+
+
+
 
 const btnIngresar = document.getElementById('ingresar');
 btnIngresar.addEventListener('click', () => {
