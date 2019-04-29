@@ -1,4 +1,3 @@
-
 export const registroUsuarioNuevo = (email, contraseña) => {
   firebase.auth().createUserWithEmailAndPassword(email, contraseña).catch(function (bien) {
     console.log(email, contraseña);
@@ -62,13 +61,13 @@ export const cerrarSession = () => {
 
 export const iniciarSessionFaceBook = () => {
   let provider = new firebase.auth.FacebookAuthProvider();
-    provider.addScope('public_profile');
-    firebase.auth().signInWithPopup(provider)
-    .then(datosUsuario =>{
-        console.log(datosUsuario.user.displayName);
-        console.log(datosUsuario.user.photoURL);
-        }).catch(err =>{
-        console.log(err);
+  provider.addScope('public_profile');
+  firebase.auth().signInWithPopup(provider)
+    .then(datosUsuario => {
+      console.log(datosUsuario.user.displayName);
+      console.log(datosUsuario.user.photoURL);
+    }).catch(err => {
+      console.log(err);
     })
 
 }

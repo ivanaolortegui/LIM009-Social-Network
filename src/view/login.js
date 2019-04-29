@@ -1,7 +1,7 @@
 import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
-
-import { pintRegistro } from './getValue.js'
-
+import {allPageOne} from './getValue.js'
+// import { pintRegistro } from './getValue.js'
+allPageOne();
 
  const keyFirebase = () => {
   let config = {
@@ -16,7 +16,7 @@ import { pintRegistro } from './getValue.js'
 }
 keyFirebase();
 
-pintRegistro();
+// pintRegistro();
 
 
 // import { pintRegistro} from './getValue.js'
