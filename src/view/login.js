@@ -1,8 +1,14 @@
 
+
 import { ingresarUsuarioExistente, ingresoDatos, cerrarSession, iniciarSessionFaceBook } from './data.js';
 import {allPageOne} from './getValue.js'
 // import { pintRegistro } from './getValue.js'
 allPageOne();
+
+import { ingresarUsuarioExistente, ingresoDatos, iniciarSessionFaceBook } from './data.js';
+
+import { pintRegistro } from './getValue.js'
+
 
  const keyFirebase = () => {
   let config = {
@@ -33,20 +39,21 @@ btnIngresar.addEventListener('click', () => {
   ingresarUsuarioExistente(email, contraseña);
 });
 
-//ingresoDatos();
+ingresoDatos();
 
-const aparece = () => {
+export const aparece = () => {
   const container = document.getElementById('container');
   container.innerHTML = `<p>Bienvenido!</p>
 <button id= "cerrar"> cerrar sesión  </button>`;
-};
-aparece();
 
-const btnCerrar = document.getElementById('cerrar');
+};
+aparece()
+ const btnCerrar = document.getElementById('cerrar');
 btnCerrar.addEventListener('click', () => {
   cerrarSession();
 })
 
+ 
 const btnFb =  document.getElementById('Facebook');
 btnFb.addEventListener('click', () => {
   iniciarSessionFaceBook();
