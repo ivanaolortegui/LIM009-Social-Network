@@ -33,5 +33,24 @@ infoFirebase(); */
   appFirebase = firebase
 })()
 
+ let dataBase = firebase.database();
+let userConect = null; 
+
+ userConect = dataBase.ref("/user");
+      agregarDataBase(uid, email) 
+
+      
+ var app = firebase.initializeApp(config);
+ var auth = app.auth();
+ var ui = new firebaseui.auth.AuthUI(auth);
+ 
+
+const agregarDataBase = (uid, email) => {
+  let conectador = userConect.push({
+    uid : uid,
+    email : email
+  });
+}
+
 
  */

@@ -38,8 +38,7 @@ export const ingresoDatos = () => {
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
       var providerData = user.providerData;
-      /* userConect = dataBase.ref("/user");
-      agregarDataBase(uid, email) */
+     
       // ...
     } else {
       // User is signed out.
