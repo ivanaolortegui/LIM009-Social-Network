@@ -1,10 +1,9 @@
 import {printWelcomeUserFacebook} from '../view/template.js'
 export const registroUsuarioNuevo = (email, contraseña) => {
-  firebase.auth().createUserWithEmailAndPassword(email, contraseña).catch(function (bien) {
- 
+  firebase.auth().createUserWithEmailAndPassword(email, contraseña).catch(response => {
   })
     // Handle Errors here.
-    .catch(function (error) {
+    .catch( error =>  {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -15,7 +14,7 @@ export const registroUsuarioNuevo = (email, contraseña) => {
 }
 
 export const ingresarUsuarioExistente = (email, contraseña) => {
-  firebase.auth().signInWithEmailAndPassword(email, contraseña).then(function (user){
+  firebase.auth().signInWithEmailAndPassword(email, contraseña).then( user =>{
     var email = user.email;  
   })
   .catch(function (error) {

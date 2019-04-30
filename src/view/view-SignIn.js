@@ -1,4 +1,5 @@
-import { signInOnSubmit, facebookSubmit } from './view-controller.js'
+//import { signInOnSubmit, facebookSubmit } from './view-controller.js'
+import {changeView } from '../controller/index.js'
 
 export default () => {
     const body = document.createElement('div');
@@ -12,18 +13,21 @@ export default () => {
   <br>
   <input class="style-input" id="contraseña-login" type="password" placeholder="Ingrese contraseña">
   <br>
-  <button class="button-registry" id="ingresar"> Log In </button>
-  <p>¿No tienes una cuenta? <button id="registro">Regístrate.</button></p>
+  <a href="#/ingresar"><button class="button-registry" id="ingresar"> Log In </button></a>
+  <p>¿No tienes una cuenta?<a href="#/registro">  Regístrate.</a></p>
   <h4>O inicia sesión con...</h4>
   <button id="Facebook"><img class="icon-facebook" src="./img/facebook.png"></button>
   <div id="container">
   </div>
 </section>`;
 body.innerHTML = template;
-const btnRegistro = body.querySelector('#registro');
+// changeView(window.location.hash);
+window.addEventListener('hashchange',() => changeView(window.location.hash));
+
+/* const btnRegistro = body.querySelector('#registro');
 btnRegistro.addEventListener('click',signInOnSubmit);
 const btnFacebook = body.querySelector('#Facebook');
-btnFacebook.addEventListener('click', facebookSubmit);
+btnFacebook.addEventListener('click', facebookSubmit); */
 return body 
 }
 
