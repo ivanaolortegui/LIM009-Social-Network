@@ -1,7 +1,7 @@
 import {printWelcomeUserFacebook} from '../view/template.js'
 export const registroUsuarioNuevo = (email, contraseña) => {
   firebase.auth().createUserWithEmailAndPassword(email, contraseña).catch(function (bien) {
- 
+ console.log(email);
   })
     // Handle Errors here.
     .catch(function (error) {

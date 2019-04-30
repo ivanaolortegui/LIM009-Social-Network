@@ -1,4 +1,5 @@
-import { signInOnSubmit, facebookSubmit } from './view-controller.js'
+import { signInOnSubmit, facebookSubmit } from './view-controller.js';
+import { ingresarUsuarioExistente } from './controller/controllerFirebase.js';
 
 export default () => {
     const body = document.createElement('div');
@@ -13,13 +14,17 @@ export default () => {
   <input class="style-input" id="contraseña-login" type="password" placeholder="Ingrese contraseña">
   <br>
   <button class="button-registry" id="ingresar"> Log In </button>
-  <p>¿No tienes una cuenta? <button id="registry">Regístrate.</button></p>
   <h4>O inicia sesión con...</h4>
   <button id="Facebook"><img class="icon-facebook" src="./img/facebook.png"></button>
-  <div id="container">
-  </div>
-</section>`;
+  <p>¿No tienes una cuenta? <button id="registry">Regístrate.</button></p>
+  </section>`;
 body.innerHTML = template;
+const btnUsuario = document.querySelector('#ingresar');
+btnUsuario.addEventListener('click', () => {
+  const emailUsuario = document.querySelector('#email-login').value;
+  const passwordUsuario = document.querySelector('#contraseña-login').value;
+  ingresarUsuarioExistente(emailUsuario, passwordUsuario);
+})
 const btnRegistro = body.querySelector('#registry');
 btnRegistro.addEventListener('click',signInOnSubmit);
 const btnFacebook = body.querySelector('#Facebook');
