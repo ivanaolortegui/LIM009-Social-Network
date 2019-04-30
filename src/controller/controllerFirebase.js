@@ -1,8 +1,7 @@
+import {printWelcomeUserFacebook} from '../view/template.js'
 export const registroUsuarioNuevo = (email, contraseña) => {
   firebase.auth().createUserWithEmailAndPassword(email, contraseña).catch(function (bien) {
-    printWelcomeUser(email)
-    
-    console.log(email, contraseña);
+ 
   })
     // Handle Errors here.
     .catch(function (error) {
@@ -17,8 +16,7 @@ export const registroUsuarioNuevo = (email, contraseña) => {
 
 export const ingresarUsuarioExistente = (email, contraseña) => {
   firebase.auth().signInWithEmailAndPassword(email, contraseña).then(function (user){
-    var email = user.email;
-    printWelcomeUser(email)
+    var email = user.email;  
   })
   .catch(function (error) {
     // Handle Errors here.
@@ -66,24 +64,14 @@ export const cerrarSession = () => {
 
 export const iniciarSessionFaceBook = () => {
   let provider = new firebase.auth.FacebookAuthProvider();
-
   provider.addScope('public_profile');
   firebase.auth().signInWithPopup(provider)
     .then(datosUsuario => {
+      printWelcomeUserFacebook(datosUsuario.user.displayName,datosUsuario.user.photoURL)
       console.log(datosUsuario.user.displayName);
       console.log(datosUsuario.user.photoURL);
     }).catch(err => {
       console.log(err);
-    provider.addScope('public_profile');
-    firebase.auth().signInWithPopup(provider)
-    .then(datosUsuario =>{
-        console.log(datosUsuario.user.displayName);
-        printWelcomeUser(datosUsuario.user.displayName)
-        console.log(datosUsuario.user.photoURL);
-        }).catch(err =>{
-        console.log(err);
-
-    })
 
 })
 }
