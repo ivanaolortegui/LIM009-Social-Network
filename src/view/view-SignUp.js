@@ -1,4 +1,4 @@
-import { signInOnSubmit} from './view-controller.js'
+import { signInOnSubmit, facebookSubmit } from './view-controller.js'
 
 export default () => {
     const body = document.createElement('div');
@@ -21,7 +21,9 @@ export default () => {
 </section>`;
 body.innerHTML = template;
 const btnRegistro = body.querySelector('#registro');
-btnRegistro.addEventListener('click',signInOnSubmit)
+btnRegistro.addEventListener('click',signInOnSubmit);
+const btnFacebook = body.querySelector('#Facebook');
+btnFacebook.addEventListener('click', facebookSubmit);
 return body 
 }
 
