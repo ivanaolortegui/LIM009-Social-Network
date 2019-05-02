@@ -3,7 +3,7 @@
 //import {  ingresoDatos, cerrarSession, iniciarSessionFaceBook } from '../controller/controllerFirebase.js';
 //import {allPageOne} from './getValue.js'
 //import SignUpView from './view-SignIn.js'
-import {changeView} from '../controller/index.js'
+import {changeView} from '../controller/router.js'
 
  const keyFirebase = () => {
   let config = {
@@ -18,10 +18,10 @@ import {changeView} from '../controller/index.js'
 }
 keyFirebase();
 
-
+changeView(window.location.hash);
 //const allPage = document.getElementById('all-page')
 // allPage.appendChild();
-changeView(window.location.hash);
+
 /* 
 const btnIngresar = document.getElementById('ingresar');
 btnIngresar.addEventListener('click', () => {

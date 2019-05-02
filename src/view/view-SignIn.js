@@ -1,6 +1,6 @@
-//import { signInOnSubmit, facebookSubmit } from './view-controller.js'
-import {changeView } from '../controller/index.js'
 
+import {changeView } from '../controller/router.js'
+import {iniciarSessionFaceBook} from '../controller/controllerFirebase.js'
 export default () => {
     const body = document.createElement('div');
   const template = `<header>
@@ -21,13 +21,15 @@ export default () => {
   </div>
 </section>`;
 body.innerHTML = template;
-// changeView(window.location.hash);
+
 window.addEventListener('hashchange',() => changeView(window.location.hash));
 
 /* const btnRegistro = body.querySelector('#registro');
-btnRegistro.addEventListener('click',signInOnSubmit);
+btnRegistro.addEventListener('click',signInOnSubmit);*/
 const btnFacebook = body.querySelector('#Facebook');
-btnFacebook.addEventListener('click', facebookSubmit); */
+btnFacebook.addEventListener('click',()=>{
+  iniciarSessionFaceBook();
+}); 
 return body 
 }
 

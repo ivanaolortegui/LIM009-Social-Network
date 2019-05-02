@@ -1,6 +1,9 @@
-import {printWelcomeUserFacebook} from '../view/template.js'
+//import {printWelcomeUserFacebook} from '../view/template.js'
+import welcome from '../view/view-signUp.js'
 export const registroUsuarioNuevo = (email, contraseña) => {
   firebase.auth().createUserWithEmailAndPassword(email, contraseña).catch(response => {
+    console.log('hh')
+    welcome(response)
   })
     // Handle Errors here.
     .catch( error =>  {
@@ -66,11 +69,11 @@ export const iniciarSessionFaceBook = () => {
   provider.addScope('public_profile');
   firebase.auth().signInWithPopup(provider)
     .then(datosUsuario => {
-      printWelcomeUserFacebook(datosUsuario.user.displayName,datosUsuario.user.photoURL)
+     // printWelcomeUserFacebook(datosUsuario.user.displayName,datosUsuario.user.photoURL)
       console.log(datosUsuario.user.displayName);
       console.log(datosUsuario.user.photoURL);
     }).catch(err => {
-      console.log(err);
+      console.log('errp');
 
 })
 }
