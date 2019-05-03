@@ -15,7 +15,8 @@ export const registroUsuarioNuevo = (email, contraseña) => {
 
 export const ingresarUsuarioExistente = (email, contraseña) => {
   firebase.auth().signInWithEmailAndPassword(email, contraseña).then(user => {
-    var email = user.email;
+    window.location.hash = '#/home';
+    console.log(email, contraseña);
   })
     .catch(function (error) {
       // Handle Errors here.

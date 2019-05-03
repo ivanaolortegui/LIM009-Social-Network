@@ -1,6 +1,6 @@
 
 import { changeView } from '../controller/router.js'
-import { iniciarSessionFaceBook } from '../controller/controllerFirebase.js'
+import { iniciarSessionFaceBook, ingresarUsuarioExistente } from '../controller/controllerFirebase.js'
 export default () => {
   const body = document.createElement('div');
   const template = `<header>
@@ -11,7 +11,7 @@ export default () => {
   <h4>Bienvenida a PureLife, la red donde reciclar es divertido.</h4>
   <input class="style-input" id="email-login" type="email" placeholder="ingresa tu email">
   <br>
-  <input class="style-input" id="contraseña-login" type="password" placeholder="Ingrese contraseña">
+  <input class="style-input" id="password-login" type="password" placeholder="Ingrese contraseña">
   <br>
   <a href="#/ingresar"><button class="button-registry" id="ingresar"> Log In </button></a>
   <p>¿No tienes una cuenta?<a href="#/registro">  Regístrate.</a></p>
@@ -23,6 +23,12 @@ export default () => {
 </section>`;
   body.innerHTML = template;
   window.addEventListener('hashchange', () => changeView(window.location.hash));
+  const btnLogIn = body.querySelector('#ingresar')
+  btnLogIn.addEventListener('click', () => {
+    const emailUser = body.querySelector('#email-login').value;
+    const passwordUser = body.querySelector('#password-login').value;
+    ingresarUsuarioExistente(emailUser, passwordUser);
+  })
   const btnFacebook = body.querySelector('#Facebook');
   btnFacebook.addEventListener('click', () => {
     iniciarSessionFaceBook();
