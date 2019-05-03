@@ -16,8 +16,8 @@ export default () => {
   <a href="#/ingresar"><button class="button-registry" id="ingresar"> Log In </button></a>
   <p>¿No tienes una cuenta?<a href="#/registro">  Regístrate.</a></p>
   <h4>O inicia sesión con...</h4>
-  <button id="Facebook"><img class="icon-facebook" src="./img/facebook.png"></button>
-  <button id="Gmail"><img class="icon-gmail" src="./img/gmail.png"></button>
+  <button class="button-none" id="Facebook"><img class="icon-facebook" src="./img/facebook.png"></button>
+  <button class="button-none" id="Gmail"><img class="icon-gmail" src="./img/gmail.png"></button>
   <div id="container">
   </div>
 </section>`;
@@ -33,6 +33,9 @@ export default () => {
   btnFacebook.addEventListener('click', () => {
     iniciarSessionFaceBook();
   });
+  // const btnGmail = body.querySelector('#Gmail');
+  // btnGmail.addEventListener('click', () => {
+  // })
   return body
 }
 
