@@ -3,8 +3,10 @@ export const registroUsuarioNuevo = (email, contraseña) =>
   firebase.auth().createUserWithEmailAndPassword(email, contraseña)
 
 
+
 export const ingresarUsuarioExistente = (email, contraseña) => 
   firebase.auth().signInWithEmailAndPassword(email, contraseña)
+
 
 
 export const ingresoDatos = () => {

@@ -16,12 +16,12 @@ export const welcome = () => {
   let template;
   if(user.displayName && user.photoURL){
      template = `<h3>Bienvenido ${user.displayName} </h3>
-    <img  src="${user.photoURL}">
+    <img class="profile-logo" src="${user.photoURL}">
     <button class="button-registry" id="cerrar-sesion"> Cerrar Sesion </button>
     `;
   } else {
     template = `<h3>Bienvenido ${user.email} </h3>
-    <img  src="./img/avatar.png">
+    <img class="profile-logo" src="./img/avatar.png">
     <button class="button-registry" id="cerrar-sesion"> Cerrar Sesion </button>
     `;
   }  
