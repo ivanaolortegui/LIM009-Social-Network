@@ -1,5 +1,5 @@
 import form from './view-formSignUp.js'
-import welcome from './view-signUp.js'
+import {welcome }from './view-signUp.js'
 import SignInView from "./view-SignIn.js";
 
 export const components = {
