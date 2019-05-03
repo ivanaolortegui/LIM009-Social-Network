@@ -32,22 +32,11 @@ export const ingresoDatos = () => {
 
 }
 
-export const cerrarSession = () => {
-  firebase.auth().signOut().then(reponse => {
-    console.log('Signed Out');
-    window.location.hash = '#/';
-  }, function (error) {
-    console.error('Sign Out Error', error);
-  });
-}
+export const cerrarSession = () => firebase.auth().signOut()
 
 export const iniciarSessionFaceBook = () => {
   let provider = new firebase.auth.FacebookAuthProvider();
   provider.addScope('public_profile');
-  firebase.auth().signInWithPopup(provider)
-    .then(datosUsuario => {
-      window.location.hash = '#/home';
-    }).catch(err => {
-      console.log(err);
-    })
+  return firebase.auth().signInWithPopup(provider)
 }
+export const userData = () => firebase.auth().currentUser;

@@ -1,8 +1,3 @@
-// importamos la funcion que vamos a testear
-//import MockFirebase from 'mock-cloud-firestore';
-
-/* const fixtureData =
-global.firebase = new MockFirebase(fixtureData); */
 const firebasemock = require('firebase-mock');
 const mockauth = new firebasemock.MockFirebase();
 const mockfirestore = new firebasemock.MockFirestore();

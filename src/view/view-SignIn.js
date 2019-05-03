@@ -1,6 +1,15 @@
 
-import { changeView } from '../controller/router.js'
 import { iniciarSessionFaceBook } from '../controller/controllerFirebase.js'
+
+export const loginConFbOnClick = () => {
+  iniciarSessionFaceBook()
+    .then(() => {
+      window.location.hash = '#/home';
+    }).catch(err => {
+      console.log(err);
+    });
+}
+
 export default () => {
   const body = document.createElement('div');
   const template = `<header>
@@ -21,11 +30,9 @@ export default () => {
   </div>
 </section>`;
   body.innerHTML = template;
-  window.addEventListener('hashchange', () => changeView(window.location.hash));
+ // window.addEventListener('hashchange', () => changeView(window.location.hash));
   const btnFacebook = body.querySelector('#Facebook');
-  btnFacebook.addEventListener('click', () => {
-    iniciarSessionFaceBook();
-  });
+  btnFacebook.addEventListener('click', loginConFbOnClick);
   return body
 }
 

@@ -7,10 +7,6 @@ export const changeView = (router) => {
       divContainer.appendChild(components.form())     
     }
     break;
-    case '#/registrar': {
-      window.location.hash = '#/home';
-    }
-      break;
       case '#/home': {
         divContainer.appendChild(components.welcome())  
      }
