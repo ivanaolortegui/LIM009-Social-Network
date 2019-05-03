@@ -1,31 +1,10 @@
 
-export const registroUsuarioNuevo = (email, contraseña) => {
-  firebase.auth().createUserWithEmailAndPassword(email, contraseña).then(response => {
-  })
-    // Handle Errors here.
-    .catch(error => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-      // ...
-    });
-}
+export const registroUsuarioNuevo = (email, contraseña) =>
+  firebase.auth().createUserWithEmailAndPassword(email, contraseña)
 
-export const ingresarUsuarioExistente = (email, contraseña) => {
-  firebase.auth().signInWithEmailAndPassword(email, contraseña).then(user => {
-    var email = user.email;
-  })
-    .catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-      // ...
-    });
-}
+
+export const ingresarUsuarioExistente = (email, contraseña) => 
+  firebase.auth().signInWithEmailAndPassword(email, contraseña)
 
 
 export const ingresoDatos = () => {

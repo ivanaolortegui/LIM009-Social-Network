@@ -1,8 +1,31 @@
 // importamos la funcion que vamos a testear
-import { myFunction } from "../src/lib/index";
+//import MockFirebase from 'mock-cloud-firestore';
 
-describe('myFunction', () => {
-  it('debería ser una función', () => {
-    expect(typeof myFunction).toBe('function');
+/* const fixtureData =
+global.firebase = new MockFirebase(fixtureData); */
+const firebasemock = require('firebase-mock');
+const mockauth = new firebasemock.MockFirebase();
+const mockfirestore = new firebasemock.MockFirestore();
+mockfirestore.autoFlush();
+mockauth.autoFlush();
+
+global.firebase = firebasemock.MockFirebaseSdk(
+  // use null if your code does not use RTDB
+  path => (path ? mockdatabase.child(path) : null),
+  () => mockauth,
+  () => mockfirestore
+);
+
+
+import { registroUsuarioNuevo } from "../src/controller/controllerFirebase.js";
+
+describe('registroUsuarioNuevo', () => {
+  it('debería registrar nuevo usuario', () => {
+    return registroUsuarioNuevo('ivanao@gmail.com','123456789')
+    .then((user)=> { 
+      expect(user.email).toBe('ivanao@gmail.com')  
+    })    
   });
-});
+})
+
+
