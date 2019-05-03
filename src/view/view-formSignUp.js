@@ -1,5 +1,7 @@
 //import sing from '../controller/controller-btn.js'
 import {registroUsuarioNuevo} from '../controller/controllerFirebase.js'
+
+
 export default () => {
 const divSignUp = document.createElement('div');
   const templateImput = ` <header>
@@ -11,15 +13,17 @@ const divSignUp = document.createElement('div');
      <br>
      <input class="style-input" id="contraseña" type="password" placeholder="Ingrese contraseña">
      <br>
-     <a href="#/registrar"><button class="button-registry" id="registrar"> Registrar </button> </a>
+     <button class="button-registry" id="registrar"> Registrar </button> 
      `;
 
      divSignUp.innerHTML = templateImput;   
      const btn = divSignUp.querySelector('#registrar');
     btn.addEventListener('click',() => {
       const email = divSignUp.querySelector('#email').value;
-       const password = divSignUp.querySelector('#contraseña').value;
-     registroUsuarioNuevo(email,password); 
+      const password = divSignUp.querySelector('#contraseña').value;
+     registroUsuarioNuevo(email,password).then(()=> window.location.hash = '#/home')
+     .catch((err) => console.log(err))
+
      console.log('holamm')
     })
         

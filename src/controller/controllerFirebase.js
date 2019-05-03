@@ -1,32 +1,12 @@
 
-export const registroUsuarioNuevo = (email, contraseña) => {
-  firebase.auth().createUserWithEmailAndPassword(email, contraseña).then(response => {
-  })
-    // Handle Errors here.
-    .catch(error => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-      // ...
-    });
-}
+export const registroUsuarioNuevo = (email, contraseña) =>
+  firebase.auth().createUserWithEmailAndPassword(email, contraseña)
 
-export const ingresarUsuarioExistente = (email, contraseña) => {
-  firebase.auth().signInWithEmailAndPassword(email, contraseña).then(user => {
-    window.location.hash = '#/home';
-    console.log(email, contraseña);
-  })
-    .catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-      // ...
-    });
-}
+
+
+export const ingresarUsuarioExistente = (email, contraseña) => 
+  firebase.auth().signInWithEmailAndPassword(email, contraseña)
+
 
 
 export const ingresoDatos = () => {
@@ -54,22 +34,11 @@ export const ingresoDatos = () => {
 
 }
 
-export const cerrarSession = () => {
-  firebase.auth().signOut().then(reponse => {
-    console.log('Signed Out');
-    window.location.hash = '#/';
-  }, function (error) {
-    console.error('Sign Out Error', error);
-  });
-}
+export const cerrarSession = () => firebase.auth().signOut()
 
 export const iniciarSessionFaceBook = () => {
   let provider = new firebase.auth.FacebookAuthProvider();
   provider.addScope('public_profile');
-  firebase.auth().signInWithPopup(provider)
-    .then(datosUsuario => {
-      window.location.hash = '#/home';
-    }).catch(err => {
-      console.log(err);
-    })
+  return firebase.auth().signInWithPopup(provider)
 }
+export const userData = () => firebase.auth().currentUser;
