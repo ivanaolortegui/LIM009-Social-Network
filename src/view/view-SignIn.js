@@ -17,6 +17,7 @@ export default () => {
   <p>¿No tienes una cuenta?<a href="#/registro">  Regístrate.</a></p>
   <h4>O inicia sesión con...</h4>
   <button id="Facebook"><img class="icon-facebook" src="./img/facebook.png"></button>
+  <button id="Gmail"><img class="icon-gmail" src="./img/gmail.png"></button>
   <div id="container">
   </div>
 </section>`;
