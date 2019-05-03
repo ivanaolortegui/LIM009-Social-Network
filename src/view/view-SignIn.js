@@ -1,8 +1,8 @@
 
-import {changeView } from '../controller/router.js'
-import {iniciarSessionFaceBook} from '../controller/controllerFirebase.js'
+import { changeView } from '../controller/router.js'
+import { iniciarSessionFaceBook } from '../controller/controllerFirebase.js'
 export default () => {
-    const body = document.createElement('div');
+  const body = document.createElement('div');
   const template = `<header>
   <img class="logo" src="./img/logo.png">
   <p><img class="titulo" src="./img/titulo.png"></p>
@@ -17,18 +17,15 @@ export default () => {
   <p>¿No tienes una cuenta?<a href="#/registro">  Regístrate.</a></p>
   <h4>O inicia sesión con...</h4>
   <button id="Facebook"><img class="icon-facebook" src="./img/facebook.png"></button>
-  <p>¿No tienes una cuenta? <button id="registry">Regístrate.</button></p>
-  </section>`;
-body.innerHTML = template;
-
-window.addEventListener('hashchange',() => changeView(window.location.hash));
-
-/* const btnRegistro = body.querySelector('#registro');
-btnRegistro.addEventListener('click',signInOnSubmit);*/
-const btnFacebook = body.querySelector('#Facebook');
-btnFacebook.addEventListener('click',()=>{
-  iniciarSessionFaceBook();
-}); 
-return body 
+  <div id="container">
+  </div>
+</section>`;
+  body.innerHTML = template;
+  window.addEventListener('hashchange', () => changeView(window.location.hash));
+  const btnFacebook = body.querySelector('#Facebook');
+  btnFacebook.addEventListener('click', () => {
+    iniciarSessionFaceBook();
+  });
+  return body
 }
 
