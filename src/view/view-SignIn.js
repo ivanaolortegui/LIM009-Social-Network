@@ -37,7 +37,11 @@ export default () => {
   btnLogIn.addEventListener('click', () => {
     const emailUser = body.querySelector('#email-login').value;
     const passwordUser = body.querySelector('#password-login').value;
-    ingresarUsuarioExistente(emailUser, passwordUser);
+    ingresarUsuarioExistente(emailUser, passwordUser).then(() => {
+      window.location.hash = '#/home';
+    }).catch(err => {
+      console.log(err);
+    });
   })
  
   // const btnGmail = body.querySelector('#Gmail');
