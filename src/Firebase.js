@@ -52,5 +52,4 @@ const agregarDataBase = (uid, email) => {
   });
 }
 
-
  */
