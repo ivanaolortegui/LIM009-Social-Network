@@ -1,6 +1,16 @@
 
-import { changeView } from '../controller/router.js'
 import { iniciarSessionFaceBook, ingresarUsuarioExistente } from '../controller/controllerFirebase.js'
+
+export const loginConFbOnClick = () => {
+  iniciarSessionFaceBook()
+    .then(() => {
+      window.location.hash = '#/home';
+    }).catch(err => {
+      console.log(err);
+    });
+}
+
+
 export default () => {
   const body = document.createElement('div');
   const template = `<header>
@@ -22,20 +32,21 @@ export default () => {
   </div>
 </section>`;
   body.innerHTML = template;
-  window.addEventListener('hashchange', () => changeView(window.location.hash));
+
   const btnLogIn = body.querySelector('#ingresar')
   btnLogIn.addEventListener('click', () => {
     const emailUser = body.querySelector('#email-login').value;
     const passwordUser = body.querySelector('#password-login').value;
     ingresarUsuarioExistente(emailUser, passwordUser);
   })
-  const btnFacebook = body.querySelector('#Facebook');
-  btnFacebook.addEventListener('click', () => {
-    iniciarSessionFaceBook();
-  });
+ 
   // const btnGmail = body.querySelector('#Gmail');
   // btnGmail.addEventListener('click', () => {
   // })
+
+  const btnFacebook = body.querySelector('#Facebook');
+  btnFacebook.addEventListener('click', loginConFbOnClick);
+
   return body
 }
 

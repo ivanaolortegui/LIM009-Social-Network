@@ -1,4 +1,14 @@
 import  {cerrarSession}from '../controller/controllerFirebase.js'
+
+export const cerrarSesion = () => {
+  cerrarSession()
+  .then(() => {
+    window.location.hash = '#/';
+  }, function (error) {
+    console.error('Sign Out Error', error);
+  });
+}
+
 export const welcome = () => {
   const pageMain = document.createElement('div');
   const user =firebase.auth().currentUser;
@@ -17,6 +27,6 @@ export const welcome = () => {
   }  
   pageMain.innerHTML = template;
   const btnCerrar = pageMain.querySelector('#cerrar-sesion');
-  btnCerrar.addEventListener('click',cerrarSession)
+  btnCerrar.addEventListener('click', cerrarSesion)
   return pageMain;
 }
