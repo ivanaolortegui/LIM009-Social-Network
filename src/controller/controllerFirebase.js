@@ -38,7 +38,6 @@ export const cerrarSession = () => firebase.auth().signOut()
 
 export const iniciarSessionFaceBook = () => {
   let provider = new firebase.auth.FacebookAuthProvider();
-  provider.addScope('public_profile');
   return firebase.auth().signInWithPopup(provider)
 }
 

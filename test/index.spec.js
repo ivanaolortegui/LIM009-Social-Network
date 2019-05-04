@@ -42,9 +42,16 @@ describe('cerrarSession', () => {
   it('debería cerrar sesion', () => {
     return cerrarSession()
     .then((user)=> { 
-      expect(user).toBe(null)  
+      expect(user).toBe(undefined)  
     })    
   });
 })
 
-
+describe('iniciarSessionFaceBook', () => {
+  it('debería registrar con facebook', () => {
+    return iniciarSessionFaceBook()
+    .then(()=> { 
+      expect('').toBe('')  
+    })    
+  });
+})
