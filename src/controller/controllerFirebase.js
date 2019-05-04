@@ -39,7 +39,11 @@ export const cerrarSession = () => firebase.auth().signOut()
 export const iniciarSessionFaceBook = () => {
   let provider = new firebase.auth.FacebookAuthProvider();
   provider.addScope('public_profile');
-  
   return firebase.auth().signInWithPopup(provider)
 }
+
+export const iniciarSesionGmail = () => {
+  let provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider)
+};
 export const userData = () => firebase.auth().currentUser;
