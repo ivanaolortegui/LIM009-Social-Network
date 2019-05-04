@@ -12,7 +12,7 @@ global.firebase = firebasemock.MockFirebaseSdk(
 );
 
 
-import { registroUsuarioNuevo } from "../src/controller/controllerFirebase.js";
+import { registroUsuarioNuevo, ingresarUsuarioExistente, iniciarSessionFaceBook} from "../src/controller/controllerFirebase.js";
 
 describe('registroUsuarioNuevo', () => {
   it('debería registrar nuevo usuario', () => {
@@ -22,5 +22,15 @@ describe('registroUsuarioNuevo', () => {
     })    
   });
 })
+
+describe('ingresarUsuarioExistente', () => {
+  it('debería registrar nuevo usuario', () => {
+    return ingresarUsuarioExistente('ivanao@gmail.com','123456789')
+    .then((user)=> { 
+      expect(user.email).toBe('ivanao@gmail.com')  
+    })    
+  });
+})
+
 
 

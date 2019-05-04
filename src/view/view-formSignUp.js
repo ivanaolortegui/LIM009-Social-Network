@@ -23,8 +23,6 @@ const divSignUp = document.createElement('div');
       const password = divSignUp.querySelector('#contraseña').value;
      registroUsuarioNuevo(email,password).then(()=> window.location.hash = '#/home')
      .catch((err) => console.log(err))
-
-     console.log('holamm')
     })
         
   return divSignUp;
