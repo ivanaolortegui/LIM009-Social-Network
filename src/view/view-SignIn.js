@@ -1,5 +1,5 @@
 
-import { iniciarSessionFaceBook, ingresarUsuarioExistente } from '../controller/controllerFirebase.js'
+import { iniciarSessionFaceBook, ingresarUsuarioExistente, iniciarSesionGmail } from '../controller/controllerFirebase.js'
 
 export const loginConFbOnClick = () => {
   iniciarSessionFaceBook()
@@ -10,6 +10,14 @@ export const loginConFbOnClick = () => {
     });
 }
 
+export const loginConGmailOnClick = () => {
+  iniciarSesionGmail().then(() => {   
+    window.location.hash = '#/home';
+  }).catch(err => {
+    console.log(err);
+  });
+
+}
 
 export default () => {
   const body = document.createElement('div');
@@ -44,13 +52,11 @@ export default () => {
     });
   })
  
-  // const btnGmail = body.querySelector('#Gmail');
-  // btnGmail.addEventListener('click', () => {
-  // })
+   const btnGmail = body.querySelector('#Gmail');
+   btnGmail.addEventListener('click', loginConGmailOnClick)
 
   const btnFacebook = body.querySelector('#Facebook');
   btnFacebook.addEventListener('click', loginConFbOnClick);
-
   return body
 }
 

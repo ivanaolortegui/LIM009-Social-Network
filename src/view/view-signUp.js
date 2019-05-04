@@ -1,4 +1,4 @@
-import  {cerrarSession}from '../controller/controllerFirebase.js'
+import  {cerrarSession, userData}from '../controller/controllerFirebase.js'
 
 export const cerrarSesion = () => {
   cerrarSession()
@@ -11,8 +11,9 @@ export const cerrarSesion = () => {
 
 export const welcome = () => {
   const pageMain = document.createElement('div');
-  const user =firebase.auth().currentUser;
-  console.log(user);
+/*   const user =firebase.auth().currentUser;
+  console.log(user); */
+  const user = userData();
   let template;
   if(user.displayName && user.photoURL){
      template = `<h3>Bienvenido ${user.displayName} </h3>
