@@ -9,9 +9,10 @@ export const ingresarUsuarioExistente = (email, contraseña) =>
 
 
 
-export const ingresoDatos = () => {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
+export const ingresoDatos = () =>  {
+  return firebase.auth().onAuthStateChanged;
+  }
+/*     if (user) {
       // User is signed in.
       console.log('sesion iniciado');
       var displayName = user.displayName;
@@ -30,9 +31,9 @@ export const ingresoDatos = () => {
 
       // ...
     }
-  });
+  }); 
+ */
 
-}
 
 export const cerrarSession = () => firebase.auth().signOut()
 
@@ -41,8 +42,21 @@ export const iniciarSessionFaceBook = () => {
   return firebase.auth().signInWithPopup(provider)
 }
 
+
+// new firebase.auth.FacebookAuthProvider() me retorna un objeto con el id del provedor que es facebook 
 export const iniciarSesionGmail = () => {
   let provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider)
 };
 export const userData = () => firebase.auth().currentUser;
+
+
+// firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
+
+export const addPublication = (publication) => {
+  firebase.firestore().collection('publication').add({
+    publication : publication
+
+  })
+
+}
