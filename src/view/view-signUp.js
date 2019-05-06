@@ -4,7 +4,7 @@ export const cerrarSesion = () => {
   cerrarSession()
   .then(() => {
     window.location.hash = '#/';
-  }, function (error) {
+  }) .catch(() => {
     console.error('Sign Out Error', error);
   });
 }
@@ -13,9 +13,16 @@ export const welcome = () => {
   const pageMain = document.createElement('div');
 /*   const user =firebase.auth().currentUser;
   console.log(user); */
-  const user = userData();
-  
+  let us;
+   ingresoDatos().then((user1) => {
+     const us1 =user1;
+     return us = us1;
+    }
+    ).catch((err)=> console.log(err))
+console.log(us);
 
+const user = userData();
+  
   let template;
   if(user.displayName && user.photoURL){
      template = `<h3>Bienvenido ${user.displayName} </h3>
