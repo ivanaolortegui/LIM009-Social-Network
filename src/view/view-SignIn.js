@@ -1,23 +1,4 @@
-
-import { iniciarSessionFaceBook, ingresarUsuarioExistente, iniciarSesionGmail } from '../controller/controllerFirebase.js'
-
-export const loginConFbOnClick = () => {
-  iniciarSessionFaceBook()
-    .then(() => {
-      window.location.hash = '#/home';
-    }).catch(err => {
-      console.log(err);
-    });
-}
-
-export const loginConGmailOnClick = () => {
-  iniciarSesionGmail().then(() => {   
-    window.location.hash = '#/home';
-  }).catch(err => {
-    console.log(err);
-  });
-
-}
+import {loginOnClick, loginConGmailOnClick, loginConFbOnClick} from './view-controller.js'
 
 export default () => {
   const body = document.createElement('div');
@@ -42,21 +23,14 @@ export default () => {
   body.innerHTML = template;
 
   const btnLogIn = body.querySelector('#ingresar')
-  btnLogIn.addEventListener('click', () => {
-    const emailUser = body.querySelector('#email-login').value;
-    const passwordUser = body.querySelector('#password-login').value;
-    ingresarUsuarioExistente(emailUser, passwordUser).then(() => {
-      window.location.hash = '#/home';
-    }).catch(err => {
-      console.log(err);
-    });
-  })
+  btnLogIn.addEventListener('click', loginOnClick);
  
   const btnGmail = body.querySelector('#Gmail');
   btnGmail.addEventListener('click', loginConGmailOnClick)
 
   const btnFacebook = body.querySelector('#Facebook');
   btnFacebook.addEventListener('click', loginConFbOnClick);
-  return body
+
+  return body;
 }
 
