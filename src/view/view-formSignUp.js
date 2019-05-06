@@ -4,16 +4,17 @@ import {registroUsuarioNuevo} from '../controller/controllerFirebase.js'
 
 export default () => {
 const divSignUp = document.createElement('div');
-  const templateImput = ` <header>
+  const templateImput = `<div class='block-container'>
+  <header  class="text">
   <img class="logo" src="./img/logo.png">
-  <p><img class="titulo" src="./img/titulo.png"></p>
   </header>
-  <section class="block-two" id="pag-one"></section>
-  <input class="style-input" id="email" type="email" placeholder="ingresa tu email">
-     <br>
-     <input class="style-input" id="contraseña" type="password" placeholder="Ingrese contraseña">
-     <br>
-     <button class="button-registry" id="registrar"> Registrar </button> 
+  <section class="text" id="pag-one">
+  <p><img class="titulo" src="./img/titulo.png"></p>
+  <input class="login" id="email" type="email" placeholder="Email">
+  <input class="login" id="contraseña" type="password" placeholder="Password">
+  <button class="button" id="registrar"> Registrar </button>
+  </section>
+  </div>
      `;
 
      divSignUp.innerHTML = templateImput;   

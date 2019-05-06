@@ -55,3 +55,12 @@ describe('iniciarSessionFaceBook', () => {
     })    
   });
 })
+
+describe('iniciarSesionGmail', () => {
+  it('debería registrar con gmail', () => {
+    return iniciarSesionGmail()
+    .then(()=> { 
+      expect('').toBe('')  
+    })    
+  });
+})
