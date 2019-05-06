@@ -1,10 +1,10 @@
-import  {cerrarSession, ingresoDatos, userData, addPublication}from '../controller/controllerFirebase.js'
+import  {cerrarSession, userData, addPublication}from '../controller/controllerFirebase.js'
 
 export const cerrarSesion = () => {
   cerrarSession()
   .then(() => {
     window.location.hash = '#/';
-  }, function (error) {
+  }) .catch(() => {
     console.error('Sign Out Error', error);
   });
 }
@@ -13,9 +13,9 @@ export const welcome = () => {
   const pageMain = document.createElement('div');
 /*   const user =firebase.auth().currentUser;
   console.log(user); */
-  const user = userData();
-  
 
+const user = userData();
+  
   let template;
   if(user.displayName && user.photoURL){
      template = `<h3>Bienvenido ${user.displayName} </h3>

@@ -12,7 +12,7 @@ global.firebase = firebasemock.MockFirebaseSdk(
 );
 
 
-import { registroUsuarioNuevo, ingresarUsuarioExistente, iniciarSessionFaceBook, cerrarSession, iniciarSesionGmail, serData} from "../src/controller/controllerFirebase.js";
+import { registroUsuarioNuevo, ingresarUsuarioExistente, iniciarSessionFaceBook, cerrarSession, iniciarSesionGmail, serData, ingresoDatos} from "../src/controller/controllerFirebase.js";
 
 describe('registroUsuarioNuevo', () => {
   it('debería ser una funcion', () => {
@@ -50,8 +50,8 @@ describe('cerrarSession', () => {
 describe('iniciarSessionFaceBook', () => {
   it('debería registrar con facebook', () => {
     return iniciarSessionFaceBook()
-    .then(()=> { 
-      expect('').toBe('')  
+    .then((user)=> { 
+      expect(user.isAnonymous).toBe(false)  
     })    
   });
 })

@@ -3,15 +3,23 @@ export const registroUsuarioNuevo = (email, contraseña) =>
   firebase.auth().createUserWithEmailAndPassword(email, contraseña)
 
 
-
 export const ingresarUsuarioExistente = (email, contraseña) => 
   firebase.auth().signInWithEmailAndPassword(email, contraseña)
 
 
 
-export const ingresoDatos = () =>  {
-  return firebase.auth().onAuthStateChanged;
-  }
+/* export const ingresoDatos = () =>  {
+  return new Promise((resolve, reject) =>  {
+  firebase.auth().onAuthStateChanged((user) => {
+     if(user)  {
+       return resolve(user);
+     }
+     else  {
+      return reject('error')
+     }
+   })
+  })
+}; */
 /*     if (user) {
       // User is signed in.
       console.log('sesion iniciado');
@@ -58,5 +66,13 @@ export const addPublication = (publication) => {
     publication : publication
 
   })
+}
+// toda la funcion addpublication me retorna una premesa y por eso en el otro lado se le hace un then si fue exitosa
 
+export const onUsuarioLoggeado = (callback) => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      callback(user)
+    }
+  })
 }
