@@ -30,8 +30,8 @@ export default () => {
   <h4 class="text" >Bienvenida a PureLife, la red donde reciclar es divertido.</h4>
   <input class="login" id="email-login" type="email" placeholder="Email">
   <input class="login" id="password-login" type="password" placeholder="Password">
-  <article>
   <a href="#/ingresar"><button class="button" id="ingresar"> Log In </button></a>
+  <article>
   <h4 class="text">O inicia sesión con...</h4>
   <a id="Facebook"><img class="icon-social" src="./img/facebook.png"></a>
   <a" id="Gmail"><img class="icon-social" src="./img/gmail.png"></a>
