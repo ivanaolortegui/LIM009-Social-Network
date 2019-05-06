@@ -56,24 +56,11 @@ describe('iniciarSessionFaceBook', () => {
   });
 })
 
- /* describe('ingresoDatos', () => {
-  it('debería ser una funcion', () => {
-    expect(typeof ingresoDatos).toBe('function') 
+describe('iniciarSesionGmail', () => {
+  it('debería registrar con gmail', () => {
+    return iniciarSesionGmail()
+    .then(()=> { 
+      expect('').toBe('')  
+    })    
   });
-
-  it('debería registrar usuario activo', () => {
-    return ingresoDatos()
-    .then((user)=> { 
-      expect(user).toBe(user)  
-    }) 
-  });
-}) 
- */
-   
-/* 
-async () => { 
-  await ingresoDatos()
-  expect(user).toBe(user)  
-
-}
- */
+})
