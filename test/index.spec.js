@@ -56,7 +56,7 @@ describe('iniciarSessionFaceBook', () => {
   });
 })
 
- describe('ingresoDatos', () => {
+ /* describe('ingresoDatos', () => {
   it('debería ser una funcion', () => {
     expect(typeof ingresoDatos).toBe('function') 
   });
@@ -65,6 +65,15 @@ describe('iniciarSessionFaceBook', () => {
     return ingresoDatos()
     .then((user)=> { 
       expect(user).toBe(user)  
-    })    
+    }) 
   });
 }) 
+ */
+   
+/* 
+async () => { 
+  await ingresoDatos()
+  expect(user).toBe(user)  
+
+}
+ */

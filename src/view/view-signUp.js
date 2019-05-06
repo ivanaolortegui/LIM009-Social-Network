@@ -1,4 +1,4 @@
-import  {cerrarSession, ingresoDatos, userData, addPublication}from '../controller/controllerFirebase.js'
+import  {cerrarSession, userData, addPublication}from '../controller/controllerFirebase.js'
 
 export const cerrarSesion = () => {
   cerrarSession()
@@ -13,13 +13,6 @@ export const welcome = () => {
   const pageMain = document.createElement('div');
 /*   const user =firebase.auth().currentUser;
   console.log(user); */
-  let us;
-   ingresoDatos().then((user1) => {
-     const us1 =user1;
-     return us = us1;
-    }
-    ).catch((err)=> console.log(err))
-console.log(us);
 
 const user = userData();
   

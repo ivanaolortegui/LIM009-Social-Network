@@ -1,4 +1,6 @@
 import { components } from '../view/obj.js'
+import  { userData, onUsuarioLoggeado }from '../controller/controllerFirebase.js'
+
 export const changeView = (router) => {
   const divContainer = document.getElementById('all-page');
   divContainer.innerHTML = '';
@@ -8,7 +10,11 @@ export const changeView = (router) => {
     }
     break;
       case '#/home': {
-        divContainer.appendChild(components.welcome())  
+        if (userData()) {
+          divContainer.appendChild(components.welcome())  
+        } else {
+          changeView('#/registro')
+        }
      }
      break;
     default:
@@ -17,7 +23,10 @@ export const changeView = (router) => {
   }
 }
 
+
+
 export const initRouter = () => {
   window.addEventListener('load', changeView(window.location.hash))
   if (("onhashchange" in window)) window.onhashchange = () => changeView(window.location.hash)
+  onUsuarioLoggeado((user) => changeView('#/home'))
 }
