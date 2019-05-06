@@ -9,28 +9,6 @@ export const ingresarUsuarioExistente = (email, contraseña) =>
 
 
 
-<<<<<<< HEAD
-// export const ingresoDatos = () => {
-//   firebase.auth().onAuthStateChanged(function (user) {
-//     if (user) {
-//       // User is signed in.
-//       console.log('sesion iniciado');
-//       var displayName = user.displayName;
-//       var email = user.email;
-//       console.log(email);
-//       var emailVerified = user.emailVerified;
-//       var photoURL = user.photoURL;
-//       var isAnonymous = user.isAnonymous;
-//       var uid = user.uid;
-//       var providerData = user.providerData;
-//     } else {
-//       // User is signed out.
-//       console.log('no existe usuario');
-//     }
-//   });
-
-// }
-=======
 export const ingresoDatos = () =>  {
   return firebase.auth().onAuthStateChanged;
   }
@@ -56,7 +34,6 @@ export const ingresoDatos = () =>  {
   }); 
  */
 
->>>>>>> 6b8fdb75fb8f8bbf2873c09f55073fff400ba2b9
 
 export const cerrarSession = () => firebase.auth().signOut()
 
