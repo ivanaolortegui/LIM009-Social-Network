@@ -1,4 +1,4 @@
-//import sing from '../controller/controller-btn.js'
+
 import {registroUsuarioNuevo} from '../controller/controllerFirebase.js'
 
 

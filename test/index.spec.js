@@ -66,11 +66,14 @@ describe('iniciarSesionGmail', () => {
 })
 
 describe('onUsuarioLoggeado', () => {
-  it('debería devolver el usuario logueado', () => {
-    return onUsuarioLoggeado((user)=> {
-      expect(user).toBe('false')  
-    })
-  
+  it('debería devolver el usuario logueado', (done) => {
+    const callback = (user)=> {
+      expect(user.isAnonymous).toBe(false)  
+      done()
+    }    
+    onUsuarioLoggeado(callback)
+    expect(firebase.auth().currentUser.isAnonymous).toBe(false) 
+    iniciarSesionGmail() 
   });
  
 })

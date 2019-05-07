@@ -18,24 +18,24 @@ const user = userData();
   
   let template;
   if(user.displayName && user.photoURL){
-     template = `<h3>Bienvenido ${user.displayName} </h3>
+     template = `<h3 class="text">Bienvenido ${user.displayName} </h3>
     <img class="profile-logo" src="${user.photoURL}">
 
     <div>
     <input type="text" id="input-post">
-    <button class="button-registry" id="btn-post"> compartir </button>  
-  </div>
-    <button class="button-registry" id="cerrar-sesion"> Cerrar Sesion </button>
+    <button class="button" id="btn-post"> compartir </button>  
+    </div>
+    <button class="button" id="cerrar-sesion"> Cerrar Sesion </button>
     `;
   } else {
-    template = `<h3>Bienvenido ${user.email} </h3>
+    template = `<h3 class="text">Bienvenido ${user.email} </h3>
     <img class="profile-logo" src="./img/avatar.png">
 
     <div>
     <input type="text" id="input-post">
-    <button class="button-registry" id="btn-post"> compartir </button>
-  </div><
-    <button class="button-registry" id="cerrar-sesion"> Cerrar Sesion </button>
+    <button class="button" id="btn-post"> compartir </button>
+    </div>
+    <button class="button" id="cerrar-sesion"> Cerrar Sesion </button>
     `;
   }  
   pageMain.innerHTML = template;
