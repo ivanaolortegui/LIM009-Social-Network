@@ -22,7 +22,6 @@ export const signInWithGmail = () => {
 
 export const userData = () => firebase.auth().currentUser;
 
-
 // firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
 
 export const addPost = (post) => {
