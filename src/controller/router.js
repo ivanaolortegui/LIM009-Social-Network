@@ -1,24 +1,24 @@
-import { components } from '../view/obj.js'
-import  { userData, onUsuarioLoggeado }from '../controller/controllerFirebase.js'
+import { components } from '../view/index.js'
+import  { userData, onUsuarioLoggeado }from '../controller/controller-Firebase.js'
 
 export const changeView = (router) => {
   const divContainer = document.getElementById('all-page');
   divContainer.innerHTML = '';
   switch (router) {
-    case '#/registro': {
-      divContainer.appendChild(components.form())     
+    case '#/signUp': {
+      divContainer.appendChild(components.signUpView())     
     }
     break;
       case '#/home': {
         if (userData()) {
-          divContainer.appendChild(components.welcome())  
+          divContainer.appendChild(components.home())  
         } else {
-          changeView('#/registro')
+          changeView('#/signUp')
         }
      }
      break;
     default:
-      divContainer.appendChild( components.login() )
+      divContainer.appendChild( components.SignInView())
       break;
   }
 }

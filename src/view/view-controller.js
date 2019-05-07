@@ -1,17 +1,22 @@
-import { ingresarUsuarioExistente, iniciarSessionFaceBook, iniciarSesionGmail } from '../controller/controllerFirebase.js'
+import { 
+  singUp,
+  signIn,
+  signInWithFacebook,
+  signInWithGmail,
+  signOut,
+  addPost
+} from '../controller/controller-Firebase.js'
 
-export const loginOnClick = () => {
+export const loginSubmit = () => {
   const emailUser = document.querySelector('#email-login').value;
   const passwordUser = document.querySelector('#password-login').value;
-  ingresarUsuarioExistente(emailUser, passwordUser).then(() => {
+  signIn(emailUser, passwordUser).then(() => {
     window.location.hash = '#/home';
-  }).catch(err => {
-    console.log(err);
-  });
+  }).catch(err => console.log(err));
 }
 
-export const loginConFbOnClick = () => {
-  iniciarSessionFaceBook()
+export const loginWithFacebookSubmit = () => {
+  signInWithFacebook()
     .then(() => {
       window.location.hash = '#/home';
     }).catch(err => {
@@ -19,10 +24,32 @@ export const loginConFbOnClick = () => {
     });
 }
 
-export const loginConGmailOnClick = () => {
-  iniciarSesionGmail().then(() => {
+export const loginWithGmailSubmit = () => {
+  signInWithGmail().then(() => {
     window.location.hash = '#/home';
   }).catch(err => {
     console.log(err);
   });
+}
+
+export const logupSubmit = () => {
+  const email = document.querySelector('#email').value;
+  const password = document.querySelector('#contraseña').value;
+  singUp(email, password).then(() => window.location.hash = '#/home')
+    .catch((err) => console.log(err))
+}
+
+export const logOutSubmit = () => {
+  signOut()
+    .then(() => {
+      window.location.hash = '#/';
+    }).catch(() => {
+      console.error('Sign Out Error', error);
+    });
+}
+
+export const addPostSubmit = () => {
+  const input = document.querySelector('#input-post').value;
+  addPost(input);
+
 }

@@ -12,25 +12,32 @@ global.firebase = firebasemock.MockFirebaseSdk(
 );
 
 
-import { registroUsuarioNuevo, ingresarUsuarioExistente, iniciarSessionFaceBook, cerrarSession, iniciarSesionGmail, serData, onUsuarioLoggeado, addPublication} from "../src/controller/controllerFirebase.js";
+import { singUp, 
+  signIn, 
+  signInWithFacebook, 
+  signOut, 
+  signInWithGmail, 
+  userData, 
+  onUsuarioLoggeado, 
+  ingresoDatos} from "../src/controller/controller-Firebase.js";
 
-describe('registroUsuarioNuevo', () => {
+describe('singUp', () => {
   it('debería ser una funcion', () => {
-    expect(typeof registroUsuarioNuevo).toBe('function') 
+    expect(typeof singUp).toBe('function') 
   });
 
 
   it('debería registrar nuevo usuario', () => {
-    return registroUsuarioNuevo('ivanao@gmail.com','123456789')
+    return singUp('ivanao@gmail.com','123456789')
     .then((user)=> { 
       expect(user.email).toBe('ivanao@gmail.com')  
     })    
   });
 })
 
-describe('ingresarUsuarioExistente', () => {
+describe('signIn', () => {
   it('debería registrar nuevo usuario', () => {
-    return ingresarUsuarioExistente('ivanao@gmail.com','123456789')
+    return signIn('ivanao@gmail.com','123456789')
     .then((user)=> { 
       expect(user.email).toBe('ivanao@gmail.com')  
     })    
@@ -38,27 +45,27 @@ describe('ingresarUsuarioExistente', () => {
 })
 
 
-describe('cerrarSession', () => {
+describe('signOut', () => {
   it('debería cerrar sesion', () => {
-    return cerrarSession()
+    return signOut()
     .then((user)=> { 
       expect(user).toBe(undefined)  
     })    
   });
 })
 
-describe('iniciarSessionFaceBook', () => {
+describe('signInWithFacebook', () => {
   it('debería registrar con facebook', () => {
-    return iniciarSessionFaceBook()
+    return signInWithFacebook()
     .then((user)=> { 
       expect(user.isAnonymous).toBe(false)  
     })    
   });
 })
 
-describe('iniciarSesionGmail', () => {
+describe('signInWithGmail', () => {
   it('debería registrar con gmail', () => {
-    return iniciarSesionGmail()
+    return signInWithGmail()
     .then((user)=> { 
       expect(user.isAnonymous).toBe(false)  
     })    
@@ -73,10 +80,12 @@ describe('onUsuarioLoggeado', () => {
     }    
     onUsuarioLoggeado(callback)
     expect(firebase.auth().currentUser.isAnonymous).toBe(false) 
-    iniciarSesionGmail() 
+   // iniciarSesionGmail() 
+   firebase.auth().signInWithEmailAndPassword('chiquinquira@gmail.com', '123456789')
   });
  
 })
+
 
 
 
