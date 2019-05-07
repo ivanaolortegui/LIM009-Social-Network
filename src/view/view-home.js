@@ -31,7 +31,7 @@ export const home = () => {
 
     <div>
     <input type="text" id="input-post">
-    <button class="button" id="btn-post"> compartir </button>
+    <button class="button" id="btn-add-post"> compartir </button>
     </div>
     <div id= post-content>
     </div>
@@ -44,16 +44,16 @@ export const home = () => {
   btnAddPost.addEventListener('click', addPostSubmit);
   const btnCerrar = pageMain.querySelector('#log-out');
   
-  let h3 = document.createElement('h3')
+  const contentPost = (data) => {
+    let h3 = document.createElement('h3');
+    h3.textContent = data; 
+    divPost.appendChild(h3);
+  }
+  
   post().then((snapshot) => {
-    snapshot.docs.forEach((post)=> h3.textContent += post.data().post);
+    snapshot.docs.forEach((post)=> contentPost(post.data().post));
     });
    
-  
-  divPost.appendChild(h3);
-
-
-
   btnCerrar.addEventListener('click', logOutSubmit)
   /* const post = firebase.firestore().collection('post').get().then((snapshot) => {
    snapshot.docs.forEach((post)=> { console.log(post.data().post);
