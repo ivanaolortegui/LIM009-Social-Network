@@ -26,9 +26,13 @@ export const userData = () => firebase.auth().currentUser;
 // firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
 
 export const addPost = (post) => {
-  firebase.firestore().collection('publication').add({
+  firebase.firestore().collection('post').add({
     post : post
   })
+}
+
+export const post = () => {
+  return firebase.firestore().collection('post').get()
 }
 // toda la funcion addpublication me retorna una premesa y por eso en el otro lado se le hace un then si fue exitosa
 
