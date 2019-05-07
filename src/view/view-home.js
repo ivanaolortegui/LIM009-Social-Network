@@ -14,11 +14,13 @@ export const home = () => {
 
   let template;
   if (user.displayName && user.photoURL) {
-    template = `<h3 class="text">Bienvenido ${user.displayName} </h3>
+    template = `
+    <nav>Cerrar Sesion</nav>
+    <h3 class="text">Bienvenido ${user.displayName} </h3>
     <img class="profile-logo" src="${user.photoURL}">
 
     <div>
-    <input type="text" id="input-post">
+    <textarea name="textarea" rows="10" cols="50" id="input-post"></textarea>
     <button class="button" id="btn-add-post"> compartir </button>  
     </div>
     <div id= post-content>
@@ -26,11 +28,18 @@ export const home = () => {
     <button class="button" id="log-out"> Cerrar Sesion </button>
     `;
   } else {
-    template = `<h3 class="text">Bienvenido ${user.email} </h3>
+    template = `
+    <nav class="menu">
+    <ul>
+    <a class="menu-items" href=""><h4>${user.email}</h4></a>
+    <a class="menu-items" href="#/home"><h4>PureLife</h4></a>
+    <a class="menu-items" href="#/"><h4>cerrar sesion</h4></a>
+    </ul>
+    </nav>
     <img class="profile-logo" src="./img/avatar.png">
-
+    <h3 class="text">Bienvenido ${user.email} </h3>
     <div>
-    <input type="text" id="input-post">
+    <textarea name="textarea" rows="10" cols="40" id="input-post"></textarea>
     <button class="button" id="btn-add-post"> compartir </button>
     </div>
     <div id= post-content>
