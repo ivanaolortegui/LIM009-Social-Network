@@ -6,7 +6,6 @@ import {
 } from './view-controller.js'
 
 
-
 export const home = () => {
   const pageMain = document.createElement('div');
   const user = userData();
@@ -23,7 +22,7 @@ export const home = () => {
     <input type="text" id="input-post">
     <button class="button" id="btn-add-post"> compartir </button>  
     </div>
-    <div id= post-content>
+    <div id= "post-content">
     </div>
     <button class="button" id="log-out"> Cerrar Sesion </button>
     `;
@@ -35,7 +34,7 @@ export const home = () => {
     <input type="text" id="input-post">
     <button class="button" id="btn-add-post"> compartir </button>
     </div>
-    <div id= post-content>
+    <div id= "post-content">
     </div>
     <button class="button" id="log-out"> Cerrar Sesion </button>
     `;
@@ -44,10 +43,19 @@ export const home = () => {
   
   const btnAddPost = pageMain.querySelector('#btn-add-post');
   btnAddPost.addEventListener('click', addPostSubmit);
-  
-    //const divPost = pageMain.querySelector('#post-content');
-   
-    getPost((call) => console.log(call))
+      
+  getPost((post) => {
+    const divPost = pageMain.querySelector('#post-content');
+    divPost.innerHTML = '';
+    post.forEach((post) => {
+      const pPost = document.createElement('p');
+    //  const pUser = document.createElement('p');
+      pPost.innerHTML = post.post
+     // pUser.innerHTML = user.email;
+     // divPost.appendChild(pUser);
+      divPost.appendChild(pPost);   
+    });  
+  })
     
 
   const btnCerrar = pageMain.querySelector('#log-out');
