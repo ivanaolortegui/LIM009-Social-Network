@@ -4,8 +4,11 @@ import {
   signInWithFacebook,
   signInWithGmail,
   signOut,
+
   addPost
 } from '../controller/controller-Firebase.js'
+
+//import {contentPost} from './view-home.js' 
 
 export const loginSubmit = () => {
   const emailUser = document.querySelector('#email-login').value;
@@ -50,6 +53,16 @@ export const logOutSubmit = () => {
 
 export const addPostSubmit = () => {
   const input = document.querySelector('#input-post').value;
+  
   addPost(input);
+  document.querySelector('#input-post').value ='';
+
+
+
+
 
 }
+
+
+ 
+

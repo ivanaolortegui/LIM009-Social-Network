@@ -24,21 +24,35 @@ export const userData = () => firebase.auth().currentUser;
 
 // firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
 
-export const addPost = (post) => {
-  firebase.firestore().collection('post').add({
-    post : post
-  })
-}
 
-export const post = () => {
+
+/* export const post = () => {
   return firebase.firestore().collection('post').get()
-}
+} */
 // toda la funcion addpublication me retorna una premesa y por eso en el otro lado se le hace un then si fue exitosa
 
 export const onUsuarioLoggeado = (callback) => {
   firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
+    //if (user) {
       callback(user)
-    }
+    //}
   })
 }
+
+export const addPost = (post) => {
+  //inicializamos firestore y llammos a la funcion colectioncon el nombre de la coleccion llamada usuario y con aDD agregamos 
+  // los campos post 
+ firebase.firestore().collection('post').add({
+   post : post
+ })
+}
+
+export const getNotes = (callback) =>
+  firebase.firestore().collection('notes')
+    .onSnapshot((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() })
+      });
+      callback(data);
+    }); 

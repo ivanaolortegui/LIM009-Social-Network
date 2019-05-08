@@ -1,9 +1,11 @@
 import { userData,
-  post, onUsuarioLoggeado } from '../controller/controller-Firebase.js'
+   onUsuarioLoggeado } from '../controller/controller-Firebase.js'
 import {
   logOutSubmit,
   addPostSubmit
 } from './view-controller.js'
+
+
 
 export const home = () => {
   const pageMain = document.createElement('div');
@@ -39,26 +41,28 @@ export const home = () => {
     `;
   }
   pageMain.innerHTML = template;
-  const divPost = pageMain.querySelector('#post-content');
+  
   const btnAddPost = pageMain.querySelector('#btn-add-post');
   btnAddPost.addEventListener('click', addPostSubmit);
-  const btnCerrar = pageMain.querySelector('#log-out');
   
-  const contentPost = (data) => {
-    let h3 = document.createElement('h3');
-    h3.textContent = data; 
-    divPost.appendChild(h3);
-  }
-  
-  post().then((snapshot) => {
-    snapshot.docs.forEach((post)=> contentPost(post.data().post));
-    });
+    const divPost = pageMain.querySelector('#post-content');
    
-  btnCerrar.addEventListener('click', logOutSubmit)
-  /* const post = firebase.firestore().collection('post').get().then((snapshot) => {
-   snapshot.docs.forEach((post)=> { console.log(post.data().post);
-   });
     
-  }) */
+    
+   const getColection = () => {
+    firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
+      divPost.innerHTML = '';
+      querySnapshot.docs.forEach((post)=> {
+        let newDiv = document.createElement('div');
+        newDiv.innerHTML += post.data().post; 
+        divPost.appendChild(newDiv);
+        
+      });
+    })
+  }
+  getColection();
+  const btnCerrar = pageMain.querySelector('#log-out');
+  btnCerrar.addEventListener('click', logOutSubmit)
+
   return pageMain;
 }
