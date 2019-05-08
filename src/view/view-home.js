@@ -1,9 +1,10 @@
-import { userData,
-  post, onUsuarioLoggeado } from '../controller/controller-Firebase.js'
+import { userData, getPost,
+   } from '../controller/controller-Firebase.js'
 import {
   logOutSubmit,
   addPostSubmit
 } from './view-controller.js'
+
 
 export const home = () => {
   const pageMain = document.createElement('div');
@@ -23,7 +24,7 @@ export const home = () => {
     <textarea name="textarea" rows="10" cols="50" id="input-post"></textarea>
     <button class="button" id="btn-add-post"> compartir </button>  
     </div>
-    <div id= post-content>
+    <div id= "post-content">
     </div>
     <button class="button" id="log-out"> Cerrar Sesion </button>
     `;
@@ -43,32 +44,32 @@ export const home = () => {
     <textarea name="textarea" rows="10" cols="40" id="input-post"></textarea>
     <button class="button" id="btn-add-post"> compartir </button>
     </div>
-    <div id= post-content>
+    <div id= "post-content">
     </div>
     <button class="button" id="log-out"> Cerrar Sesion </button>
     `;
   }
   pageMain.innerHTML = template;
-  const divPost = pageMain.querySelector('#post-content');
+  
   const btnAddPost = pageMain.querySelector('#btn-add-post');
   btnAddPost.addEventListener('click', addPostSubmit);
-  const btnCerrar = pageMain.querySelector('#log-out');
-  
-  const contentPost = (data) => {
-    let h3 = document.createElement('h3');
-    h3.textContent = data; 
-    divPost.appendChild(h3);
-  }
-  
-  post().then((snapshot) => {
-    snapshot.docs.forEach((post)=> contentPost(post.data().post));
-    });
-   
-  btnCerrar.addEventListener('click', logOutSubmit)
-  /* const post = firebase.firestore().collection('post').get().then((snapshot) => {
-   snapshot.docs.forEach((post)=> { console.log(post.data().post);
-   });
+      
+  getPost((post) => {
+    const divPost = pageMain.querySelector('#post-content');
+    divPost.innerHTML = '';
+    post.forEach((post) => {
+      const pPost = document.createElement('p');
+    //  const pUser = document.createElement('p');
+      pPost.innerHTML = post.post
+     // pUser.innerHTML = user.email;
+     // divPost.appendChild(pUser);
+      divPost.appendChild(pPost);   
+    });  
+  })
     
-  }) */
+
+  const btnCerrar = pageMain.querySelector('#log-out');
+  btnCerrar.addEventListener('click', logOutSubmit)
+
   return pageMain;
 }

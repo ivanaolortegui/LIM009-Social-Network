@@ -12,9 +12,9 @@ export const changeView = (router) => {
       case '#/home': {
         if (userData()) {
           divContainer.appendChild(components.home())  
-        } else {
-          changeView('#/signUp')
-        }
+        } /* else {
+          changeView('#/home')
+        } */
      }
      break;
     default:
