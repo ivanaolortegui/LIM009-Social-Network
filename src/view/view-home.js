@@ -1,5 +1,5 @@
-import { userData,
-   onUsuarioLoggeado } from '../controller/controller-Firebase.js'
+import { userData, getPost,
+   } from '../controller/controller-Firebase.js'
 import {
   logOutSubmit,
   addPostSubmit
@@ -45,22 +45,11 @@ export const home = () => {
   const btnAddPost = pageMain.querySelector('#btn-add-post');
   btnAddPost.addEventListener('click', addPostSubmit);
   
-    const divPost = pageMain.querySelector('#post-content');
+    //const divPost = pageMain.querySelector('#post-content');
    
+    getPost((call) => console.log(call))
     
-    
-   const getColection = () => {
-    firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
-      divPost.innerHTML = '';
-      querySnapshot.docs.forEach((post)=> {
-        let newDiv = document.createElement('div');
-        newDiv.innerHTML += post.data().post; 
-        divPost.appendChild(newDiv);
-        
-      });
-    })
-  }
-  getColection();
+
   const btnCerrar = pageMain.querySelector('#log-out');
   btnCerrar.addEventListener('click', logOutSubmit)
 

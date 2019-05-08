@@ -33,9 +33,9 @@ export const userData = () => firebase.auth().currentUser;
 
 export const onUsuarioLoggeado = (callback) => {
   firebase.auth().onAuthStateChanged((user) => {
-    //if (user) {
+    if (user) {
       callback(user)
-    //}
+    }
   })
 }
 
@@ -47,12 +47,25 @@ export const addPost = (post) => {
  })
 }
 
-export const getNotes = (callback) =>
-  firebase.firestore().collection('notes')
+export const getPost = (callback) =>
+  firebase.firestore().collection('post')
     .onSnapshot((querySnapshot) => {
       const data = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() })
+      querySnapshot.docs.forEach((post)=> {
+        data.push({ post: post.data().post })
       });
       callback(data);
     }); 
+
+
+  /*   const getColection = () => {
+      firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
+        divPost.innerHTML = '';
+        querySnapshot.docs.forEach((post)=> {
+          let newDiv = document.createElement('div');
+          newDiv.innerHTML += post.data().post; 
+          divPost.appendChild(newDiv);
+          
+        });
+      })
+    } */
