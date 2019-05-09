@@ -22,15 +22,6 @@ export const signInWithGmail = () => {
 
 export const userData = () => firebase.auth().currentUser;
 
-// firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
-
-
-
-/* export const post = () => {
-  return firebase.firestore().collection('post').get()
-} */
-// toda la funcion addpublication me retorna una premesa y por eso en el otro lado se le hace un then si fue exitosa
-
 export const onUsuarioLoggeado = (callback) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -39,11 +30,14 @@ export const onUsuarioLoggeado = (callback) => {
   })
 }
 
-export const addPost = (post) => {
+export const addPost = (post, userId, user,privacySelectValue) => {
   //inicializamos firestore y llammos a la funcion colectioncon el nombre de la coleccion llamada usuario y con aDD agregamos 
   // los campos post 
  firebase.firestore().collection('post').add({
-   post : post
+   userId :userId,
+   user : user,
+   post : post,
+   privacy : privacySelectValue
  })
 }
 
@@ -52,20 +46,15 @@ export const getPost = (callback) =>
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post)=> {
-        data.push({ post: post.data().post })
-      });
+        data.push({ id:post.id, post: post.data().post, user: post.data().user})
+      });   
       callback(data);
     }); 
 
 
-  /*   const getColection = () => {
-      firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
-        divPost.innerHTML = '';
-        querySnapshot.docs.forEach((post)=> {
-          let newDiv = document.createElement('div');
-          newDiv.innerHTML += post.data().post; 
-          divPost.appendChild(newDiv);
-          
-        });
-      })
-    } */
+ // firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
+
+/* export const post = () => {
+  return firebase.firestore().collection('post').get()
+} */
+// toda la funcion addpublication me retorna una premesa y por eso en el otro lado se le hace un then si fue exitosa

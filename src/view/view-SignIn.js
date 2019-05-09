@@ -13,6 +13,7 @@ export default () => {
   <section class="text" id="pag-one">
   <p><img class="titulo" src="./img/titulo.png"></p>
   <h4 class="text" >Bienvenida a PureLife, la red donde reciclar es divertido.</h4>
+  <p class= "error-message" id="error-message"> </p>
   <input class="login" id="email-login" type="email" placeholder="   &#9993    Email">
   <input class="login" id="password-login" type="password" placeholder="   &#128274     Password">
   <a href="#/ingresar"><button class="button" id="log-in"> Log In </button></a>
