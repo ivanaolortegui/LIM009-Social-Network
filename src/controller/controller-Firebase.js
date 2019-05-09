@@ -46,8 +46,8 @@ export const getPost = (callback) =>
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post)=> {
-        data.push({ post: post.data().post, user: post.data().user})
-      });
+        data.push({ id:post.id, post: post.data().post, user: post.data().user})
+      });   
       callback(data);
     }); 
 
