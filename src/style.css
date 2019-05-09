@@ -120,6 +120,9 @@ body{
     color: black;
     text-decoration: none;
 }
+.error-message {
+    color: red;
+}
 
 @media screen and (min-width: 800px) {
     .block-container {

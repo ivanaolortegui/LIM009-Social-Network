@@ -19,7 +19,7 @@ export const home = () => {
     <ul>
     <a class="menu-items" href=""><h4>&#x1F464 ${user.email}</h4></a>
     <a class="menu-items" href="#/home"><h4>PureLife</h4></a>
-    <a class="menu-items" href="#/"><h4>cerrar sesion</h4></a>
+    <a class="menu-items" href="#/signOut"><h4>cerrar sesion</h4></a>
     <a class="menu-menu" href=""><h1>&#9776</h1></a>
     </ul>
     </nav>
@@ -32,7 +32,7 @@ export const home = () => {
     </div>
     <div id= "post-content">
     </div>
-    <button class="button" id="log-out"> Cerrar Sesion </button>
+   
     `;
   } else {
     template = `
@@ -40,7 +40,7 @@ export const home = () => {
     <ul>
     <a class="menu-items" href=""><h4>&#x1F464 ${user.email}</h4></a>
     <a class="menu-items" href="#/home"><h4>PureLife</h4></a>
-    <a class="menu-items" href="#/"><h4>cerrar sesion</h4></a>
+    <a class="menu-items" href="#/signOut"><h4>cerrar sesion</h4></a>
     <a class="menu-menu" href=""><h1>&#9776</h1></a>
     </ul>
     </nav>

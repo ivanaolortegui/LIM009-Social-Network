@@ -1,4 +1,5 @@
 import { components } from '../view/index.js'
+import {logOutSubmit} from '../view/view-controller.js'
 import  { userData, onUsuarioLoggeado }from '../controller/controller-Firebase.js'
 
 export const changeView = (router) => {
@@ -16,6 +17,10 @@ export const changeView = (router) => {
           changeView('#/')
         }  */
      }
+     break;
+     case '#/signOut': {
+      logOutSubmit()
+    }
      break;
     default:
       divContainer.appendChild( components.SignInView())
