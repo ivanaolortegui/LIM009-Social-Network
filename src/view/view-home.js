@@ -1,7 +1,6 @@
 import { userData, getPost,
    } from '../controller/controller-Firebase.js'
 import {
-  logOutSubmit,
   addPostSubmit
 } from './view-controller.js'
 
@@ -16,7 +15,14 @@ export const home = () => {
   let template;
   if (user.displayName && user.photoURL) {
     template = `
-    <nav>Cerrar Sesion</nav>
+    <nav>Cerrar Sesion</nav><nav class="menu">
+    <ul>
+    <a class="menu-items" href=""><h4>&#x1F464 ${user.email}</h4></a>
+    <a class="menu-items" href="#/home"><h4>PureLife</h4></a>
+    <a class="menu-items" href="#/"><h4>cerrar sesion</h4></a>
+    <a class="menu-menu" href=""><h1>&#9776</h1></a>
+    </ul>
+    </nav>
     <h3 class="text">Bienvenido ${user.displayName} </h3>
     <img class="profile-logo" src="${user.photoURL}">
 
@@ -46,7 +52,6 @@ export const home = () => {
     </div>
     <div id= "post-content">
     </div>
-    <button class="button" id="log-out"> Cerrar Sesion </button>
     `;
   }
   pageMain.innerHTML = template;
@@ -59,7 +64,6 @@ export const home = () => {
     divPost.innerHTML = '';
     post.forEach((post) => {
       const pPost = document.createElement('p');
-    //  const pUser = document.createElement('p');
       pPost.innerHTML = post.post
      // pUser.innerHTML = user.email;
      // divPost.appendChild(pUser);
@@ -68,8 +72,8 @@ export const home = () => {
   })
     
 
-  const btnCerrar = pageMain.querySelector('#log-out');
-  btnCerrar.addEventListener('click', logOutSubmit)
+  // const btnCerrar = pageMain.querySelector('#log-out');
+  // btnCerrar.addEventListener('click', logOutSubmit)
 
   return pageMain;
 }

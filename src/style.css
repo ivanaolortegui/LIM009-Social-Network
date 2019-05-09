@@ -68,12 +68,12 @@ body{
     background: #b1b625;
     color: #d8dfc5;
     display: inline-block;
-    font-size: 1em;
-    margin: 20px;
-    padding: 10px;
+    /* font-size: 1em; */
+    margin: 20px 25px;
+    padding: 10px 15px;
     text-align: center;
     box-shadow: 3px 3px 0px green; 
-    border-radius: 10px;
+    border-radius: 15px;
     
 }
 
