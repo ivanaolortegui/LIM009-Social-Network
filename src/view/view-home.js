@@ -40,19 +40,22 @@ export const home = () => {
     `;
   }
   pageMain.innerHTML = template;
-  
+
+  const idUser = user.email;
   const btnAddPost = pageMain.querySelector('#btn-add-post');
-  btnAddPost.addEventListener('click', addPostSubmit);
+  btnAddPost.addEventListener('click', () =>{
+    addPostSubmit(idUser)
+  });
       
   getPost((post) => {
     const divPost = pageMain.querySelector('#post-content');
     divPost.innerHTML = '';
     post.forEach((post) => {
       const pPost = document.createElement('p');
-    //  const pUser = document.createElement('p');
+      const pUser = document.createElement('p');
       pPost.innerHTML = post.post
-     // pUser.innerHTML = user.email;
-     // divPost.appendChild(pUser);
+     pUser.innerHTML = post.user;
+      divPost.appendChild(pUser);
       divPost.appendChild(pPost);   
     });  
   })

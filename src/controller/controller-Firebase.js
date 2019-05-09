@@ -39,10 +39,11 @@ export const onUsuarioLoggeado = (callback) => {
   })
 }
 
-export const addPost = (post) => {
+export const addPost = (post, id) => {
   //inicializamos firestore y llammos a la funcion colectioncon el nombre de la coleccion llamada usuario y con aDD agregamos 
   // los campos post 
  firebase.firestore().collection('post').add({
+   id : id,
    post : post
  })
 }
@@ -52,7 +53,8 @@ export const getPost = (callback) =>
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post)=> {
-        data.push({ post: post.data().post })
+        data.push({ post: post.data().post, user: post.data().id
+        })
       });
       callback(data);
     }); 

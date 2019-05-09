@@ -7,7 +7,7 @@ import {
 
   addPost
 } from '../controller/controller-Firebase.js'
-
+import { changeView } from '../controller/router.js'
 //import {contentPost} from './view-home.js' 
 
 export const loginSubmit = () => {
@@ -51,10 +51,11 @@ export const logOutSubmit = () => {
     });
 }
 
-export const addPostSubmit = () => {
+export const addPostSubmit = (id) => {
   const input = document.querySelector('#input-post').value;
+
   
-  addPost(input);
+  addPost(input,id);
   document.querySelector('#input-post').value ='';
 
 
