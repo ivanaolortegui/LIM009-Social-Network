@@ -121,6 +121,11 @@ body{
     text-decoration: none;
 }
 
+.icon-menu{
+    width: 15px;
+    height: auto;
+}
+
 @media screen and (min-width: 800px) {
     .block-container {
       flex-direction: row;

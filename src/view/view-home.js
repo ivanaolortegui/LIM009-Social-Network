@@ -17,7 +17,7 @@ export const home = () => {
     template = `
     <nav>Cerrar Sesion</nav><nav class="menu">
     <ul>
-    <a class="menu-items" href=""><h4>&#x1F464 ${user.email}</h4></a>
+    <a class="menu-items" href=""><h4>${user.email}</h4></a>
     <a class="menu-items" href="#/home"><h4>PureLife</h4></a>
     <a class="menu-items" href="#/"><h4>cerrar sesion</h4></a>
     <a class="menu-menu" href=""><h1>&#9776</h1></a>
@@ -38,9 +38,9 @@ export const home = () => {
     template = `
     <nav class="menu">
     <ul>
-    <a class="menu-items" href=""><h4>&#x1F464 ${user.email}</h4></a>
-    <a class="menu-items" href="#/home"><h4>PureLife</h4></a>
-    <a class="menu-items" href="#/"><h4>cerrar sesion</h4></a>
+    <a class="menu-items" href=""><h4>${user.email} <img class="icon-menu" src="./img/sort.png"></h4></a>
+    <a class="menu-items" href="#/home"><h4><img class="icon-menu" src="./img/recycle.png"> PureLife</h4></a>
+    <a class="menu-items" href="#/"><h4><img class="icon-menu" src="./img/logout.png">cerrar sesion</h4></a>
     <a class="menu-menu" href=""><h1>&#9776</h1></a>
     </ul>
     </nav>
