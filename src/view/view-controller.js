@@ -59,17 +59,11 @@ export const logOutSubmit = () => {
     });
 }
 
-export const addPostSubmit = (id) => {
+export const addPostSubmit = (userId, user, privacySelectValue) => {
   const input = document.querySelector('#input-post').value;
-
   
-  addPost(input,id);
-  document.querySelector('#input-post').value ='';
-
-
-
-
-
+  addPost(input,userId,user,privacySelectValue);
+ 
 }
 
 

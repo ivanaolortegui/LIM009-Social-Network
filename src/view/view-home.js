@@ -1,11 +1,10 @@
-import { userData, getPost,
-   } from '../controller/controller-Firebase.js'
+import { userData } from '../controller/controller-Firebase.js'
 import {
   addPostSubmit
 } from './view-controller.js'
 
 
-export const home = () => {
+export const home = (post) => {
   const pageMain = document.createElement('div');
   const user = userData();
   /* let us;
@@ -28,6 +27,10 @@ export const home = () => {
 
     <div>
     <textarea name="textarea" rows="10" cols="50" id="input-post"></textarea>
+    <select id= "privacy-select"> 
+    <option value="public" > Público</option>
+    <option value="private">Privado</option> 
+    <select> 
     <button class="button" id="btn-add-post"> compartir </button>  
     </div>
     <div id= "post-content">
@@ -48,6 +51,10 @@ export const home = () => {
     <h3 class="text">Bienvenido ${user.email} </h3>
     <div>
     <textarea name="textarea" rows="10" cols="40" id="input-post"></textarea>
+    <select id= "privacy-select"> 
+    <option value="public" > Público</option>
+    <option value="private">Privado</option> 
+    <select> 
     <button class="button" id="btn-add-post"> compartir </button>
     </div>
     <div id= "post-content">
@@ -55,16 +62,16 @@ export const home = () => {
     `;
   }
   pageMain.innerHTML = template;
-
-  const idUser = user.email;
+  const userName = user.email;
+  const userId = user.uid;
+  const privacySelect = pageMain.querySelector('#privacy-select');
   const btnAddPost = pageMain.querySelector('#btn-add-post');
-  btnAddPost.addEventListener('click', () =>{
-    addPostSubmit(idUser)
+  btnAddPost.addEventListener('click', () => {
+    const privacySelectValue = privacySelect.value
+    addPostSubmit(userId,userName, privacySelectValue)
   });
       
-  getPost((post) => {
     const divPost = pageMain.querySelector('#post-content');
-    divPost.innerHTML = '';
     post.forEach((post) => {
       const pPost = document.createElement('p');
       const pUser = document.createElement('p');
@@ -73,8 +80,7 @@ export const home = () => {
       divPost.appendChild(pUser);
       divPost.appendChild(pPost);   
     });  
-  })
-    
+     
 
   // const btnCerrar = pageMain.querySelector('#log-out');
   // btnCerrar.addEventListener('click', logOutSubmit)
