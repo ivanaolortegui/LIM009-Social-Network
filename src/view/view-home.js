@@ -34,13 +34,12 @@ export const home = (post) => {
     <button class="button" id="btn-add-post"> compartir </button>  
     </div>
     <div id= "post-content">
-    </div>
-   
+    </div>  
     `;
   } else {
     template = `
     <nav class="menu">
-    <ul>
+    <ul> 
     <a class="menu-items" href=""><h4>${user.email} <img class="icon-menu" src="./img/sort.png"></h4></a>
     <a class="menu-items" href="#/home"><h4><img class="icon-menu" src="./img/recycle.png"> PureLife</h4></a>
     <a class="menu-items" href="#/"><h4><img class="icon-menu" src="./img/logout.png">cerrar sesion</h4></a>
