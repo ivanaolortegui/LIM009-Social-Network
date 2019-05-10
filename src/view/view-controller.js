@@ -7,8 +7,7 @@ import {
 
   addPost
 } from '../controller/controller-Firebase.js'
-import { changeView } from '../controller/router.js'
-//import {contentPost} from './view-home.js' 
+
 
 
 
@@ -53,7 +52,7 @@ export const logupSubmit = () => {
 export const logOutSubmit = () => {
   signOut()
     .then(() => {
-      window.location.hash = '#/';
+      window.location.hash = '#/signIn';
     }).catch(() => {
       console.error('Sign Out Error', error);
     });

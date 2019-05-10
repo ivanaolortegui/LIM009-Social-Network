@@ -28,8 +28,8 @@ export const home = (post) => {
     <div>
     <textarea name="textarea" rows="10" cols="50" id="input-post"></textarea>
     <select id= "privacy-select"> 
-    <option value="public" > Público</option>
-    <option value="private">Privado</option> 
+    <option value="public" > Público &#128101</option>
+    <option value="private">Privado &#128274</option> 
     <select> 
     <button class="button" id="btn-add-post"> compartir </button>  
     </div>
@@ -52,8 +52,8 @@ export const home = (post) => {
     <div>
     <textarea name="textarea" rows="10" cols="40" id="input-post"></textarea>
     <select id= "privacy-select"> 
-    <option value="public" > Público</option>
-    <option value="private">Privado</option> 
+    <option value="public" > Público &#128101 </option>
+    <option value="private">Privado &#128274</option> 
     <select> 
     <button class="button" id="btn-add-post"> compartir </button>
     </div>
@@ -68,20 +68,48 @@ export const home = (post) => {
   const btnAddPost = pageMain.querySelector('#btn-add-post');
   btnAddPost.addEventListener('click', () => {
     const privacySelectValue = privacySelect.value
-    addPostSubmit(userId,userName, privacySelectValue)
+    addPostSubmit(userId, userName, privacySelectValue)
   });
-      
-    const divPost = pageMain.querySelector('#post-content');
-    post.forEach((post) => {
+
+  const divPost = pageMain.querySelector('#post-content');
+  post.forEach((post, index) => {
+
+    if (userId === post.userId) {
+      const btnEdit = document.createElement("BUTTON");
+      btnEdit.innerHTML = 'editar';
+      btnEdit.setAttribute('id', `btn-edit-${index}`)
       const pPost = document.createElement('p');
       const pUser = document.createElement('p');
       pPost.innerHTML = post.post
-     pUser.innerHTML = post.user;
+      pUser.innerHTML = post.user;
       divPost.appendChild(pUser);
-      divPost.appendChild(pPost);   
-    });  
-     
+      divPost.appendChild(pPost);
+      divPost.appendChild(btnEdit);
+      const editPostSubmit = pageMain.querySelector(`#btn-edit-${index}`);
+      editPostSubmit.addEventListener('click', () => {
+        editPost(post.post, post.id)
+      })
 
+    } else {
+      const pPost = document.createElement('p');
+      const pUser = document.createElement('p');
+      pPost.innerHTML = post.post
+      pUser.innerHTML = post.user;
+      divPost.appendChild(pUser);
+      divPost.appendChild(pPost);
+    }
+  });
+
+  const editPost = (textPost, id) => {
+    pageMain.querySelector('#input-post').value = textPost;
+     const btnAddPost = pageMain.querySelector('#btn-add-post');
+    btnAddPost.addEventListener('click', () => {
+      const postText = pageMain.querySelector('#input-post').value;
+       firebase.firestore().collection('post').doc(id).update({
+        post: postText
+      }) 
+    }); 
+  }
   // const btnCerrar = pageMain.querySelector('#log-out');
   // btnCerrar.addEventListener('click', logOutSubmit)
 
