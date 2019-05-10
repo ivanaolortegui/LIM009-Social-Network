@@ -60,3 +60,11 @@ export const getPost = (callback) =>
   return firebase.firestore().collection('post').get()
 } */
 // toda la funcion addpublication me retorna una premesa y por eso en el otro lado se le hace un then si fue exitosa
+
+
+
+export const editPost = (id, textPost) =>{
+  return firebase.firestore().collection('post').doc(id).update({
+    post: textPost
+  }) 
+}

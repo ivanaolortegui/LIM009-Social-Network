@@ -4,7 +4,7 @@ import {
   signInWithFacebook,
   signInWithGmail,
   signOut,
-
+  editPost,
   addPost
 } from '../controller/controller-Firebase.js'
 
@@ -37,7 +37,7 @@ export const loginWithFacebookSubmit = () => {
 export const loginWithGmailSubmit = () => {
   signInWithGmail().then(() => {
     window.location.hash = '#/home';
-  }).catch(err => {
+  }).catch(error => {
     showErrorMessage(error);
   });
 }
@@ -65,6 +65,16 @@ export const addPostSubmit = (userId, user, privacySelectValue) => {
  
 }
 
+
+
+export const editPostOnclick = (textPost, id) => {
+  document.querySelector('#input-post').value = textPost;
+   const btnAddPost = document.querySelector('#btn-add-post');
+   btnAddPost .innerHTML= 'editar'
+  btnAddPost.addEventListener('click', () => { 
+    editPost(id, textPost)
+  }); 
+}
 
  
 

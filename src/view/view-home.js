@@ -1,6 +1,7 @@
 import { userData } from '../controller/controller-Firebase.js'
 import {
-  addPostSubmit
+  addPostSubmit, 
+  editPostOnclick
 } from './view-controller.js'
 
 
@@ -86,8 +87,8 @@ export const home = (post) => {
       divPost.appendChild(pPost);
       divPost.appendChild(btnEdit);
       const editPostSubmit = pageMain.querySelector(`#btn-edit-${index}`);
-      editPostSubmit.addEventListener('click', () => {
-        editPost(post.post, post.id)
+      editPostSubmit.addEventListener('click', () => { 
+        editPostOnclick(post.post, post.id)
       })
 
     } else {
@@ -100,16 +101,6 @@ export const home = (post) => {
     }
   });
 
-  const editPost = (textPost, id) => {
-    pageMain.querySelector('#input-post').value = textPost;
-     const btnAddPost = pageMain.querySelector('#btn-add-post');
-    btnAddPost.addEventListener('click', () => {
-      const postText = pageMain.querySelector('#input-post').value;
-       firebase.firestore().collection('post').doc(id).update({
-        post: postText
-      }) 
-    }); 
-  }
   // const btnCerrar = pageMain.querySelector('#log-out');
   // btnCerrar.addEventListener('click', logOutSubmit)
 
