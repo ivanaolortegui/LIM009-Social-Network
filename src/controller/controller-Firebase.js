@@ -25,6 +25,8 @@ export const userData = () => firebase.auth().currentUser;
 export const onUsuarioLoggeado = (callback) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      // TODO: localStorage.setItem might throw an exception if the user has blocked local storage.
+      // Usar try..catch
       callback(user)
     }
   })
@@ -46,7 +48,7 @@ export const getPost = (callback) =>
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post)=> {
-        data.push({ id:post.id, post: post.data().post, user: post.data().user})
+        data.push({ id:post.id, post: post.data().post, user: post.data().user,  userId: post.data().userId})
       });   
       callback(data);
     }); 
