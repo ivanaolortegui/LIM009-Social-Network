@@ -1,6 +1,6 @@
 import { userData } from '../controller/controller-Firebase.js'
 import {
-  addPostSubmit, 
+  addPostSubmit,
   editPostOnclick
 } from './view-controller.js'
 
@@ -23,19 +23,9 @@ export const home = (post) => {
     <a class="menu-menu" href=""><h1>&#9776</h1></a>
     </ul>
     </nav>
-    <h3 class="text">Bienvenido ${user.displayName} </h3>
     <img class="profile-logo" src="${user.photoURL}">
-
-    <div>
-    <textarea name="textarea" rows="10" cols="50" id="input-post"></textarea>
-    <select id= "privacy-select"> 
-    <option value="public" > Público &#128101</option>
-    <option value="private">Privado &#128274</option> 
-    <select> 
-    <button class="button" id="btn-add-post"> compartir </button>  
-    </div>
-    <div id= "post-content">
-    </div>
+    <h3 class="text">Bienvenido ${user.displayName} </h3>
+  
    
     `;
   } else {
@@ -50,18 +40,23 @@ export const home = (post) => {
     </nav>
     <img class="profile-logo" src="./img/avatar.png">
     <h3 class="text">Bienvenido ${user.email} </h3>
-    <div>
-    <textarea name="textarea" rows="10" cols="40" id="input-post"></textarea>
-    <select id= "privacy-select"> 
-    <option value="public" > Público &#128101 </option>
-    <option value="private">Privado &#128274</option> 
-    <select> 
-    <button class="button" id="btn-add-post"> compartir </button>
-    </div>
-    <div id= "post-content">
-    </div>
+    
     `;
+
   }
+
+  template += `<div>
+  <textarea name="textarea" rows="10" cols="40" id="input-post"></textarea>
+  <select id= "privacy-select"> 
+  <option value="public" > Público &#128101 </option>
+  <option value="private">Privado &#128274</option> 
+  <select> 
+  <button class="button" id="btn-add-post"> compartir </button>
+  <button class="hidden" id="btn-edit-post"> Editar </button>  
+  </div>
+  <div id= "post-content">
+  </div>`;
+
   pageMain.innerHTML = template;
   const userName = user.email;
   const userId = user.uid;
@@ -74,30 +69,36 @@ export const home = (post) => {
 
   const divPost = pageMain.querySelector('#post-content');
   post.forEach((post, index) => {
-
     if (userId === post.userId) {
-      const btnEdit = document.createElement("BUTTON");
-      btnEdit.innerHTML = 'editar';
-      btnEdit.setAttribute('id', `btn-edit-${index}`)
-      const pPost = document.createElement('p');
-      const pUser = document.createElement('p');
-      pPost.innerHTML = post.post
-      pUser.innerHTML = post.user;
-      divPost.appendChild(pUser);
-      divPost.appendChild(pPost);
-      divPost.appendChild(btnEdit);
-      const editPostSubmit = pageMain.querySelector(`#btn-edit-${index}`);
-      editPostSubmit.addEventListener('click', () => { 
-        editPostOnclick(post.post, post.id)
-      })
+      if (post.privacy === 'private' || post.privacy === 'public') {
+        const btnEdit = document.createElement("p");
+        btnEdit.innerHTML = '&#x1F58A';
+        btnEdit.setAttribute('id', `btn-edit-${index}`)
+        const pPost = document.createElement('p');
+        const pUser = document.createElement('p');
+        pPost.innerHTML = post.privacy === 'private' ? `${post.post} &#128274` :
+          `${post.post} &#128101`
+        pUser.innerHTML = post.user;
+        divPost.appendChild(pUser);
+        divPost.appendChild(btnEdit);
+        divPost.appendChild(pPost);
+
+        const editPostSubmit = pageMain.querySelector(`#btn-edit-${index}`);
+        editPostSubmit.addEventListener('click', () => {
+          editPostOnclick(post.post, post.id)
+        })
+      }
 
     } else {
-      const pPost = document.createElement('p');
-      const pUser = document.createElement('p');
-      pPost.innerHTML = post.post
-      pUser.innerHTML = post.user;
-      divPost.appendChild(pUser);
-      divPost.appendChild(pPost);
+      if (userId != post.userId && post.privacy === 'public') {
+        const pPost = document.createElement('p');
+        const pUser = document.createElement('p');
+        pPost.innerHTML = `${post.post} &#128101`
+        pUser.innerHTML = post.user;
+        divPost.appendChild(pUser);
+        divPost.appendChild(pPost);
+
+      }
     }
   });
 

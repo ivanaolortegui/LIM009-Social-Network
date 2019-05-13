@@ -1,4 +1,4 @@
-import { 
+import {
   singUp,
   signIn,
   signInWithFacebook,
@@ -11,7 +11,7 @@ import {
 
 
 
-const showErrorMessage = (error) =>{
+const showErrorMessage = (error) => {
   const errorMessage = document.querySelector('#error-message');
   errorMessage.innerHTML = error.message;
 
@@ -60,21 +60,29 @@ export const logOutSubmit = () => {
 
 export const addPostSubmit = (userId, user, privacySelectValue) => {
   const input = document.querySelector('#input-post').value;
-  
-  addPost(input,userId,user,privacySelectValue);
- 
+  addPost(input, userId, user, privacySelectValue);
+
 }
+
 
 
 
 export const editPostOnclick = (textPost, id) => {
   document.querySelector('#input-post').value = textPost;
-   const btnAddPost = document.querySelector('#btn-add-post');
-   btnAddPost .innerHTML= 'editar'
-  btnAddPost.addEventListener('click', () => { 
-    editPost(id, textPost)
-  }); 
+  const btnAddPost = document.querySelector('#btn-add-post');
+  btnAddPost.classList.remove('button','shower');
+  btnAddPost.classList.add('hidden');
+  const btnEditPost = document.querySelector('#btn-edit-post')
+  btnEditPost.classList.add('shower','button');
+  btnEditPost.addEventListener('click', () => {
+    const postEdited = document.querySelector('#input-post').value;
+    const privacySelectValue = document.querySelector('#privacy-select').value;
+    editPost(id, postEdited, privacySelectValue);
+    btnAddPost.classList.add('shower');
+    btnEditPost.classList.add('hidden');
+    
+  });
 }
 
- 
+
 

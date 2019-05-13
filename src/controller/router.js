@@ -6,6 +6,15 @@ export const changeView = (router) => {
   const divContainer = document.getElementById('all-page');
   divContainer.innerHTML = '';
   switch (router) {
+    case '#/signIn': {
+      if (!userData()) {
+        divContainer.appendChild(components.SignInView())
+      } else {
+        window.location.hash = '#/home'
+      }
+
+    }
+      break;
     case '#/signUp': {
       divContainer.appendChild(components.signUpView())
     }
@@ -17,7 +26,7 @@ export const changeView = (router) => {
           divContainer.appendChild(components.home(post))
         })
       } else {
-        changeView('#/')
+        window.location.hash = '#/signIn'
       }
     }
       break;
@@ -29,17 +38,16 @@ export const changeView = (router) => {
       if (userData()) {
         window.location.hash = '#/home'
       } else {
-        divContainer.appendChild(components.SignInView())
+        window.location.hash = '#/signIn'
       }
       break;
   }
 }
 
 
-
 export const initRouter = () => {
   window.addEventListener('load', () => {
-    setTimeout(() => changeView(window.location.hash), 1000)
+    setTimeout(() => changeView(window.location.hash), 700)
   })
   if (("onhashchange" in window)) window.onhashchange = () => changeView(window.location.hash)
   onUsuarioLoggeado(() => changeView('#/home'))
