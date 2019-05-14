@@ -5,6 +5,29 @@ import {
 } from './view-controller.js'
 
 
+const itemPost = (post, index, userId) => {
+  let divPost2 = document.createElement('div');
+  if (userId === post.userId) {
+    if (post.privacy === 'private' || post.privacy === 'public') {
+      divPost2.innerHTML = ` <p id="btn-edit-${index}"> &#x1F58A </p>
+      <p> ${post.user} </p>`
+      const pPostIcon = post.privacy === 'private' ? `${post.post} &#128274` :
+        `${post.post} &#128101`;
+      divPost2.innerHTML += ` <p> ${pPostIcon} </p>`;
+      divPost2.querySelector(`#btn-edit-${index}`).addEventListener('click', () => {
+        editPostOnclick(post.post, post.id)
+      })
+    }
+
+  } else {
+    if (userId != post.userId && post.privacy === 'public') {
+      divPost2.innerHTML = `<p> ${post.user} </p>
+      <p> ${post.post} &#128101 </p>`;
+    }
+  }
+  return divPost2;
+}
+
 export const home = (post) => {
   const pageMain = document.createElement('div');
   const user = userData();
@@ -62,48 +85,15 @@ export const home = (post) => {
   const userId = user.uid;
   const privacySelect = pageMain.querySelector('#privacy-select');
   const btnAddPost = pageMain.querySelector('#btn-add-post');
+
+
+  const divPost = pageMain.querySelector('#post-content');
+  post.forEach((post1, index) => {
+    divPost.appendChild(itemPost(post1, index, userId))
+  });
   btnAddPost.addEventListener('click', () => {
     const privacySelectValue = privacySelect.value
     addPostSubmit(userId, userName, privacySelectValue)
   });
-
-  const divPost = pageMain.querySelector('#post-content');
-  post.forEach((post, index) => {
-    if (userId === post.userId) {
-      if (post.privacy === 'private' || post.privacy === 'public') {
-        const btnEdit = document.createElement("p");
-        btnEdit.innerHTML = '&#x1F58A';
-        btnEdit.setAttribute('id', `btn-edit-${index}`)
-        const pPost = document.createElement('p');
-        const pUser = document.createElement('p');
-        pPost.innerHTML = post.privacy === 'private' ? `${post.post} &#128274` :
-          `${post.post} &#128101`
-        pUser.innerHTML = post.user;
-        divPost.appendChild(pUser);
-        divPost.appendChild(btnEdit);
-        divPost.appendChild(pPost);
-
-        const editPostSubmit = pageMain.querySelector(`#btn-edit-${index}`);
-        editPostSubmit.addEventListener('click', () => {
-          editPostOnclick(post.post, post.id)
-        })
-      }
-
-    } else {
-      if (userId != post.userId && post.privacy === 'public') {
-        const pPost = document.createElement('p');
-        const pUser = document.createElement('p');
-        pPost.innerHTML = `${post.post} &#128101`
-        pUser.innerHTML = post.user;
-        divPost.appendChild(pUser);
-        divPost.appendChild(pPost);
-
-      }
-    }
-  });
-
-  // const btnCerrar = pageMain.querySelector('#log-out');
-  // btnCerrar.addEventListener('click', logOutSubmit)
-
   return pageMain;
 }
