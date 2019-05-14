@@ -24,18 +24,16 @@ export const userData = () => firebase.auth().currentUser;
 
 export const onUsuarioLoggeado = (callback) => {
   firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // TODO: localStorage.setItem might throw an exception if the user has blocked local storage.
-      // Usar try..catch
+   //if (user) {
       callback(user)
-    }
+    //} 
   })
 }
 
 export const addPost = (post, userId, user,privacySelectValue) => {
   //inicializamos firestore y llammos a la funcion colectioncon el nombre de la coleccion llamada usuario y con aDD agregamos 
   // los campos post 
- firebase.firestore().collection('post').add({
+ return firebase.firestore().collection('post').add({
    userId :userId,
    user : user,
    post : post,
@@ -48,7 +46,7 @@ export const getPost = (callback) =>
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post)=> {
-        data.push({ id:post.id, post: post.data().post, user: post.data().user,  userId: post.data().userId})
+        data.push({ id:post.id, post: post.data().post, user: post.data().user,  userId: post.data().userId, privacy : post.data().privacy })
       });   
       callback(data);
     }); 
@@ -67,3 +65,12 @@ export const deletePost = () =>
   return firebase.firestore().collection('post').get()
 } */
 // toda la funcion addpublication me retorna una premesa y por eso en el otro lado se le hace un then si fue exitosa
+
+
+
+export const editPost = (id, textPost,  privacy) =>{
+  return firebase.firestore().collection('post').doc(id).update({
+    post: textPost,
+    privacy :  privacy
+  }) 
+}

@@ -1,8 +1,32 @@
 import { userData } from '../controller/controller-Firebase.js'
 import {
-  addPostSubmit
+  addPostSubmit,
+  editPostOnclick
 } from './view-controller.js'
 
+
+const itemPost = (post, index, userId) => {
+  let divPost2 = document.createElement('div');
+  if (userId === post.userId) {
+    if (post.privacy === 'private' || post.privacy === 'public') {
+      divPost2.innerHTML = ` <p id="btn-edit-${index}"> &#x1F58A </p>
+      <p> ${post.user} </p>`
+      const pPostIcon = post.privacy === 'private' ? `${post.post} &#128274` :
+        `${post.post} &#128101`;
+      divPost2.innerHTML += ` <p> ${pPostIcon} </p>`;
+      divPost2.querySelector(`#btn-edit-${index}`).addEventListener('click', () => {
+        editPostOnclick(post.post, post.id)
+      })
+    }
+
+  } else {
+    if (userId != post.userId && post.privacy === 'public') {
+      divPost2.innerHTML = `<p> ${post.user} </p>
+      <p> ${post.post} &#128101 </p>`;
+    }
+  }
+  return divPost2;
+}
 
 export const home = (post) => {
   const pageMain = document.createElement('div');
@@ -22,19 +46,10 @@ export const home = (post) => {
     <a class="menu-menu" href=""><h1>&#9776</h1></a>
     </ul>
     </nav>
-    <h3 class="text">Bienvenido ${user.displayName} </h3>
     <img class="profile-logo" src="${user.photoURL}">
-
-    <div>
-    <textarea name="textarea" rows="10" cols="50" id="input-post"></textarea>
-    <select id= "privacy-select"> 
-    <option value="public" > Público &#128101</option>
-    <option value="private">Privado &#128274</option> 
-    <select> 
-    <button class="button" id="btn-add-post"> compartir </button>  
-    </div>
-    <div id= "post-content">
-    </div>  
+    <h3 class="text">Bienvenido ${user.displayName} </h3>
+  
+   
     `;
   } else {
     template = `
@@ -48,69 +63,37 @@ export const home = (post) => {
     </nav>
     <img class="profile-logo" src="./img/avatar.png">
     <h3 class="text">Bienvenido ${user.email} </h3>
-    <div>
-    <textarea name="textarea" rows="10" cols="40" id="input-post"></textarea>
-    <select id= "privacy-select"> 
-    <option value="public" > Público &#128101 </option>
-    <option value="private">Privado &#128274</option> 
-    <select> 
-    <button class="button" id="btn-add-post"> compartir </button>
-    </div>
-    <div id= "post-content">
-    </div>
+    
     `;
+
   }
+
+  template += `<div>
+  <textarea name="textarea" rows="10" cols="40" id="input-post"></textarea>
+  <select id= "privacy-select"> 
+  <option value="public" > Público &#128101 </option>
+  <option value="private">Privado &#128274</option> 
+  <select> 
+  <button class="button" id="btn-add-post"> compartir </button>
+  <button class="hidden" id="btn-edit-post"> Editar </button>  
+  </div>
+  <div id= "post-content">
+  </div>`;
+
   pageMain.innerHTML = template;
   const userName = user.email;
   const userId = user.uid;
   const privacySelect = pageMain.querySelector('#privacy-select');
   const btnAddPost = pageMain.querySelector('#btn-add-post');
+
+
+  const divPost = pageMain.querySelector('#post-content');
+  post.forEach((post1, index) => {
+    divPost.appendChild(itemPost(post1, index, userId))
+  });
   btnAddPost.addEventListener('click', () => {
     const privacySelectValue = privacySelect.value
     addPostSubmit(userId, userName, privacySelectValue)
   });
-
-  const divPost = pageMain.querySelector('#post-content');
-  post.forEach((post, index) => {
-
-    if (userId === post.userId) {
-      const btnEdit = document.createElement("BUTTON");
-      btnEdit.innerHTML = 'editar';
-      btnEdit.setAttribute('id', `btn-edit-${index}`)
-      const pPost = document.createElement('textarea');
-      const pUser = document.createElement('p');
-      pPost.innerHTML = post.post
-      pUser.innerHTML = post.user;
-      divPost.appendChild(pUser);
-      divPost.appendChild(pPost);
-      divPost.appendChild(btnEdit);
-      const editPostSubmit = pageMain.querySelector(`#btn-edit-${index}`);
-      editPostSubmit.addEventListener('click', () => {
-        editPost(post.post, post.id)
-      })
-
-    } else {
-      const pPost = document.createElement('textarea');
-      const pUser = document.createElement('p');
-      pPost.innerHTML = post.post
-      pUser.innerHTML = post.user;
-      divPost.appendChild(pUser);
-      divPost.appendChild(pPost);
-    }
-  });
-
-  const editPost = (textPost, id) => {
-    pageMain.querySelector('#input-post').value = textPost;
-     const btnAddPost = pageMain.querySelector('#btn-add-post');
-    btnAddPost.addEventListener('click', () => {
-      const postText = pageMain.querySelector('#input-post').value;
-       firebase.firestore().collection('post').doc(id).update({
-        post: postText
-      }) 
-    }); 
-  }
-  // const btnCerrar = pageMain.querySelector('#log-out');
-  // btnCerrar.addEventListener('click', logOutSubmit)
-
   return pageMain;
 }
