@@ -42,7 +42,7 @@ export const home = (post) => {
     <ul> 
     <a class="menu-items" href=""><h4>${user.email} <img class="icon-menu" src="./img/sort.png"></h4></a>
     <a class="menu-items" href="#/home"><h4><img class="icon-menu" src="./img/recycle.png"> PureLife</h4></a>
-    <a class="menu-items" href="#/"><h4><img class="icon-menu" src="./img/logout.png">cerrar sesion</h4></a>
+    <a class="menu-items" href="#/signOut"><h4><img class="icon-menu" src="./img/logout.png">cerrar sesion</h4></a>
     <a class="menu-menu" href=""><h1>&#9776</h1></a>
     </ul>
     </nav>
@@ -77,7 +77,7 @@ export const home = (post) => {
       const btnEdit = document.createElement("BUTTON");
       btnEdit.innerHTML = 'editar';
       btnEdit.setAttribute('id', `btn-edit-${index}`)
-      const pPost = document.createElement('p');
+      const pPost = document.createElement('textarea');
       const pUser = document.createElement('p');
       pPost.innerHTML = post.post
       pUser.innerHTML = post.user;
@@ -90,7 +90,7 @@ export const home = (post) => {
       })
 
     } else {
-      const pPost = document.createElement('p');
+      const pPost = document.createElement('textarea');
       const pUser = document.createElement('p');
       pPost.innerHTML = post.post
       pUser.innerHTML = post.user;
