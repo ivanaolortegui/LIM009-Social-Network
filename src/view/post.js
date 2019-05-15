@@ -22,6 +22,10 @@ export default (post, index, userId) => {
       divPostContent.innerHTML = `<p> ${post.user} </p>
       <p> ${post.post} &#128101   </p>`;
       divPostContent.innerHTML += ` <div id="count-likes-${index}"> ${post.likes} &#x1F49A </div>`
+
+      divPostContent.querySelector(`#count-likes-${index}`).addEventListener('click', () => {
+        countLikes(post.id, post.likes, 1)
+      })
     }
   }
   return divPostContent;
