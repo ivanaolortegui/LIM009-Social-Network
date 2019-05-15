@@ -5,10 +5,9 @@ import {
   signInWithGmail,
   signOut,
   editPost,
-  addPost
+  addPost,
+   editLike
 } from '../controller/controller-Firebase.js'
-
-
 
 
 const showErrorMessage = (error) => {
@@ -58,31 +57,41 @@ export const logOutSubmit = () => {
     });
 }
 
-export const addPostSubmit = (userId, user, privacySelectValue) => {
+export const addPostSubmit = (userId, user, privacySelectValue, numberLike) => {
   const input = document.querySelector('#input-post').value;
-  addPost(input, userId, user, privacySelectValue);
+  addPost(input, userId, user, privacySelectValue, numberLike);
 
 }
 
+const addShowClassList = (id)=> {
+ id.classList.add('shower', 'button')
+}
 
+const addHiddenClassList = (id)=> {
+  id.classList.add('hidden')
+ }
 
-
-export const editPostOnclick = (textPost, id) => {
+export const editPostSubmit = (textPost, id) => {
   document.querySelector('#input-post').value = textPost;
   const btnAddPost = document.querySelector('#btn-add-post');
-  btnAddPost.classList.remove('button','shower');
-  btnAddPost.classList.add('hidden');
+  btnAddPost.classList.remove('button', 'shower');
+  addHiddenClassList(btnAddPost)
   const btnEditPost = document.querySelector('#btn-edit-post')
-  btnEditPost.classList.add('shower','button');
+  addShowClassList(btnEditPost);
   btnEditPost.addEventListener('click', () => {
-    const postEdited = document.querySelector('#input-post').value;
-    const privacySelectValue = document.querySelector('#privacy-select').value;
-    editPost(id, postEdited, privacySelectValue);
-    btnAddPost.classList.add('shower');
-    btnEditPost.classList.add('hidden');
-    
+    btnEditPostSubmit(btnAddPost, btnEditPost, id)
   });
 }
 
+const btnEditPostSubmit = (btnAddPost, btnEditPost, id) => {
+  const postEdited = document.querySelector('#input-post').value;
+  const privacySelectValue = document.querySelector('#privacy-select').value;
+  editPost(id, postEdited, privacySelectValue);
+   addShowClassList(btnAddPost);
+   addHiddenClassList(btnEditPost);
+}
 
+ export const countLikes = (id, totaLike, newLike) => {
+  editLike (id,  totaLike, newLike)
+} 
 
