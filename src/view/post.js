@@ -1,39 +1,28 @@
+import { editPostSubmit, countLikes } from './view-controller.js'
 
+export default (post, index, userId) => {
+  let divPostContent = document.createElement('div');
+  if (userId === post.userId) {
+    if (post.privacy === 'private' || post.privacy === 'public') {
+      divPostContent.innerHTML = `
+        <p id="btn-edit-${index}"> &#x1F58A </p>
+        <p> ${post.user} </p>
+        <p> ${post.privacy === 'private' ? `${post.post} &#128274 ` : `${post.post} &#128101 `} </p>
+        <div id="count-likes-${index}">${post.likes} 	&#x1F49A  </div>`;
 
-export default(post) => {
-  const divContainer = document.createElement('div');
-  const homeContent = `
-    <!-- form add note -->
-    <form class="d-flex justify-content-center">
-      <div class="mdl-textfield mdl-js-textfield">
-        <input class="mdl-textfield__input" type="text" id="input-new-note">
-        <label class="mdl-textfield__label" for="input-new-note">Agrega una nota...</label>
-      </div>
-      <button class="mx-1 mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="btn-add-note">
-        <i class="material-icons">add</i>
-      </button>
-      <div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
-        <div class="mdl-snackbar__text"></div>
-        <button class="mdl-snackbar__action" type="button"></button>
-      </div>
-    </form>
-    <!-- notes -->
-    <section class="w-60 d-flex justify-content-center m-auto">
-      <ul class="w-100 demo-list-control mdl-list" id="notes-list">
-      </ul>
-    </section>
-    <!-- snackbar -->
-    <div id="demo-snackbar" class="mdl-js-snackbar mdl-snackbar">
-      <div class="mdl-snackbar__text"></div>
-      <button class="mdl-snackbar__action" type="button"></button>
-    </div>
-  `;
-  divContainer.innerHTML = homeContent;
-  const buttonAddNote = divContainer.querySelector('#btn-add-note');
-  const ul = divContainer.querySelector('#notes-list');
-  notes.forEach(note => {
-    ul.appendChild(itemNote(note));
-  });
-  buttonAddNote.addEventListener('click', addNoteOnSubmit);
-  return divContainer;
+      divPostContent.querySelector(`#count-likes-${index}`).addEventListener('click', () => {
+        countLikes(post.id, post.likes, 1)
+      })
+      divPostContent.querySelector(`#btn-edit-${index}`).addEventListener('click', () => {
+        editPostSubmit(post.post, post.id)
+      })
+    }
+  } else {
+    if (userId != post.userId && post.privacy === 'public') {
+      divPostContent.innerHTML = `<p> ${post.user} </p>
+      <p> ${post.post} &#128101   </p>`;
+      divPostContent.innerHTML += ` <div id="count-likes-${index}"> ${post.likes} &#x1F49A </div>`
+    }
+  }
+  return divPostContent;
 }

@@ -1,32 +1,8 @@
 import { userData } from '../controller/controller-Firebase.js'
-import {
-  addPostSubmit,
-  editPostOnclick
-} from './view-controller.js'
+import { addPostSubmit } from './view-controller.js'
 
+import itemPost from './post.js'
 
-const itemPost = (post, index, userId) => {
-  let divPost2 = document.createElement('div');
-  if (userId === post.userId) {
-    if (post.privacy === 'private' || post.privacy === 'public') {
-      divPost2.innerHTML = ` <p id="btn-edit-${index}"> &#x1F58A </p>
-      <p> ${post.user} </p>`
-      const pPostIcon = post.privacy === 'private' ? `${post.post} &#128274` :
-        `${post.post} &#128101`;
-      divPost2.innerHTML += ` <p> ${pPostIcon} </p>`;
-      divPost2.querySelector(`#btn-edit-${index}`).addEventListener('click', () => {
-        editPostOnclick(post.post, post.id)
-      })
-    }
-
-  } else {
-    if (userId != post.userId && post.privacy === 'public') {
-      divPost2.innerHTML = `<p> ${post.user} </p>
-      <p> ${post.post} &#128101 </p>`;
-    }
-  }
-  return divPost2;
-}
 
 export const home = (post) => {
   const pageMain = document.createElement('div');
@@ -47,10 +23,7 @@ export const home = (post) => {
     </ul>
     </nav>
     <img class="profile-logo" src="${user.photoURL}">
-    <h3 class="text">Bienvenido ${user.displayName} </h3>
-  
-   
-    `;
+    <h3 class="text">Bienvenido ${user.displayName} </h3> `;
   } else {
     template = `
     <nav class="menu">
@@ -83,17 +56,16 @@ export const home = (post) => {
   pageMain.innerHTML = template;
   const userName = user.email;
   const userId = user.uid;
+  let numberLike = 0;
   const privacySelect = pageMain.querySelector('#privacy-select');
   const btnAddPost = pageMain.querySelector('#btn-add-post');
-
-
   const divPost = pageMain.querySelector('#post-content');
-  post.forEach((post1, index) => {
-    divPost.appendChild(itemPost(post1, index, userId))
+  post.forEach((post, index) => {
+    divPost.appendChild(itemPost(post, index, userId))
   });
   btnAddPost.addEventListener('click', () => {
     const privacySelectValue = privacySelect.value
-    addPostSubmit(userId, userName, privacySelectValue)
+    addPostSubmit(userId, userName, privacySelectValue, numberLike)
   });
   return pageMain;
 }

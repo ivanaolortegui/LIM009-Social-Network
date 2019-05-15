@@ -26,7 +26,7 @@ global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled
 
   describe('addPost', () => {
   it('addPost aregar un post', (done) => {
-    return addPost('Hola amigos', '12345', 'chiquinquira@gmail.com', 'public').then(() => {
+    return addPost('Hola amigos', '12345', 'chiquinquira@gmail.com', 'public', 1).then(() => {
       const callback = (post) => {
         const postAdded = post.find(ele => ele.post === 'Hola amigos')
         expect(postAdded.post).toBe('Hola amigos')
