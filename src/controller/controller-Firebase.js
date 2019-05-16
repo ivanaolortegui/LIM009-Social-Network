@@ -43,7 +43,7 @@ export const addPost = (post, userId, user, privacySelectValue, numberLike, date
 }
 
 export const getPost = (callback) =>
-    firebase.firestore().collection('post')
+    firebase.firestore().collection('post').orderBy("date", "desc")
     .onSnapshot((querySnapshot) => {
         const data = [];
         querySnapshot.docs.forEach((post) => {
@@ -60,13 +60,6 @@ export const getPost = (callback) =>
         callback(data);
     });
 
-export const deletePost = () =>
-  firebase.firestore().collection('post').doc(id).delete()
-  .then(function() {
-    console.log("Document successfully deleted!");
-}).catch(function(error) {
-    console.error("Error removing document: ", error);
-});
 
 // firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
 
