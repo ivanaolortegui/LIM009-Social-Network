@@ -5,11 +5,16 @@ const fixtureData = {
     post: {
       __doc__: {
         abc123: {
-          title: 'Me encanta'
+          likes: 0,
+          post: 'Hola mundo',
+          privacy: 'public',
+          user: 'Ivana Chiquinquira Olortegui Moreno',
+          userId: 'lIwQuh6fYSXpUF9ukwHJNmeaEln2'
+
         },
-        abc124: {
+        /* abc124: {
           title: 'Me encanta reciclar'
-        }
+        } */
       }
     }
   }
@@ -17,14 +22,15 @@ const fixtureData = {
 
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
-  import {
+import {
 
-    addPost,
-    getPost,
-    editPost
-  } from "../src/controller/controller-Firebase.js";
+  addPost,
+  getPost,
+  editPost,
+  deletedPost
+} from "../src/controller/controller-Firebase.js";
 
-  describe('addPost', () => {
+describe('addPost', () => {
   it('addPost aregar un post', (done) => {
     return addPost('Hola amigos', '12345', 'chiquinquira@gmail.com', 'public', 1).then(() => {
       const callback = (post) => {
@@ -39,10 +45,23 @@ global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled
 
 describe('editPost', () => {
   it('editPost aregar un post', (done) => {
-    return editPost('abc123', 'hi','public').then(() => {
+    return editPost('abc123', 'hi', 'public').then(() => {
       const callback = (post) => {
         const postAdded = post.find(ele => ele.id === 'abc123')
         expect(postAdded.post).toBe('hi')
+        done()
+      }
+      getPost(callback)
+    })
+  })
+})
+
+describe('deletedPost', () => {
+  it('deletedPost eliminar un post', (done) => {
+    return deletedPost('abc123').then(() => {
+      const callback = (post) => {
+        const postDeleted = post.find(ele => ele.id === 'abc123');
+        expect(postDeleted).toBe(undefined);
         done()
       }
       getPost(callback)
