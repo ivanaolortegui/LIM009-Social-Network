@@ -39,7 +39,7 @@ export const home = (post) => {
     </div>`;
 
   pageMain.innerHTML = template;
-   const userName = user.email;
+   const userName = user.displayName ? user.displayName : user.email;
   const userId = user.uid;
   let numberLike = 0;
   const privacySelect = pageMain.querySelector('#privacy-select');

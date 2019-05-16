@@ -6,7 +6,8 @@ import {
   signOut,
   editPost,
   addPost,
-   editLike
+  editLike,
+  deletedPost
 } from '../controller/controller-Firebase.js'
 
 
@@ -63,13 +64,13 @@ export const addPostSubmit = (userId, user, privacySelectValue, numberLike) => {
 
 }
 
-const addShowClassList = (id)=> {
- id.classList.add('shower', 'button')
+const addShowClassList = (id) => {
+  id.classList.add('shower', 'button')
 }
 
-const addHiddenClassList = (id)=> {
+const addHiddenClassList = (id) => {
   id.classList.add('hidden')
- }
+}
 
 export const editPostSubmit = (textPost, id) => {
   document.querySelector('#input-post').value = textPost;
@@ -87,11 +88,14 @@ const btnEditPostSubmit = (btnAddPost, btnEditPost, id) => {
   const postEdited = document.querySelector('#input-post').value;
   const privacySelectValue = document.querySelector('#privacy-select').value;
   editPost(id, postEdited, privacySelectValue);
-   addShowClassList(btnAddPost);
-   addHiddenClassList(btnEditPost);
+  addShowClassList(btnAddPost);
+  addHiddenClassList(btnEditPost);
 }
 
- export const countLikes = (id, totaLike, newLike) => {
-  editLike (id,  totaLike, newLike)
-} 
+export const countLikes = (id, totaLike, newLike) => {
+  editLike(id, totaLike, newLike)
+}
 
+export const deletedPostSubmit = (id) =>{
+  deletedPost(id)
+}

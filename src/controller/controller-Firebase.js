@@ -81,3 +81,7 @@ export const editLike = (id, totaLike, newLike) => {
     likes: totaLike + newLike
   })
 } 
+
+export const deletedPost = (id) => {
+  return firebase.firestore().collection('post').doc(id).delete();
+}
