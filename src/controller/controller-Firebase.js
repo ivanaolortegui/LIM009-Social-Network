@@ -60,6 +60,13 @@ export const getPost = (callback) =>
         callback(data);
     });
 
+export const deletePost = () =>
+  firebase.firestore().collection('post').doc(id).delete()
+  .then(function() {
+    console.log("Document successfully deleted!");
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
+});
 
 // firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
 

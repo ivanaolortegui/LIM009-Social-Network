@@ -22,20 +22,22 @@ export const home = (post) => {
     <a class="menu-menu" href=""><h1>&#9776</h1></a>
     </ul>
     </nav>
+    <article class="block-profile">
     <img class="profile-logo" src="${user.photoURL ? `${user.photoURL}` :
       `./img/avatar.png`}">
     <h3 class="text">Bienvenido ${user.displayName ? `${user.displayName}` :
-      `${user.email}`} </h3> 
-    <div>
-    <textarea name="textarea" rows="10" cols="40" id="input-post"></textarea>
-    <select id= "privacy-select"> 
+      `${user.email}`} </h3>
+    </article>
+    <div class="block-home">
+    <textarea name="textarea" rows="8" cols="50" id="input-post" placeholder="¿Qué estas pensando?"></textarea>
+    <select id="privacy-select"> 
     <option value="public" > Público &#128101 </option>
     <option value="private">Privado &#128274</option> 
-    <select> 
+    </select> 
     <button class="button" id="btn-add-post"> compartir </button>
     <button class="hidden" id="btn-edit-post"> Editar </button>  
     </div>
-    <div id= "post-content">
+    <div class="block-home" id= "post-content">
     </div>`;
 
   pageMain.innerHTML = template;
