@@ -2,33 +2,19 @@ import { editPostSubmit, countLikes, deletedPostSubmit } from './view-controller
 
 export default (post, index, userId) => {
 
-  let divPostContent = document.createElement('div');
-  if (userId === post.userId) {
-    if (post.privacy === 'private' || post.privacy === 'public') {
-      divPostContent.innerHTML = `<section>
-        <p id="btn-edit-${index}"> &#x1F58A </p>
-        <p> ${post.user} </p>
-        <p rows="8" cols="50"> ${post.privacy === 'private' ? `${post.post} &#128274 ` : `${post.post} &#128101 `} </p>
-        <button id="btn-delete" ><img class="icon-menu" src="./img/delete.png"/></button>
-        <div id="count-likes-${index}">${post.likes} 	&#x1F49A  </div>
-        </section>`;
-
-      divPostContent.querySelector(`#count-likes-${index}`).addEventListener('click', () => {
-        countLikes(post.id, post.likes, 1)
-      })
-      divPostContent.querySelector(`#btn-edit-${index}`).addEventListener('click', () => {
-        editPostSubmit(post.post, post.id)
-      });
-   
-    }
-
   const divPostContent = document.createElement('div');
   if (userId === post.userId && (post.privacy === 'private' || post.privacy === 'public')) {
     divPostContent.innerHTML = `
-      <p> ${post.user}  <span id="btn-deleted-${index}"> &#x1D5EB  </span> </p>
-      <p> ${post.privacy === 'private' ? `${post.post} &#128274  <span id="btn-edit-${index}"> &#x1F58A  </span> ` :
-      `${post.post} &#128101 <span id="btn-edit-${index}"> &#x1F58A  </span>`} </p>
-      <div id="count-likes-${index}">${post.likes} 	&#x1F49A  </div>`;
+    <section class="block-post">
+      <p class="user-post"> ${post.user} </p>
+      <p class="post-post"> ${post.privacy === 'private' ? `${post.post} &#128274  <span id="btn-edit-${index}"> &#x1F58A  </span> ` :
+      `${post.post} &#128101`} </p>
+      <form>
+        <span id="btn-edit-${index}"> <img class="icon-post" src="./img/edit.png"> </span>
+        <span id="count-likes-${index}">${post.likes} <img class="icon-post" src="./img/like.png"> </span>
+        <span id="btn-deleted-${index}"> <img class="icon-post" src="./img/delete.png"> </span>
+      </form>
+    </section>`;
 
     divPostContent.querySelector(`#count-likes-${index}`).addEventListener('click', () => {
       countLikes(post.id, post.likes, 1)
@@ -41,15 +27,13 @@ export default (post, index, userId) => {
       deletedPostSubmit(post.id)
     })
 
-
-
-
   } else {
     if (userId != post.userId && post.privacy === 'public') {
-      divPostContent.innerHTML = `<section>
-      <p> ${post.user} </p>
-      <p rows="8" cols="50"> ${post.post} &#128101   </p>
-      <button id="btn-delete" ><img class="icon-menu" src="./img/delete.png"/></button>
+      divPostContent.innerHTML = `
+      <section>
+        <p> ${post.user} </p>
+        <p rows="8" cols="50"> ${post.post} &#128101   </p>
+        <button id="btn-delete" ><img class="icon-menu" src="./img/delete.png"/></button>
       </section>`;
       divPostContent.innerHTML += ` <div id="count-likes-${index}"> ${post.likes} &#x1F49A </div>`
 
@@ -58,6 +42,5 @@ export default (post, index, userId) => {
       })
     }
   }
-
   return divPostContent;
 }

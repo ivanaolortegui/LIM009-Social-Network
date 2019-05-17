@@ -16,13 +16,13 @@ body{
     align-items: center;
     /* box-sizing: border-box */
     /* background: #1b1c1c; */
-    /* background-size: 20% 20%;
-    padding: 10px;
-    text-align: center; */
 }
 
 .logo {
-    height: 90vh;
+    /* height: 90vh; */
+    height: 600px;
+    width: auto;
+    margin: 0px 0px 0px 10px;
 }
 
 .login-input{
@@ -48,9 +48,17 @@ body{
 .titulo{
     display: block;
     margin: auto;
-    padding-block-end: 15px;
+    padding: 20px;
     height:100px;
     width:200px;
+}
+
+.block-login{
+    text-align: center;
+    /* margin: 10px 0px 10px 0px; */
+    padding: 15px 30px;
+    background: #acc864;
+    border-radius: 15px;
 }
 
 .text{
@@ -71,10 +79,13 @@ body{
 
 
 /* HOME */
-.profile-logo{
-    margin: 50px;
-    height: 200px;
-    width: 200px;
+.container-home{
+    display: flex;
+	flex-direction: column;
+    align-items: flex-start;
+    border-radius: 15px;
+    background: #acc864;
+    margin: 20px 20px auto;
 }
 
 .hidden {
@@ -85,25 +96,12 @@ body{
     display: block;
   } 
 
-/* .button-registry:hover {
-    box-shadow: 0px 0px 0px;
-    padding-top: 7px;
-} */
-
-/* .style-input{
-    background: #d8dfc5    ;
-    border-radius: 15px;
-    text-align: center;
-    margin: 20px;
-    padding: 10px;
-    
-} */
-
 .menu{
     background:#ffee7c;
     margin: 20px;
-    padding: 10px;
-    text-align: center;
+    padding: 15px;
+    border-radius: 15px;
+    /* text-align: center; */
 }
 
 .menu-items{
@@ -130,25 +128,64 @@ body{
 }
 
 .block-home{
-    width: 90%;
+    /* width: 70%;
     margin: auto;
-    height: auto;
+    height: auto; */
+    margin: 100px 100px 0px 0px;
     display: flex;
     flex-direction: column;
     align-items: start;
   }
 
-.block-profile {
+.block-profile{
     float: left;
-    margin: 10px;
+    margin: 50px 100px 50px 0px;
     padding: 15px;
     align-items: center;
   }
 
+.profile-logo{
+    margin: auto; 
+    height: 200px;
+    width: 200px;
+    border-radius: 25px;
+}
+
+.share-post{
+    border: 3px solid #1a3f13;
+    /* padding: 0px 15px; */
+    width: 450px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.block-post{
+    display: block;
+    padding: 50px 0px 100px 0px;
+}
+
+.post-post{
+    display: block;
+    padding: 50px 150px 50px 150px;
+    border: 3px solid #1a3f13;
+    background: #dce29f;
+}
+
+.icon-post{
+    width: 20px;
+    height: auto;
+    margin: 10px 10px 10px 10px;
+}
 
 @media screen and (min-width: 800px) {
     .block-container {
       flex-direction: row;
+      justify-content: space-evenly;
+      min-height: 100vh;
+    }
+
+    .container-home{
+        flex-direction: row;
       justify-content: space-evenly;
       min-height: 100vh;
     }
