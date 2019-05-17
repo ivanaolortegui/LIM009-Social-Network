@@ -19,8 +19,7 @@ import {
   signOut,
   signInWithGmail,
   userData,
-  onUsuarioLoggeado,
-  ingresoDatos
+  onUsuarioLoggeado
 } from "../src/controller/controller-Firebase.js";
 
 describe('singUp', () => {
