@@ -7,7 +7,8 @@ import {
   editPost,
   addPost,
   editLike,
-  deletedPost
+  deletedPost,
+  addCommentPost
 } from '../controller/controller-Firebase.js'
 
 
@@ -101,12 +102,10 @@ export const deletedPostSubmit = (id) => {
   deletedPost(id)
 }
 
-export const commentPostSubmit = (id) => {
+export const commentPostSubmit = (id, index) => {
+  const inputValue = document.getElementById('input-comment');
+  const divContentComment = document.querySelector(`#comment-content-${index}`);
+  addCommentPost(id, inputValue.value)
+  divContentComment.innerHTML = '';
 
-  const inputValue = document.querySelector('#input-comment').value;
-  firebase.firestore().collection('post').doc(id).collection('comments').add({
-    
-    postComent: inputValue
-    
-  })
 }

@@ -86,3 +86,23 @@ export const editLike = (id, totaLike, newLike) => {
 export const deletedPost = (id) => {
   return firebase.firestore().collection('post').doc(id).delete();
 }
+
+export const addCommentPost = (id, comment) => {
+  return firebase.firestore().collection('post').doc(id).collection('comments').add({
+    postComent: comment
+  })
+}
+
+export const getComentPost = (id, callback) => {
+  return firebase.firestore().doc(`post/${id}`).collection('comments')
+    .onSnapshot((querySnapshot) => {
+      const data = [];
+      querySnapshot.docs.forEach((post) => {
+       data.push({ 
+         id: post.id,
+         ...post.data()})
+      });
+      callback(data)
+    });
+   
+} 
