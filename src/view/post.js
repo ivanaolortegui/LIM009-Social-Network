@@ -3,6 +3,20 @@ import { getComentPost } from '../controller/controller-Firebase.js'
 import commenTemplates from './comments.js'
 
 
+  const divPostContent = document.createElement('div');
+  if (userId === post.userId && (post.privacy === 'private' || post.privacy === 'public')) {
+    divPostContent.innerHTML = `
+    <section class="block-post">
+      <p class="user-post"> ${post.user} </p>
+      <p class="post-post"> ${post.privacy === 'private' ? `${post.post} &#128274  <span id="btn-edit-${index}"> &#x1F58A  </span> ` :
+      `${post.post} &#128101`} </p>
+      <form>
+        <span id="btn-edit-${index}"> <img class="icon-post" src="./img/edit.png"> </span>
+        <span id="count-likes-${index}">${post.likes} <img class="icon-post" src="./img/like.png"> </span>
+        <span id="btn-deleted-${index}"> <img class="icon-post" src="./img/delete.png"> </span>
+      </form>
+    </section>`;
+=======
 const commenTemplate = (id, index) => {
   const divContentComment = document.createElement('div');
   //divContentComment.setAttribute('id', 'content-comment')
@@ -34,6 +48,7 @@ export default (post, index, userId) => {
       <div id="comment-content-${index}" ></div> </div>
       `;
 
+
     divPostContent.querySelector(`#count-likes-${index}`).addEventListener('click', () => {
       countLikes(post.id, post.likes, 1)
     })
@@ -44,6 +59,8 @@ export default (post, index, userId) => {
     divPostContent.querySelector(`#btn-deleted-${index}`).addEventListener('click', () => {
       deletedPostSubmit(post.id)
     })
+
+=======
     divPostContent.querySelector(`#btn-coment-${index}`).addEventListener('click', () => {
       const divComment = divPostContent.querySelector(`#comment-content-${index}`)
       divComment.appendChild(commenTemplate(post.id, index))
@@ -57,9 +74,18 @@ export default (post, index, userId) => {
     })
 
 
+
   } else {
     if (userId != post.userId && post.privacy === 'public') {
       divPostContent.innerHTML = `
+
+      <section>
+        <p> ${post.user} </p>
+        <p rows="8" cols="50"> ${post.post} &#128101   </p>
+        <button id="btn-delete" ><img class="icon-menu" src="./img/delete.png"/></button>
+      </section>`;
+      divPostContent.innerHTML += ` <div id="count-likes-${index}"> ${post.likes} &#x1F49A </div>`
+
       <p> ${post.user} </p>
       <p> ${post.post} &#128101 </p>
   
@@ -76,6 +102,7 @@ export default (post, index, userId) => {
         divComment.appendChild(commenTemplate(post.id, index))
       })
 
+
       divPostContent.querySelector(`#count-likes-${index}`).addEventListener('click', () => {
         countLikes(post.id, post.likes, 1)
       })
@@ -88,6 +115,5 @@ export default (post, index, userId) => {
       })
     }
   }
-
   return divPostContent;
 }
