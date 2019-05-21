@@ -5,7 +5,7 @@ import commenTemplates from './comments.js'
 
 const addCommentSubmit = (id, index) => {
   const divContentComment = document.createElement('div');
-  divContentComment.innerHTML = `<input name="text" rows="8" cols="50" id="input-comment"
+  divContentComment.innerHTML = `<input class= " "name="text" rows="8" cols="50" id="input-comment"
   placeholder="Comentario"></input>
   <button  id="btn-comment-post-${index}"> Comentar </button>  
   `;

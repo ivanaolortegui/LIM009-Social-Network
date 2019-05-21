@@ -23,7 +23,7 @@ export const changeView = (router) => {
       break;
     case '#/home': {
       if (userData()) {        
-        getPost((post) => {
+        getPost(userData().uid, (post) => {
           divContainer.innerHTML = '';
           divContainer.appendChild(components.home(post))
         })
@@ -50,7 +50,7 @@ export const changeView = (router) => {
 
 export const initRouter = () => {
   window.addEventListener('load', () => { 
-    //changeView(window.location.hash)
+   // changeView(window.location.hash)
    setTimeout(() => changeView(window.location.hash), 700)
   })
   if (("onhashchange" in window)) window.onhashchange = () => changeView(window.location.hash)

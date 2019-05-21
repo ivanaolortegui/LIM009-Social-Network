@@ -1,4 +1,4 @@
-import { userData, getPublicPost } from '../controller/controller-Firebase.js'
+import { userData, getPublicPost, getPrivatePost } from '../controller/controller-Firebase.js'
 import { addPostSubmit } from './view-controller.js'
 
 import itemPost from './post.js'
@@ -50,20 +50,28 @@ export const home = (post) => {
   const btnAddPost = pageMain.querySelector('#btn-add-post');
   const divPost = pageMain.querySelector('#post-content');
 
-
   post.forEach((post, index) => {
     if (userId === post.userId) {
       divPost.appendChild(itemPost(post, index, userId))
     }
   })
 
-  getPublicPost((postPrivate) => {
-    postPrivate.forEach((post, index) => {
+  /*  getPrivatePost((postArray)=> {
+    postArray.forEach((post, index) => {
+      if (userId === post.userId) {
+      divPost.appendChild(itemPost(post, index, userId))
+      }
+    })
+  })  */
+
+  getPublicPost((postPublic) => {
+    postPublic.forEach((post, index) => {
       if (userId != post.userId) {
         divPost.appendChild(itemPost(post, index, userId))
       }
     })
   })
+
 
 
 

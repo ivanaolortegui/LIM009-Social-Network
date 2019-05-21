@@ -38,8 +38,8 @@ export const addPost = (post, userId, user, privacySelectValue, numberLike, date
   })
 }
 
-export const getPost = (callback) =>
-  firebase.firestore().collection('post').orderBy("date", "desc")
+export const getPost = (userIdPost, callback) => {
+  firebase.firestore().collection('post').where("userId", "==", userIdPost).orderBy("date", "desc")
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post) => {
@@ -55,10 +55,46 @@ export const getPost = (callback) =>
       });
       callback(data);
     });
+  }
+  
+  export const getPrivatePost = ( callback) => 
+  firebase.firestore().collection('post').orderBy("date", "desc")
+  .onSnapshot((querySnapshot) => {
+    const data = [];
+    querySnapshot.docs.forEach((post) => {
+      data.push({
+        id: post.id,
+        post: post.data().post,
+        user: post.data().user,
+        userId: post.data().userId,
+        privacy: post.data().privacy,
+        likes: post.data().likes,
+        date: post.data().date
+      })
+    });
+    callback(data);
+  });
+
+export const getPublicPost = (callback) =>
+  firebase.firestore().collection('post').where("privacy", "==", "public").orderBy("date", "desc")
+    .onSnapshot((querySnapshot) => {
+      const data = [];
+      querySnapshot.docs.forEach((post) => {
+        data.push({
+          id: post.id,
+          post: post.data().post,
+          user: post.data().user,
+          userId: post.data().userId,
+          privacy: post.data().privacy,
+          likes: post.data().likes,
+          date: post.data().date
+        })
+      });
+      callback(data);
+    });
 
 
 // firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
-
 /* export const post = () => {
   return firebase.firestore().collection('post').get()
 } */
@@ -85,12 +121,13 @@ export const deletedPost = (id) => {
 
 export const addCommentPost = (id, comment) => {
   return firebase.firestore().collection('post').doc(id).collection('comments').add({
-    postComent: comment
+    postComent: comment,
+    date: new Date().toLocaleString()
   })
 }
 
 export const getComentPost = (id, callback) => {
-  return firebase.firestore().doc(`post/${id}`).collection('comments')
+  return firebase.firestore().doc(`post/${id}`).collection('comments').orderBy("date", "asc")
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post) => {
@@ -99,26 +136,8 @@ export const getComentPost = (id, callback) => {
          ...post.data()})
       });
       callback(data)
-    });
-   
+    });  
 } 
 
-export const getPublicPost = (callback) =>
-  firebase.firestore().collection('post').where("privacy", "==", "public").orderBy("date", "desc")
-    .onSnapshot((querySnapshot) => {
-      const data = [];
-      querySnapshot.docs.forEach((post) => {
-        data.push({
-          id: post.id,
-          post: post.data().post,
-          user: post.data().user,
-          userId: post.data().userId,
-          privacy: post.data().privacy,
-          likes: post.data().likes,
-          date: post.data().date
-        })
-      });
-      callback(data);
-    });
 
     
