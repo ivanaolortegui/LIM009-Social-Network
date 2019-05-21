@@ -20,25 +20,32 @@ export const home = (post) => {
       </ul>
     </nav>
     <div class="container-home">
+    <section class="block-home">
     <article class="block-profile">
       <img class="profile-logo" src="${user.photoURL ? `${user.photoURL}` : `./img/avatar.png`}">
       <h3> Bienvenido <br>
       ${user.displayName ? `${user.displayName}` : `${user.email}`} </h3>
     </article>
-    <section class="block-home">
+    
+     <div class="block-post" >
+      <form class="form-post">
       <textarea class="share-post" name="textarea" rows="8" cols="50" id="input-post" placeholder="¿Qué estas pensando?"></textarea>
-      <form>
+      <div class="container-btn">
       <label for="file">&#128247</label>
       <input type="file" class="hidden" type="file" id="file" name="file" multiple>
-        <select id="privacy-select">
+      <div class="select">
+        <select  id="privacy-select">
           <option value="public" > Público &#128101 </option>
           <option value="private">Privado &#128274</option>
         </select>
+        </div>
         <button class="button" id="btn-add-post"> Share </button>
         <button class="hidden" id="btn-edit-post"> Edit </button>
+        </div>
       </form>
-    <div class="block-home" id= "post-content"></div>
+    <div  id= "post-content"></div>
     </section>
+    </div>
     </div>
   </main>`;
 

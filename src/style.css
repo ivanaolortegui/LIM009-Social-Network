@@ -42,6 +42,7 @@ body{
     text-align: center;
     box-shadow: 3px 3px 0px green; 
     border-radius: 15px;
+    margin-left: auto;
     
 }
 
@@ -77,15 +78,15 @@ body{
     border: none;
 }
 
-
 /* HOME */
 .container-home{
-    display: flex;
+   /*  display: flex;
 	flex-direction: column;
     align-items: flex-start;
     border-radius: 15px;
+   
+    margin: 20px 20px auto; */
     background: #acc864;
-    margin: 20px 20px auto;
 }
 
 .hidden {
@@ -126,15 +127,26 @@ body{
     width: 15px;
     height: auto;
 }
-
+.form-post{
+    background-color: #d8dfc5;
+    flex-direction: column;
+    align-items: start;
+    width: 350px;
+    border-radius: 5px;
+}
+.container-btn {
+    display: flex;
+    margin: 2%;
+}
 .block-home{
     /* width: 70%;
     margin: auto;
-    height: auto; */
-    margin: 100px 100px 0px 0px;
+    height: auto; 
+    margin: 100px ;*/
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
+    
   }
 
 .block-profile{
@@ -142,6 +154,7 @@ body{
     margin: 50px 100px 50px 0px;
     padding: 15px;
     align-items: center;
+    margin-bottom: auto;
   }
 
 .profile-logo{
@@ -150,13 +163,37 @@ body{
     width: 200px;
     border-radius: 25px;
 }
+.select {
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    height: 29px;
+    overflow: hidden;
+    width: 120px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+   
+   background-color: #b1b625;
+}
+.select select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 29px;
+    padding: 5px; /* If you add too much padding here, the options won't show in IE */
+    width: 130px;
+ }
 
 .share-post{
-    border: 3px solid #1a3f13;
-    /* padding: 0px 15px; */
-    width: 450px;
-    border-radius: 15px;
+    border: 1% solid #1a3f13;
+    resize: none;
+    text-align: justify;
+    
+    text-align-last: center;
+    width: 94%;
+    margin: 3%;
+    border-radius: 5px;
     text-align: center;
+
 }
 
 .block-post{
@@ -176,18 +213,35 @@ body{
     height: auto;
     margin: 10px 10px 10px 10px;
 }
-
+.imput-comment{
+    border-radius: 15px 50px 30px;
+    width: 160px;
+    height: 35px;
+    text-align: center;
+}
+ 
 @media screen and (min-width: 800px) {
     .block-container {
       flex-direction: row;
       justify-content: space-evenly;
       min-height: 100vh;
     }
-
+    .block-post{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .container-home{
         flex-direction: row;
       justify-content: space-evenly;
       min-height: 100vh;
     }
 
-}
+    .block-home{
+     
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+      }
+} 
