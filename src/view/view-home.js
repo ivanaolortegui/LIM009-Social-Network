@@ -26,7 +26,6 @@ export const home = (post) => {
       <h3> Bienvenido <br>
       ${user.displayName ? `${user.displayName}` : `${user.email}`} </h3>
     </article>
-    
      <div class="block-post" >
       <form class="form-post">
       <textarea class="share-post" name="textarea" rows="8" cols="50" id="input-post" placeholder="¿Qué estas pensando?"></textarea>
@@ -38,14 +37,15 @@ export const home = (post) => {
           <option value="public" > Público &#128101 </option>
           <option value="private">Privado &#128274</option>
         </select>
-        </div>
+      </div>
         <button type="button" class="button"  id="btn-add-post"> Share </button>
         <button type="button" class="hidden" id="btn-edit-post"> Edit </button>
         </div>
       </form>
-    <div  id= "post-content"></div>
-    </section>
+    <div id= "post-content"></div>
     </div>
+    </section>
+   
     </div>
   </main>`;
 
@@ -58,33 +58,31 @@ export const home = (post) => {
   const divPost = pageMain.querySelector('#post-content');
 
 
-   post.forEach((post, index) => {
+    post.forEach((post, index) => {
     if (userId === post.userId) {
       divPost.appendChild(itemPost(post, index, userId))
     }
-  }) 
+  })   
  
-  /*  getPrivatePost(userId,(postArray)=> {
+     /* getPrivatePost(userId,(postArray)=> {     
     postArray.forEach((post, index) => {
-     
-      divPost.appendChild(itemPost(post, index, userId))
-      
+      divPost.appendChild(itemPost(post, index, userId))   
     })
-  })   */
+    })  */
 
-  getPublicPost((postPublic) => {
+   getPublicPost((postPublic) => {
     postPublic.forEach((post, index) => {
       if (userId != post.userId) {
-        divPost.innerHTML=''
         divPost.appendChild(itemPost(post, index, userId))
       }
     })
-  })
+  }) 
 
 
 
 
-  btnAddPost.addEventListener('click', () => {
+  btnAddPost.addEventListener('click', (e) => {
+    e.preventDefault()
     const privacySelectValue = privacySelect.value
     addPostSubmit(userId, userName, privacySelectValue, numberLike)
   });
