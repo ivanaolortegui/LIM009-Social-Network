@@ -23,12 +23,11 @@ export const changeView = (router) => {
       break;
     case '#/home': {
       if (userData()) {        
-        getPost(userData().uid, (post) => {
+        getPost((post) => {
           divContainer.innerHTML = '';
           divContainer.appendChild(components.home(post))
         })
       } else {
-       
         window.location.hash = '#/signIn'
       }
     }
@@ -50,10 +49,10 @@ export const changeView = (router) => {
 
 export const initRouter = () => {
   window.addEventListener('load', () => { 
-   // changeView(window.location.hash)
+  // changeView(window.location.hash)
    setTimeout(() => changeView(window.location.hash), 700)
   })
   if (("onhashchange" in window)) window.onhashchange = () => changeView(window.location.hash)
  
-  //onUsuarioLoggeado(() => changeView('#/home'))
+  onUsuarioLoggeado(() => changeView('#/home'))
 }

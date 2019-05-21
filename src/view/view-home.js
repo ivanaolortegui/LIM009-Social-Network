@@ -39,8 +39,8 @@ export const home = (post) => {
           <option value="private">Privado &#128274</option>
         </select>
         </div>
-        <button class="button" id="btn-add-post"> Share </button>
-        <button class="hidden" id="btn-edit-post"> Edit </button>
+        <button type="button" class="button"  id="btn-add-post"> Share </button>
+        <button type="button" class="hidden" id="btn-edit-post"> Edit </button>
         </div>
       </form>
     <div  id= "post-content"></div>
@@ -57,23 +57,25 @@ export const home = (post) => {
   const btnAddPost = pageMain.querySelector('#btn-add-post');
   const divPost = pageMain.querySelector('#post-content');
 
-  post.forEach((post, index) => {
+
+   post.forEach((post, index) => {
     if (userId === post.userId) {
       divPost.appendChild(itemPost(post, index, userId))
     }
-  })
-
-  /*  getPrivatePost((postArray)=> {
+  }) 
+ 
+  /*  getPrivatePost(userId,(postArray)=> {
     postArray.forEach((post, index) => {
-      if (userId === post.userId) {
+     
       divPost.appendChild(itemPost(post, index, userId))
-      }
+      
     })
-  })  */
+  })   */
 
   getPublicPost((postPublic) => {
     postPublic.forEach((post, index) => {
       if (userId != post.userId) {
+        divPost.innerHTML=''
         divPost.appendChild(itemPost(post, index, userId))
       }
     })
