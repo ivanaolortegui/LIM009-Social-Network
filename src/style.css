@@ -198,15 +198,18 @@ body{
 
 .block-post{
     display: block;
-    padding: 50px 0px 100px 0px;
+    text-align: center;
+    margin: 3% 0% 0% 0%;
 }
 
 .post-post{
-    display: block;
-    padding: 50px 150px 50px 150px;
+   
     border: 3px solid #1a3f13;
     background: #dce29f;
+    width: 350px;
+    height: 88px;
 }
+
 
 .icon-post{
     width: 20px;
