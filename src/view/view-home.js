@@ -72,7 +72,6 @@ export const home = (post) => {
       ];
     
       posts = posts.sort();
-      console.log(posts)
       posts.forEach((post, index) => {
       
           divPost.appendChild(itemPost(post, index, userId))

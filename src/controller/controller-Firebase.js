@@ -62,7 +62,6 @@ export const getPrivatePost = (userIdPost, callback) => {
    .where("userId", "==", userIdPost).where("privacy", "==", "private")
    .orderBy("date", "desc").onSnapshot((querySnapshot) => {
     const data = [];
-    console.log(userIdPost);
     querySnapshot.docs.forEach((post) => {
       data.push({
         id: post.id,
