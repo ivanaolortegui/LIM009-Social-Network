@@ -17,7 +17,7 @@ export default () => {
       <p class="error-message" id="error-message"></p>
       <input class="login-input" id="email-login" type="email" placeholder="   &#9993    Email">
       <input class="login-input" id="password-login" type="password" placeholder="   &#128274     Password">
-      <a href="#/ingresar"><button class="button" id="log-in"> Log In </button></a>
+      <button class="button" id="log-in"> Log In </button>
       <article>
         <h4 class="text">O inicia sesión con...</h4>
         <a id="Facebook"><img class="icon-social" src="./img/facebook.png"></a>

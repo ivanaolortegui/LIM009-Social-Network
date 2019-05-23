@@ -44,10 +44,13 @@ export default (post, index, userId) => {
           <option value="private">Privado &#128274</option>
         </select>
        
-      <button type="button"  id="btn-edit-post"> Edit </button>`
+      <button type="button"  id="btn-edit-post-${index}"> Edit </button>`
       divPostContent.querySelector(`#input-edit-${index}`).value = post.post
+    console.log(post.id);
     
-      editPostSubmit( post.id, index)
+      editPostSubmit(post.id, index)
+      
+      
     })
   }
 

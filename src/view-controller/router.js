@@ -1,6 +1,6 @@
 import { components } from '../view/index.js'
 import { logOutSubmit } from '../view/view-controller.js'
-import { userData, onUsuarioLoggeado, getPost } from '../controller/controller-Firebase.js'
+import { userData, onUsuarioLoggeado, getPrivatePost, getPublicPost } from '../controller/controller-Firebase.js'
 
 
 
@@ -22,10 +22,20 @@ export const changeView = (router) => {
     }
       break;
     case '#/home': {
-      if (userData()) {        
-        getPost((post) => {
-          divContainer.innerHTML = '';
-          divContainer.appendChild(components.home(post))
+      if (userData()) {
+        getPrivatePost(userData().uid, (postPrivateArray) => {
+          getPublicPost((postPublic) => {
+            let posts = [
+              ...postPrivateArray,
+              ...postPublic
+            ];
+            posts = posts.sort((a, b) => {
+              b.date.seconds - a.date.seconds
+              console.log(a.date.seconds);
+            })
+            divContainer.innerHTML = '';
+            divContainer.appendChild(components.home(posts))
+          })
         })
       } else {
         window.location.hash = '#/signIn'
@@ -48,11 +58,11 @@ export const changeView = (router) => {
 
 
 export const initRouter = () => {
-  window.addEventListener('load', () => { 
-  // changeView(window.location.hash)
-   setTimeout(() => changeView(window.location.hash), 700)
+  window.addEventListener('load', () => {
+    // changeView(window.location.hash)
+    setTimeout(() => changeView(window.location.hash), 700)
   })
   if (("onhashchange" in window)) window.onhashchange = () => changeView(window.location.hash)
- 
+
   onUsuarioLoggeado(() => changeView('#/home'))
 }

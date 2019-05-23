@@ -1,4 +1,4 @@
-import  {initRouter }from './router.js'
+import  {initRouter }from '../view-controller/router.js'
  export const configFirebase = () => {
     let config = {
       apiKey: "AIzaSyBrEkqM2kN4YhK8ALD4rGDziPene6zeWhQ",

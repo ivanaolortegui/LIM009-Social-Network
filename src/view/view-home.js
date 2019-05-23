@@ -56,34 +56,9 @@ export const home = (post) => {
   const privacySelect = pageMain.querySelector('#privacy-select');
   const btnAddPost = pageMain.querySelector('#btn-add-post');
   const divPost = pageMain.querySelector('#post-content');
-
-
-  /*   post.forEach((post, index) => {
-    if (userId === post.userId) {
-      divPost.appendChild(itemPost(post, index, userId))
-    }
-  })  */  
- 
-  getPrivatePost(userId,(postPrivateArray)=> {
-    getPublicPost((postPublic) => {
-      let posts = [
-        ...postPrivateArray,
-        ...postPublic
-      ];
-    
-      posts = posts.sort();
-      posts.forEach((post, index) => {
-      
-          divPost.appendChild(itemPost(post, index, userId))
-        
-      })
-  }) 
-
-
-  }) 
-
-
-
+  post.forEach((post, index) => {                          
+    divPost.appendChild(itemPost(post, index, userId))     
+})
 
   btnAddPost.addEventListener('click', (e) => {
     e.preventDefault()

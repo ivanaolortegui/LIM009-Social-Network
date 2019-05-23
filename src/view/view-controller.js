@@ -61,14 +61,13 @@ export const logOutSubmit = () => {
 
 export const addPostSubmit = (userId, user, privacySelectValue, numberLike) => {
   const input = document.querySelector('#input-post').value;
-  const datePost = new Date().toLocaleString();
-  addPost(input, userId, user, privacySelectValue, numberLike, datePost);
+  addPost(input, userId, user, privacySelectValue, numberLike,);
 
 }
 
 
 export const editPostSubmit = (id, index) => {  
-  const btnEditPost = document.querySelector('#btn-edit-post')
+  const btnEditPost = document.querySelector(`#btn-edit-post-${index}`)
   btnEditPost.addEventListener('click', () => { 
     const postEdited = document.querySelector(`#input-edit-${index}`).value
     const valueSelect = document.querySelector('#privacy-select-edit').value

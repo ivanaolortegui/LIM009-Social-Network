@@ -25,7 +25,7 @@ export const onUsuarioLoggeado = (callback) => {
   })
 }
 
-export const addPost = (post, userId, user, privacySelectValue, numberLike, date) => {
+export const addPost = (post, userId, user, privacySelectValue, numberLike) => {
   //inicializamos firestore y llammos a la funcion colectioncon el nombre de la coleccion llamada usuario y con aDD agregamos 
   // los campos post 
   return firebase.firestore().collection('post').add({
@@ -34,7 +34,7 @@ export const addPost = (post, userId, user, privacySelectValue, numberLike, date
     post: post,
     privacy: privacySelectValue,
     likes: numberLike,
-    date: date
+    date:  new Date()
   })
 }
 
@@ -111,6 +111,8 @@ export const editPost = (id, textPost, privacy) => {
     post: textPost,
     privacy: privacy
   })
+ 
+  
 }
 
 export const editLike = (id, totaLike, newLike) => {
@@ -126,7 +128,7 @@ export const deletedPost = (id) => {
 export const addCommentPost = (id, comment) => {
   return firebase.firestore().collection('post').doc(id).collection('comments').add({
     postComent: comment,
-    date: new Date().toLocaleString()
+    date: new Date()
   })
 }
 
