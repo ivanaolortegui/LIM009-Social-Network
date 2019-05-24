@@ -37,7 +37,7 @@ export const addPost = (post, userId, user, privacySelectValue, numberLike) => {
 }
 
 export const getPost = (callback) => {
-  return firebase.firestore().collection('post')//.orderBy("date", "desc")
+  return firebase.firestore().collection('post').orderBy("date", "desc")
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post) => {

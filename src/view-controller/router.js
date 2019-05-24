@@ -4,7 +4,7 @@ import { userData, onUsuarioLoggeado, getPrivatePost, getPublicPost } from '../c
 
 
 
-export const changeView = (router) => {
+export const changeView = (router) => { debugger
   const divContainer = document.getElementById('all-page');
   divContainer.innerHTML = ''; // ANtes de hacr cualquier cambio te limpies
   switch (router) {
@@ -22,20 +22,20 @@ export const changeView = (router) => {
     }
       break;
     case '#/home': {
-      if (userData()) {
-        getPrivatePost(userData().uid, (postPrivateArray) => {
-          getPublicPost((postPublic) => {
-            let posts = [
-              ...postPrivateArray,
-              ...postPublic
-            ];
-            divContainer.innerHTML = '';
-            divContainer.appendChild(components.home(posts))
+      onUsuarioLoggeado((user) => {
+        if (user) {
+          getPrivatePost(userData().uid, (postPrivateArray) => {
+            getPublicPost((postPublic) => {
+              let posts = [
+                ...postPrivateArray,
+                ...postPublic
+              ];
+              divContainer.innerHTML = '';
+              divContainer.appendChild(components.home(posts))
+            })
           })
-        })
-      } else {
-        window.location.hash = '#/signIn'
-      }
+        }
+      })
     }
       break;
     case '#/signOut': {
@@ -59,6 +59,5 @@ export const initRouter = () => {
    // setTimeout(() => changeView(window.location.hash), 700)
   })
   if (("onhashchange" in window)) window.onhashchange = () => changeView(window.location.hash)
-
-  onUsuarioLoggeado(() => changeView('#/home'))
+  // onUsuarioLoggeado(() => changeView('#/home'))
 }
