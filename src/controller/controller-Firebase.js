@@ -19,9 +19,7 @@ export const userData = () => firebase.auth().currentUser;
 
 export const onUsuarioLoggeado = (callback) => {
   firebase.auth().onAuthStateChanged((user) => {
-    //if (user) {
     callback(user)
-    //} 
   })
 }
 
@@ -39,7 +37,7 @@ export const addPost = (post, userId, user, privacySelectValue, numberLike) => {
 }
 
 export const getPost = (callback) => {
-  return firebase.firestore().collection('post').orderBy("date", "desc")
+  return firebase.firestore().collection('post')//.orderBy("date", "desc")
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post) => {
@@ -110,9 +108,7 @@ export const editPost = (id, textPost, privacy) => {
   return firebase.firestore().collection('post').doc(id).update({
     post: textPost,
     privacy: privacy
-  })
- 
-  
+  })  
 }
 
 export const editLike = (id, totaLike, newLike) => {

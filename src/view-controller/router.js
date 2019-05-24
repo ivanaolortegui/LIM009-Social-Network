@@ -29,10 +29,6 @@ export const changeView = (router) => {
               ...postPrivateArray,
               ...postPublic
             ];
-            posts = posts.sort((a, b) => {
-              b.date.seconds - a.date.seconds
-              console.log(a.date.seconds);
-            })
             divContainer.innerHTML = '';
             divContainer.appendChild(components.home(posts))
           })
@@ -59,8 +55,8 @@ export const changeView = (router) => {
 
 export const initRouter = () => {
   window.addEventListener('load', () => {
-    // changeView(window.location.hash)
-    setTimeout(() => changeView(window.location.hash), 700)
+     changeView(window.location.hash)
+   // setTimeout(() => changeView(window.location.hash), 700)
   })
   if (("onhashchange" in window)) window.onhashchange = () => changeView(window.location.hash)
 

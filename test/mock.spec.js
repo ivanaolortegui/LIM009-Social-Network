@@ -2,7 +2,7 @@ import MockFirebase from '../_mocks_/firebase-mock.js'
 
 global.firebase = MockFirebase();
 
-import { singUp } from "../src/controller/controller-Firebase.js";
+import { singUp, addPost, getPublicPost, getPost } from "../src/controller/controller-Firebase.js";
 
 describe('singUp', () => {
   it('debería ser una funcion', () => {
@@ -16,4 +16,15 @@ describe('singUp', () => {
         expect(user.email).toBe('ivanao@gmail.com')
       })
   });
+})
+
+describe('addPost', () => {
+  it('deberías agregar un post',() => {
+    return addPost('Hoy recicle una botella', '12345', 'chiquinquira@gmail.com', 'public', 1)
+    .then((data)=> {  
+        expect(data).toBe('El post fue agregado')
+    })
+  });
+ 
+
 })
