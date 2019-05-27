@@ -7,10 +7,10 @@ export default () => {
   const templateImput = `
   <div class='block-container'>
     <header>
-      <img class="logo" src="./img/logo.png">
+    <img class="logo" src="./img/fond.png" alt="logo-principal">
     </header>
-    <section class="block-login" id="pag-one">
-      <p><img class="titulo" src="./img/titulo.png"></p>
+    <section class="block-login">
+    <img class="titulo" src="./img/titulo.png">
       <p class= "error-message" id="error-message"></p>
       <input class="login-input" id="email" type="email" placeholder="   &#9993     Email">
       <input class="login-input" id="contraseña" type="password" placeholder="   &#128274     Password">

@@ -1,75 +1,76 @@
-* {
+
+body {
   margin: 0%;
   padding: 0%;
+  font-family: 'Lucida Sans';
+    min-height: 100vh;
+/*    // background: url(img/fondo-blanco.jpg); */
+    background-color: #E5EEC3;
 }
-
-body{
-    margin: 0;
-	font-family: 'Lucida Sans';
-	min-height: 100vh;
-}
-
 /* LOGIN */
-.block-container{
+.block-container {
+    margin-top: 2%;
     display: flex;
 	flex-direction: column;
     align-items: center;
-    /* box-sizing: border-box */
-    /* background: #1b1c1c; */
+  
+}
+.block-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  /*   background: #acc864; */
+    border-radius: 15px;
+    padding: 1%;
+
 }
 
 .logo {
-    /* height: 90vh; */
-    height: 600px;
+    height: 200px;
     width: auto;
-    margin: 0px 0px 0px 10px;
 }
 
 .login-input{
-    display: block;
     background: #d8dfc5;
-    margin: 12px auto;
+    margin: 7px;
     height: 15px;
     padding: 10px 35px;
     border-radius: 15px;
 }
 
 .button {
-    background: #b1b625;
+    background: #96C41B;
     color: #d8dfc5;
-    display: inline-block;
     padding: 9px 50px;
     text-align: center;
-    box-shadow: 3px 3px 0px green; 
+    box-shadow: 3px 3px 0px #A8D520; 
     border-radius: 15px;
-    margin-left: auto;
+    margin: 2%;
+
     
 }
-
-.titulo{
-    display: block;
-    margin: auto;
-    padding: 20px;
-    height:100px;
-    width:200px;
+.social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.block-login{
-    text-align: center;
-    /* margin: 10px 0px 10px 0px; */
-    padding: 15px 30px;
-    background: #acc864;
-    border-radius: 15px;
+.titulo {
+    height: 100px;
+    width: 55%;
 }
+
 
 .text{
-    margin: 25px 50px 25px 50px;
     text-align: center;
-    color:  #1b1c1c;
+    color: #1b1c1c;
+    margin: 1%;
+    width: 100%;
 }
 
 .error-message {
     color: red;
+    margin: 2%;
 }
 
 .icon-social{
@@ -77,6 +78,8 @@ body{
 	height: auto;
     border: none;
 }
+
+
 
 /* HOME */
 .container-home{
@@ -224,11 +227,17 @@ body{
 }
  
 @media screen and (min-width: 800px) {
-    .block-container {
-      flex-direction: row;
-      justify-content: space-evenly;
-      min-height: 100vh;
+    .logo {
+        height: 500px;
+        width: auto;
+        
     }
+    .block-container {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+
     .block-post{
         display: flex;
         flex-direction: column;
@@ -247,4 +256,7 @@ body{
         align-items: center;
         
       }
+
+     /*  padding: 23px;
+      width: 350px; */
 } 
