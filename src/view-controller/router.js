@@ -2,9 +2,8 @@ import { components } from '../view/index.js'
 import { logOutSubmit } from '../view/view-controller.js'
 import { userData, onUsuarioLoggeado, getPrivatePost, getPublicPost } from '../controller/controller-Firebase.js'
 
-
-
-export const changeView = (router) => { debugger
+// Función para el cambio de rutas 
+export const changeView = (router) => {
   const divContainer = document.getElementById('all-page');
   divContainer.innerHTML = ''; // ANtes de hacr cualquier cambio te limpies
   switch (router) {
@@ -14,7 +13,6 @@ export const changeView = (router) => { debugger
       } else {
         window.location.hash = '#/home'
       }
-
     }
       break;
     case '#/signUp': {
@@ -24,12 +22,16 @@ export const changeView = (router) => { debugger
     case '#/home': {
       onUsuarioLoggeado((user) => {
         if (user) {
-          getPrivatePost(userData().uid, (postPrivateArray) => {
-            getPublicPost((postPublic) => {
+          getPrivatePost(userData().uid, (postPrivateArray) => {            
+            getPublicPost((postPublic) => {          
               let posts = [
                 ...postPrivateArray,
                 ...postPublic
-              ];
+              ];       
+              posts = posts.sort()/* ((a,b) =>{
+                b.date.seconds- a.date.seconds;
+                
+              }) */
               divContainer.innerHTML = '';
               divContainer.appendChild(components.home(posts))
             })
@@ -52,12 +54,10 @@ export const changeView = (router) => { debugger
   }
 }
 
-
+// función para la inicialización de rutas 
 export const initRouter = () => {
   window.addEventListener('load', () => {
-     changeView(window.location.hash)
-   // setTimeout(() => changeView(window.location.hash), 700)
+    changeView(window.location.hash)
   })
   if (("onhashchange" in window)) window.onhashchange = () => changeView(window.location.hash)
-  // onUsuarioLoggeado(() => changeView('#/home'))
 }

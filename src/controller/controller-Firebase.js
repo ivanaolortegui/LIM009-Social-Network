@@ -1,6 +1,6 @@
-export const singUp = (email, contraseña) =>  firebase.auth().createUserWithEmailAndPassword(email, contraseña)
+export const singUp = (email, contraseña) => firebase.auth().createUserWithEmailAndPassword(email, contraseña)
 
-export const signIn = (email, contraseña) =>  firebase.auth().signInWithEmailAndPassword(email, contraseña)
+export const signIn = (email, contraseña) => firebase.auth().signInWithEmailAndPassword(email, contraseña)
 
 export const signOut = () => firebase.auth().signOut()
 
@@ -23,7 +23,7 @@ export const onUsuarioLoggeado = (callback) => {
   })
 }
 
-export const addPost = (post, userId, user, privacySelectValue, numberLike) => {
+export const addPost = (post, userId, user, privacySelectValue, numberLike, image) => {
   //inicializamos firestore y llammos a la funcion colectioncon el nombre de la coleccion llamada usuario y con aDD agregamos 
   // los campos post 
   return firebase.firestore().collection('post').add({
@@ -32,7 +32,9 @@ export const addPost = (post, userId, user, privacySelectValue, numberLike) => {
     post: post,
     privacy: privacySelectValue,
     likes: numberLike,
-    date:  new Date()
+    image: image,
+    date: new Date(),
+
   })
 }
 
@@ -48,36 +50,37 @@ export const getPost = (callback) => {
           userId: post.data().userId,
           privacy: post.data().privacy,
           likes: post.data().likes,
-          date: post.data().date 
+          date: post.data().date
         })
       });
       callback(data);
     });
-  }
-  
-export const getPrivatePost = (userIdPost, callback) => {
-   return  firebase.firestore().collection('post')
-   .where("userId", "==", userIdPost).where("privacy", "==", "private")
-   .orderBy("date", "desc").onSnapshot((querySnapshot) => {
-    const data = [];
-    querySnapshot.docs.forEach((post) => {
-      data.push({
-        id: post.id,
-        post: post.data().post,
-        user: post.data().user,
-        userId: post.data().userId,
-        privacy: post.data().privacy,
-        likes: post.data().likes,
-        date: post.data().date
-      })
-    });
-    callback(data);
-  });
-  }
+}
 
-export const getPublicPost = (callback) =>{
+export const getPrivatePost = (userIdPost, callback) => {
   return firebase.firestore().collection('post')
-  .where("privacy", "==", "public").orderBy("date", "desc")
+    .where("userId", "==", userIdPost).where("privacy", "==", "private")
+    .orderBy("date", "desc").onSnapshot((querySnapshot) => {
+      const data = [];
+      querySnapshot.docs.forEach((post) => {
+        data.push({
+          id: post.id,
+          post: post.data().post,
+          user: post.data().user,
+          userId: post.data().userId,
+          privacy: post.data().privacy,
+          likes: post.data().likes,
+          image: post.data().image,
+          date: post.data().date
+        })
+      });
+      callback(data);
+    });
+}
+
+export const getPublicPost = (callback) => {
+  return firebase.firestore().collection('post')
+    .where("privacy", "==", "public").orderBy("date", "desc")
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post) => {
@@ -88,12 +91,20 @@ export const getPublicPost = (callback) =>{
           userId: post.data().userId,
           privacy: post.data().privacy,
           likes: post.data().likes,
+          image: post.data().image,
           date: post.data().date
         })
       });
       callback(data);
     });
-  }
+}
+export const putImageInStorage = (imageFile) => {
+  return firebase.storage().ref().child(`img/${imageFile.name}`).put(imageFile);
+}
+
+export const getImageUrl = (imageFile) => {
+  return imageFile.snapshot.ref.getDownloadURL();
+}
 
 
 // firebase.auth().currentUser me retorna un objeto con todo la informacio que ha ingresado
@@ -108,7 +119,7 @@ export const editPost = (id, textPost, privacy) => {
   return firebase.firestore().collection('post').doc(id).update({
     post: textPost,
     privacy: privacy
-  })  
+  })
 }
 
 export const editLike = (id, totaLike, newLike) => {
@@ -133,13 +144,12 @@ export const getComentPost = (id, callback) => {
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.docs.forEach((post) => {
-       data.push({ 
-         id: post.id,
-         ...post.data()})
+        data.push({
+          id: post.id,
+          ...post.data()
+        })
       });
       callback(data)
-    });  
-} 
+    });
+}
 
-
-    

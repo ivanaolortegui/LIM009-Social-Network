@@ -8,7 +8,9 @@ import {
   addPost,
   editLike,
   deletedPost,
-  addCommentPost
+  addCommentPost,
+  putImageInStorage,
+  getImageUrl
 } from '../controller/controller-Firebase.js'
 
 
@@ -59,20 +61,25 @@ export const logOutSubmit = () => {
     });
 }
 
-export const addPostSubmit = (userId, user, privacySelectValue, numberLike) => {
+export const addPostSubmit = (userId, user, privacySelectValue, numberLike, imageFileValue) => {
   const input = document.querySelector('#input-post').value;
-  addPost(input, userId, user, privacySelectValue, numberLike,);
-
+  if (imageFileValue === undefined) {
+    addPost(input, userId, user, privacySelectValue, numberLike, '');
+  } else {
+    getImageUrl(putImageInStorage(imageFileValue)).then((url) => {
+      console.log(url);
+      addPost(input, userId, user, privacySelectValue, numberLike, url);
+    })
+  }
 }
 
 
-export const editPostSubmit = (id, index) => {  
+export const editPostSubmit = (id, index) => {
   const btnEditPost = document.querySelector(`#btn-edit-post-${index}`)
-  btnEditPost.addEventListener('click', () => { 
+  btnEditPost.addEventListener('click', () => {
     const postEdited = document.querySelector(`#input-edit-${index}`).value
     const valueSelect = document.querySelector('#privacy-select-edit').value
-    
-    editPost(id,postEdited, valueSelect)
+    editPost(id, postEdited, valueSelect)
   });
 }
 
@@ -89,5 +96,5 @@ export const deletedPostSubmit = (id) => {
 export const commentPostSubmit = (id, index) => {
   const inputValue = document.getElementById(`input-comment-${index}`);
   addCommentPost(id, inputValue.value)
- inputValue.value = '';
+  inputValue.value = '';
 }
