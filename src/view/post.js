@@ -8,7 +8,7 @@ export default (post, index, userId) => {
   if (post.post != '' || post.image != '') {
     divPostContent.innerHTML = ` 
     <section class=" content-post">
-    <div class="line-black">
+    <div class="line-black post-container">
     <div class="line-black post-color">
     <p class=" post-post "> Publicado por ${post.user}  ${userId === post.userId ?
         `<span id="btn-deleted-${index}"> &#x1D5EB </span>` : ''} </p>
@@ -21,11 +21,11 @@ export default (post, index, userId) => {
       </div>
      
     <div  class="line-black post-post post-edit" > ${userId === post.userId ? ` 
-    <img id="btn-edit-${index}" class="icon-post" src="./img/edit.png"> ` : '' } <span >${post.likes}</span>   <img id="count-likes-${index}"class="icon-post" src="./img/like.png">  
+    <img id="btn-edit-${index}" class="icon-post" src="./img/edit.png"> ` : '' } <span class="icon-post"> ${post.likes}   <img id="count-likes-${index}" src="./img/like.png">  </span>
     </div>
     </div>
 
-    <div  id="comments-content-${index}"></div>
+    <div class="line-black" id="comments-content-${index}"></div>
       <input class= "imput-comment" type="search" name="text" rows="8" cols="50" id="input-comment-${index}"
   placeholder="Escribe un comentario..." autofocus=""> 
   </section> 

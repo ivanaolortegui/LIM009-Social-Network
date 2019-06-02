@@ -41,6 +41,7 @@ body {
 
 .button {
     cursor: pointer;
+    outline: none;
     border: none;
     padding: 12px 40px;
     background: #B1FF00;
@@ -203,8 +204,15 @@ body {
     text-decoration: none;
     display: inline-block;
  }
-.comments{ 
-    border-radius: 15px;
+.comments { 
+    border-radius: 13px;
+    background-color: #efefef;
+    margin: 1%;
+    height: auto;
+    width: auto;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 6px 0px 10px;
 }
  .content-post {
     margin-top: 12%;
@@ -219,6 +227,11 @@ body {
     margin: 3%;
     border-radius: 5px;
     text-align: center;
+
+}
+.post-container {
+    display: flex;
+    flex-direction: column;
 
 }
 
@@ -242,13 +255,14 @@ body {
 .icon-post{
     width: 20px;
     height: auto;
-    margin: 10px 10px 0px 10px;
+  /*   margin: 10px 10px 0px 10px; */
 }
 .imput-comment{
     border: 1px solid #e6e6e6; 
     outline: none;
     background: #f0ffea; 
     border-radius: 25px;
+    margin-top: 1%;
     padding: 2%;
     width: 100%;
     height: 35px;
@@ -256,6 +270,7 @@ body {
 }
 .line-black {
     border: 1px solid #1b1c1c;  
+    border-radius: 5px;
     
  }
 @media screen and (min-width: 800px) {

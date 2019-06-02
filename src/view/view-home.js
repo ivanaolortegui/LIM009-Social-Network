@@ -2,8 +2,8 @@ import { userData } from '../controller/controller-Firebase.js'
 import { addPostSubmit } from './view-controller.js'
 
 import itemPost from './post.js'
-
-export const home = (post) => {
+ // Funcion para exportar contenido del home
+export  default(post) => {
   const pageMain = document.createElement('div');
   const user = userData();
   const template = `

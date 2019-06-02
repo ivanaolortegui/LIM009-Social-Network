@@ -1,5 +1,5 @@
 import signUpView from './view-SignUp.js'
-import { home }from './view-home.js'
+import home from './view-home.js'
 import SignInView from "./view-SignIn.js";
 
 export const components = {
