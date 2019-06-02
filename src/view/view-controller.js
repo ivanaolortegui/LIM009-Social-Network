@@ -93,7 +93,7 @@ export const deletedPostSubmit = (id) => {
   deletedPost(id)
 }
 
-export const commentPostSubmit = (id, index) => {
+export const commentPostSubmit = (id, index,) => {
   const inputValue = document.getElementById(`input-comment-${index}`);
   addCommentPost(id, inputValue.value)
   inputValue.value = '';

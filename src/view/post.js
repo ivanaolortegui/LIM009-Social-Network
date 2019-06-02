@@ -7,27 +7,30 @@ export default (post, index, userId) => {
   const divPostContent = document.createElement('div');
   if (post.post != '' || post.image != '') {
     divPostContent.innerHTML = ` 
-    <section class="block-post">
-    <p class="user-post"> ${post.user}${userId === post.userId ?
+    <section class=" content-post">
+    <div class="line-black">
+    <div class="line-black post-color">
+    <p class=" post-post "> Publicado por ${post.user}  ${userId === post.userId ?
         `<span id="btn-deleted-${index}"> &#x1D5EB </span>` : ''} </p>
-    <div id="post-text-${index}" class="post-post"> <p>${post.privacy === 'private' ? `${post.post} &#128274 ` :
-        `${post.post}  &#128101`}</p> 
+      </div>
+
+
+    <div id="post-text-${index}" class="post-post line-black"> <p>${post.post} 
+    </p> 
       ${post.image === '' ? '' : `<img class="profile-logo" src="${post.image}" ></img>`} 
       </div>
-    <div>`
-    if (userId === post.userId) {
-      divPostContent.innerHTML += `<span id="btn-edit-${index}"> 
-      <img class="icon-post" src="./img/edit.png"> </span>
-      `;
-    }
-    divPostContent.innerHTML += ` <span id="count-likes-${index}">${post.likes} <img class="icon-post" src="./img/like.png"> </span>   
-      <div id="comments-content-${index}" ></div> </div>
-      <input class= "imput-comment"name="text" rows="8" cols="50" id="input-comment-${index}"
-  placeholder="Comentario"></input>
-  <button class="button" id="btn-comment-post-${index}"> Comentar </button>  
+     
+    <div  class="line-black post-post post-edit" > ${userId === post.userId ? ` 
+    <img id="btn-edit-${index}" class="icon-post" src="./img/edit.png"> ` : '' } <span >${post.likes}</span>   <img id="count-likes-${index}"class="icon-post" src="./img/like.png">  
     </div>
+    </div>
+
+    <div  id="comments-content-${index}"></div>
+      <input class= "imput-comment" type="search" name="text" rows="8" cols="50" id="input-comment-${index}"
+  placeholder="Escribe un comentario..." autofocus=""> 
   </section> 
-      `;
+    `
+;
     divPostContent.querySelector(`#count-likes-${index}`).addEventListener('click', () => {
       countLikes(post.id, post.likes, 1)
     })
@@ -36,13 +39,13 @@ export default (post, index, userId) => {
       divPostContent.querySelector(`#btn-edit-${index}`).addEventListener('click', () => {
         divPostContent.querySelector(`#post-text-${index}`).innerHTML = ''
         divPostContent.querySelector(`#post-text-${index}`).innerHTML = `
-           <input id="input-edit-${index}"class="input"name='coment'></input>        
+           <input class ="login-input"id="input-edit-${index}"class="input"name='coment'></input>        
            <select  id="privacy-select-edit">
               <option value="public" > Público &#128101 </option>
               <option value="private">Privado &#128274</option>
             </select>
            
-          <button type="button"  id="btn-edit-post-${index}"> Edit </button>`
+          <button type="button" class="button"  id="btn-edit-post-${index}"> Editar </button>`
         divPostContent.querySelector(`#input-edit-${index}`).value = post.post
         editPostSubmit(post.id, index)
       })
@@ -52,10 +55,10 @@ export default (post, index, userId) => {
         deletedPostSubmit(post.id)
       })
     }
-    const btnComment = divPostContent.querySelector(`#btn-comment-post-${index}`)
-    btnComment.addEventListener('click', () => {
+     const btnComment = divPostContent.querySelector(`#input-comment-${index}`)
+    btnComment.addEventListener('search', () => {  
       commentPostSubmit(post.id, index)
-    })
+    }) 
     const divComments = divPostContent.querySelector(`#comments-content-${index}`)
     getComentPost(post.id, (comments) => {
       divComments.innerHTML = '';

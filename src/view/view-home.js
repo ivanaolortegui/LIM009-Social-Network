@@ -7,27 +7,32 @@ export const home = (post) => {
   const pageMain = document.createElement('div');
   const user = userData();
   const template = `
-  <main>
-    <nav class="menu">
-      <ul>
-        <a class="menu-items" href=""> <h4> &#x1F464 ${user.displayName ? `${user.displayName}` : `${user.email}`} </h4></a>
-        <a class="menu-items" href="#/home"> <h4> <img class="icon-menu" src="./img/recycle.png"> PureLife </h4> </a>
-        <a class="menu-items" href="#/signOut"><h4> <img class="icon-menu" src="./img/logout.png"> cerrar sesion </h4> </a>
-        <a class="menu-menu"> <h1> &#9776 </h1> </a>
-      </ul>
-    </nav>
-    <div class="container-home">
-    <section class="block-home">
-    <article class="block-profile">
+  
+  <header class = "header">
+    <input type="checkbox" class ="hidden " id="btn-menu">
+    <label class="cursor" for="btn-menu"> &#9776 </label>
+      <nav class="menu-menu">
+        <ul class="menu">
+          <li class="menu-items"> <a class="menu-items"  > <h4  >  ${user.displayName ? `${user.displayName}` : `${user.email}`} </h4></a> </li>
+          <li class="menu-items"><a class="menu-items" href="#/home"> <h4> <img class="icon-menu" src="./img/recycle.png"> PureLife </h4> </a> </li>
+          <li class="menu-items"><a class="menu-items" href="#/signOut"><h4> <img class="icon-menu" src="./img/logout.png"> cerrar sesion </h4> </a> </li>
+        </ul>
+      </nav>
+      </header>
+     
+    <section class = "container">
+    <div class="content-profile ">
+    <img class=" hidden show" src="./img/planeta.jpeg">
+    <article class="block-profile show">
       <img class="profile-logo" src="${user.photoURL ? `${user.photoURL}` : `./img/avatar.png`}">
-      <h3> Bienvenido <br>
-      ${user.displayName ? `${user.displayName}` : `${user.email}`} </h3>
+      <h3>   ${user.displayName ? `${user.displayName}` : `${user.email}`} </h3>
     </article>
-     <div class="block-post" >
-      <form class="form-post">
-      <textarea class="share-post" name="textarea" rows="8" cols="50" id="input-post" placeholder="¿Qué estas pensando?"></textarea>
+    </div>
+     <div class="block-post " >
+      <form class="form-post line-black">
+      <textarea class="share-post line-black" name="textarea" rows="8" cols="50" id="input-post" placeholder="¿Qué estas pensando?"></textarea>
       <div class="container-btn">
-      <label for="file">&#128247 </label>
+      <label for="file"> <img class="profile-logo" src="./img/camara.png"> </label>
       <input type="file" class="hidden" type="file" id="file" name="file" 
       accept="image/png, image/jpeg" multiple>
       <div class="select">
@@ -35,17 +40,17 @@ export const home = (post) => {
           <option value="public" > Público &#128101 </option>
           <option value="private">Privado &#128274</option>
         </select>
-      </div>
-        <button type="button" id="btn-add-post"> Share </button>
-       
+    
+        <button class="button" type="button" id="btn-add-post"> Compartir  </button>
+        </div>
         </div>
       </form>
+      
     <div id= "post-content"></div>
     </div>
-    </section>
-   
-    </div>
-  </main>`;
+  
+  </section>
+  `;
 
   pageMain.innerHTML = template;
   const imageFile = pageMain.querySelector('#file');
