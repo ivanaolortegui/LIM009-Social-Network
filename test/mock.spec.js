@@ -1,8 +1,10 @@
 import MockFirebase from '../_mocks_/firebase-mock.js'
 
+
 global.firebase = MockFirebase();
 
-import { singUp, addPost, getPublicPost, getPost } from "../src/controller/controller-Firebase.js";
+
+import { singUp, addPost, getPublicPost, getPost, putImageInStorage } from "../src/controller/controller-Firebase.js";
 
 describe('singUp', () => {
   it('debería ser una funcion', () => {
@@ -28,3 +30,17 @@ describe('addPost', () => {
  
 
 })
+
+describe('putImageInStorage', () => {
+  it('debería ser una funcion', () => {
+    expect(typeof putImageInStorage).toBe('function')
+  });
+
+
+  it('Debería', (done) => {
+    return putImageInStorage('fondo.png').then((data) => {
+      expect(data).toBe('https://firebasestorage.googleapis.com/fondo.png')
+     done()
+    })
+  })
+})  

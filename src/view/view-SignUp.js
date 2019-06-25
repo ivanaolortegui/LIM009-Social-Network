@@ -5,11 +5,11 @@ import { logupSubmit } from './view-controller.js'
 export default () => {
   const divSignUp = document.createElement('div');
   const templateImput = `
-  <div class='block-container'>
+  <div class="block-container flex-collumn">
     <header>
     <img class="logo" src="./img/fond.png" alt="logo-principal">
     </header>
-    <section class="block-login">
+    <section class="block-login flex-collumn">
     <img class="titulo" src="./img/titulo.png">
       <p class= "error-message" id="error-message"></p>
       <input class="login-input" id="email" type="email" placeholder="   &#9993     Email">

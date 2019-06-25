@@ -20,7 +20,7 @@ export  default(post) => {
       </nav>
       </header>
      
-    <section class = "container">
+    <section class = "container flex-collumn">
     <div class="content-profile ">
     <img class=" hidden show" src="./img/planeta.jpeg">
     <article class="block-profile show">
@@ -32,10 +32,10 @@ export  default(post) => {
       <form class="form-post line-black">
       <textarea class="share-post line-black" name="textarea" rows="8" cols="50" id="input-post" placeholder="¿Qué estas pensando?"></textarea>
       <div class="container-btn">
-      <label for="file"> <img class="profile-logo" src="./img/camara.png"> </label>
+      <label for="file"> <img  src="./img/camara.png"> </label>
       <input type="file" class="hidden" type="file" id="file" name="file" 
       accept="image/png, image/jpeg" multiple>
-      <div class="select">
+      <div class="flex-collumn">
         <select  id="privacy-select">
           <option value="public" > Público &#128101 </option>
           <option value="private">Privado &#128274</option>

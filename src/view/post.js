@@ -8,16 +8,16 @@ export default (post, index, userId) => {
   if (post.post != '' || post.image != '') {
     divPostContent.innerHTML = ` 
     <section class=" content-post">
-    <div class="line-black post-container">
+    <div class=" flex-collumn">
     <div class="line-black post-color">
     <p class=" post-post "> Publicado por ${post.user}  ${userId === post.userId ?
         `<span id="btn-deleted-${index}"> &#x1D5EB </span>` : ''} </p>
       </div>
 
 
-    <div id="post-text-${index}" class="post-post line-black"> <p>${post.post} 
-    </p> 
-      ${post.image === '' ? '' : `<img class="profile-logo" src="${post.image}" ></img>`} 
+    <div id="post-text-${index}" class="post-post line-black"> 
+      ${post.post === '' ? '' :` <p>${post.post} </p> `}
+      ${post.image === '' ? '' : `<img class="post-post" src="${post.image}" ></img>`} 
       </div>
      
     <div  class="line-black post-post post-edit" > ${userId === post.userId ? ` 
