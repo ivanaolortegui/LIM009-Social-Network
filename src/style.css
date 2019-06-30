@@ -67,7 +67,7 @@ body {
 }
 
 .titulo {
-    width: 55%;
+    width: 40%;
 }
 
 
@@ -79,6 +79,7 @@ body {
 }
 
 .error-message {
+    max-width: 395px;
     color: red;
     margin: 2%;
 }

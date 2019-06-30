@@ -10,7 +10,7 @@ export default () => {
     <img class="logo" src="./img/fond.png" alt="logo-principal">
     </header>
     <section class="block-login flex-collumn">
-    <img class="titulo" src="./img/titulo.png">
+    <img class="titulo" src="./img/logo-hoja.png">
       <p class= "error-message" id="error-message"></p>
       <input class="login-input" id="email" type="email" placeholder="   &#9993     Email">
       <input class="login-input" id="contraseña" type="password" placeholder="   &#128274     Password">
